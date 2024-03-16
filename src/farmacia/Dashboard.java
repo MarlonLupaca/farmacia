@@ -1,7 +1,10 @@
 
 package farmacia;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -9,10 +12,23 @@ import net.miginfocom.swing.MigLayout;
  * @author Marlon_Mendoza
  */
 public class Dashboard extends javax.swing.JFrame {
-
+    
     public Dashboard() {
         initComponents();
-        xd.setLayout(new net.miginfocom.swing.MigLayout());
+       
+        
+        
+        
+        
+    }
+    private void visualizador(JPanel p)
+    {
+        p.setSize(1050, 720);
+        p.setLocation(0,0);
+        panelfill.removeAll();
+        panelfill.add(p,BorderLayout.CENTER);
+        panelfill.revalidate();
+        panelfill.repaint();
     }
     
 
@@ -23,13 +39,13 @@ public class Dashboard extends javax.swing.JFrame {
     private void initComponents() {
 
         xd = new javax.swing.JPanel();
-        panelxd = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         panelfill = new javax.swing.JPanel();
-        botonxd = new javax.swing.JButton();
-        azul = new javax.swing.JLabel();
-        panel1 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        panelxd = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -37,58 +53,64 @@ public class Dashboard extends javax.swing.JFrame {
 
         xd.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelxd.setBackground(new java.awt.Color(153, 102, 0));
+        panelfill.setBackground(new java.awt.Color(204, 226, 235));
+
+        javax.swing.GroupLayout panelfillLayout = new javax.swing.GroupLayout(panelfill);
+        panelfill.setLayout(panelfillLayout);
+        panelfillLayout.setHorizontalGroup(
+            panelfillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1050, Short.MAX_VALUE)
+        );
+        panelfillLayout.setVerticalGroup(
+            panelfillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 720, Short.MAX_VALUE)
+        );
+
+        xd.add(panelfill, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 1050, 720));
+
+        panelxd.setBackground(new java.awt.Color(109, 175, 195));
         panelxd.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/usuario.png"))); // NOI18N
+        panelxd.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 150, 150));
+        jLabel1.getAccessibleContext().setAccessibleDescription("");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("usuario");
+        panelxd.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 160, 20));
+
+        jButton9.setBackground(new java.awt.Color(204, 255, 255));
+        jButton9.setForeground(new java.awt.Color(0, 0, 0));
+        jButton9.setText("KARDEX");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton9ActionPerformed(evt);
             }
         });
-        panelxd.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 109, -1, -1));
+        panelxd.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 210, 50));
 
-        xd.add(panelxd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 160, 720));
-
-        panelfill.setBackground(new java.awt.Color(255, 255, 255));
-        panelfill.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 5));
-        panelfill.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        botonxd.setText("jButton1");
-        botonxd.addActionListener(new java.awt.event.ActionListener() {
+        jButton10.setBackground(new java.awt.Color(204, 255, 255));
+        jButton10.setForeground(new java.awt.Color(0, 0, 0));
+        jButton10.setText("CLIENTES");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonxdActionPerformed(evt);
+                jButton10ActionPerformed(evt);
             }
         });
-        panelfill.add(botonxd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 30, 30));
+        panelxd.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 210, 50));
 
-        azul.setFont(new java.awt.Font("Segoe UI Semilight", 3, 100)); // NOI18N
-        azul.setForeground(new java.awt.Color(0, 0, 0));
-        azul.setText("azul");
-        panelfill.add(azul, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 920, 90));
-
-        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
-        panel1.setLayout(panel1Layout);
-        panel1Layout.setHorizontalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        panel1Layout.setVerticalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        panelfill.add(panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 290, 100, 100));
-
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButton11.setBackground(new java.awt.Color(204, 255, 255));
+        jButton11.setForeground(new java.awt.Color(0, 0, 0));
+        jButton11.setText("KARDEX");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButton11ActionPerformed(evt);
             }
         });
-        panelfill.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 140, -1, -1));
+        panelxd.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 210, 50));
 
-        xd.add(panelfill, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 1120, 720));
+        xd.add(panelxd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 720));
 
         getContentPane().add(xd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 
@@ -96,73 +118,60 @@ public class Dashboard extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonxdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonxdActionPerformed
-        int posicion = botonxd.getX();
-        System.out.println(posicion);
-        if(posicion > 10)
-        {
-            Animacion.Animacion.mover_izquierda(160, 0, 2, 6, botonxd);
-            Animacion.Animacion.mover_izquierda(0, -160, 2, 6, panelxd);
-            xd.setLayout(new MigLayout("fill"));
-            
-            
-        }else
-        {
-            Animacion.Animacion.mover_derecha(0, 160, 2, 6, botonxd);
-            Animacion.Animacion.mover_derecha(-160, 0, 2, 6, panelxd);
-        }
-        
-    }//GEN-LAST:event_botonxdActionPerformed
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        visualizador(new KARDEX());
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        System.out.println("boton");
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButton9ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        visualizador(new CLIENTES());
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton11ActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+    /* Set the Nimbus look and feel */
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+     * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+     */
+    try {
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                break;
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Dashboard().setVisible(true);
-            }
-        });
+    } catch (ClassNotFoundException ex) {
+        java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (InstantiationException ex) {
+        java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (IllegalAccessException ex) {
+        java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
+    //</editor-fold>
+
+    /* Create and display the form */
+    java.awt.EventQueue.invokeLater(new Runnable() {
+        public void run() {
+            new login().setVisible(true);
+        }
+    });
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel azul;
-    private javax.swing.JButton botonxd;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JPanel panel1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton9;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel panelfill;
     private javax.swing.JPanel panelxd;
     private javax.swing.JPanel xd;
