@@ -1,6 +1,4 @@
-
 package objetos;
-
 
 public class producto {
     private int codigo_unico;

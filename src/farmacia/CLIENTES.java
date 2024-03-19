@@ -1,8 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package farmacia;
+
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
 
 /**
  *
@@ -15,6 +14,16 @@ public class CLIENTES extends javax.swing.JPanel {
      */
     public CLIENTES() {
         initComponents();
+        visualizador (new registrocliente());
+    }
+    public void visualizador (JPanel p)
+    {
+        p.setSize(1050, 680);
+        p.setLocation(0,0);
+        panel.removeAll();
+        panel.add(p,BorderLayout.CENTER);
+        panel.revalidate();
+        panel.repaint();
     }
 
     /**
@@ -27,15 +36,52 @@ public class CLIENTES extends javax.swing.JPanel {
     private void initComponents() {
 
         panelfill = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        panel = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         panelfill.setBackground(new java.awt.Color(204, 226, 235));
         panelfill.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("CLIENTES");
-        panelfill.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, 160, 20));
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        panelfill.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 0, 120, 40));
+
+        panel.setPreferredSize(new java.awt.Dimension(1050, 680));
+
+        javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
+        panel.setLayout(panelLayout);
+        panelLayout.setHorizontalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1050, Short.MAX_VALUE)
+        );
+        panelLayout.setVerticalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 680, Short.MAX_VALUE)
+        );
+
+        panelfill.add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, -1, -1));
+
+        jButton2.setText("CLIENTES");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        panelfill.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 40));
+
+        jButton3.setText("REGISTRAR ALETA");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        panelfill.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, 140, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -59,9 +105,24 @@ public class CLIENTES extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        visualizador(new registrocliente());
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        visualizador(new registraralerta());
+    }//GEN-LAST:event_jButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JPanel panel;
     private javax.swing.JPanel panelfill;
     // End of variables declaration//GEN-END:variables
 }

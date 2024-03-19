@@ -102,7 +102,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         jButton11.setBackground(new java.awt.Color(204, 255, 255));
         jButton11.setForeground(new java.awt.Color(0, 0, 0));
-        jButton11.setText("KARDEX");
+        jButton11.setText("ALERTAS");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
@@ -128,7 +128,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
+        visualizador(new alertas());
     }//GEN-LAST:event_jButton11ActionPerformed
 
     /**
