@@ -8,6 +8,7 @@ import javax.swing.JPanel;
  *
  * @author Marlon_Mendoza
  */
+
 public class KARDEX extends javax.swing.JPanel {
 
     /**

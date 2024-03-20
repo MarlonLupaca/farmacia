@@ -6,7 +6,8 @@ import db.conexion;
 import interfaces.*;
 import java.util.List;
 import objetos.*;
-import java.sql.PreparedStatement;
+import java.sql.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -29,6 +30,8 @@ public class DAOClientesImpl extends conexion implements DAOClientes{
         st.setString(7,p.getCorreoelectronico());    
         st.setString(8,p.getDescripcionmedica());       
         st.executeUpdate();
+        
+        st.close();
     }
 
     @Override
@@ -43,7 +46,24 @@ public class DAOClientesImpl extends conexion implements DAOClientes{
 
     @Override
     public List<cliente> listar() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List <cliente> lista = null;
+        try {
+            this.conex();
+            PreparedStatement st = this.conexion.prepareStatement("select * from PACIENTES;");
+            
+            lista = new ArrayList();
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {     
+                cliente p = new cliente(rs.getString(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
+                lista.add(p);
+            }
+            rs.close();
+            st.close();
+        
+            
+        } catch (Exception e) {
+        }
+        return lista;
     }
     
 }

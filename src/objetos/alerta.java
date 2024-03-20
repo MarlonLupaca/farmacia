@@ -4,9 +4,9 @@ package objetos;
 
 public class alerta {
     private String dni;
+    private String nombre;
     private String descripcion;
-    private String fechadeinicio;
-    private String fechadefin;
+    private String fecha;
 
     public String getDni() {
         return dni;
@@ -14,6 +14,14 @@ public class alerta {
 
     public void setDni(String dni) {
         this.dni = dni;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getDescripcion() {
@@ -24,28 +32,25 @@ public class alerta {
         this.descripcion = descripcion;
     }
 
-    public String getFechadeinicio() {
-        return fechadeinicio;
+    public String getFecha() {
+        return fecha;
     }
 
-    public void setFechadeinicio(String fechadeinicio) {
-        this.fechadeinicio = fechadeinicio;
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 
-    public String getFechadefin() {
-        return fechadefin;
-    }
-
-    public void setFechadefin(String fechadefin) {
-        this.fechadefin = fechadefin;
-    }
-
-    public alerta(String dni, String descripcion, String fechadeinicio, String fechadefin) {
+    public alerta(String dni, String nombre, String descripcion, String fecha) {
         this.dni = dni;
+        this.nombre = nombre;
         this.descripcion = descripcion;
-        this.fechadeinicio = fechadeinicio;
-        this.fechadefin = fechadefin;
+        this.fecha = fecha;
     }
+    
+    
+    
+
+    
     
     
     

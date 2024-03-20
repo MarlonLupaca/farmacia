@@ -31,12 +31,11 @@ public class registraralerta extends javax.swing.JPanel {
         descripcion = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        fechadefin = new javax.swing.JTextField();
-        fechadeinicio = new javax.swing.JTextField();
+        fechadealerta = new javax.swing.JTextField();
+        nombre = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         dni = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(204, 226, 235));
         jPanel1.setPreferredSize(new java.awt.Dimension(1050, 680));
@@ -69,33 +68,33 @@ public class registraralerta extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(25, 46, 56));
-        jLabel4.setText("Fecha de inicio:");
+        jLabel4.setText("Nombre:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 230, 30));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(25, 46, 56));
-        jLabel7.setText("Fecha de fin:");
+        jLabel7.setText("Fecha de alerta:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, 140, 30));
 
-        fechadefin.setBackground(new java.awt.Color(255, 255, 255));
-        fechadefin.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
-        fechadefin.setForeground(new java.awt.Color(0, 0, 0));
-        fechadefin.addActionListener(new java.awt.event.ActionListener() {
+        fechadealerta.setBackground(new java.awt.Color(255, 255, 255));
+        fechadealerta.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
+        fechadealerta.setForeground(new java.awt.Color(0, 0, 0));
+        fechadealerta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fechadefinActionPerformed(evt);
+                fechadealertaActionPerformed(evt);
             }
         });
-        jPanel1.add(fechadefin, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 250, 35));
+        jPanel1.add(fechadealerta, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 250, 35));
 
-        fechadeinicio.setBackground(new java.awt.Color(255, 255, 255));
-        fechadeinicio.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
-        fechadeinicio.setForeground(new java.awt.Color(0, 0, 0));
-        fechadeinicio.addActionListener(new java.awt.event.ActionListener() {
+        nombre.setBackground(new java.awt.Color(255, 255, 255));
+        nombre.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
+        nombre.setForeground(new java.awt.Color(0, 0, 0));
+        nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fechadeinicioActionPerformed(evt);
+                nombreActionPerformed(evt);
             }
         });
-        jPanel1.add(fechadeinicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 250, 35));
+        jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 250, 35));
 
         jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -119,14 +118,6 @@ public class registraralerta extends javax.swing.JPanel {
         jLabel10.setForeground(new java.awt.Color(25, 46, 56));
         jLabel10.setText("DNI del cliente:");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 140, 30));
-
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 230, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -154,18 +145,18 @@ public class registraralerta extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_descripcionActionPerformed
 
-    private void fechadefinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechadefinActionPerformed
+    private void fechadealertaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechadealertaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_fechadefinActionPerformed
+    }//GEN-LAST:event_fechadealertaActionPerformed
 
-    private void fechadeinicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechadeinicioActionPerformed
+    private void nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_fechadeinicioActionPerformed
+    }//GEN-LAST:event_nombreActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         try {
-            alerta p = new alerta(dni.getText(),descripcion.getText(),fechadeinicio.getText(),fechadefin.getText());
+            alerta p = new alerta(dni.getText(),nombre.getText(),descripcion.getText(),fechadealerta.getText());
             dao.registrar(p);
         } catch (Exception ex) {
             Logger.getLogger(registrarProducto.class.getName()).log(Level.SEVERE, null, ex);
@@ -176,32 +167,12 @@ public class registraralerta extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_dniActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            Map<String, alerta> mapa = dao.listar();
-            for (Map.Entry<String, alerta> entry : mapa.entrySet()) {
-                String clave = entry.getKey();
-                alerta objeto = entry.getValue();
-                System.out.println("Clave: " + clave);
-                System.out.println("Atributo1: " + objeto.getDni());
-                System.out.println("Atributo2: " + objeto.getDescripcion());
-                System.out.println("Atributo2: " + objeto.getFechadeinicio());
-                System.out.println("Atributo2: " + objeto.getFechadefin());
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(registraralerta.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField descripcion;
     private javax.swing.JTextField dni;
-    private javax.swing.JTextField fechadefin;
-    private javax.swing.JTextField fechadeinicio;
+    private javax.swing.JTextField fechadealerta;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -209,5 +180,6 @@ public class registraralerta extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField nombre;
     // End of variables declaration//GEN-END:variables
 }

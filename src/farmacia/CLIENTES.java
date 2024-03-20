@@ -44,13 +44,13 @@ public class CLIENTES extends javax.swing.JPanel {
         panelfill.setBackground(new java.awt.Color(204, 226, 235));
         panelfill.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("jButton1");
+        jButton1.setText("RESGISTRO DE CLIENTES");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        panelfill.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 0, 120, 40));
+        panelfill.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 0, -1, 40));
 
         panel.setPreferredSize(new java.awt.Dimension(1050, 680));
 
@@ -75,7 +75,7 @@ public class CLIENTES extends javax.swing.JPanel {
         });
         panelfill.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 40));
 
-        jButton3.setText("REGISTRAR ALETA");
+        jButton3.setText("REGISTRAR ALERTAS");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -106,7 +106,7 @@ public class CLIENTES extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        visualizador(new BIBLIOTECA_CLIENTES());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
