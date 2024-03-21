@@ -30,7 +30,7 @@ public class conexion {
 
             conexion = DriverManager.getConnection(DB_URL, USER, PASS);
             Class.forName(JDBC_DRIVER);
-            System.out.println("Conexion exitosa");
+            
             
 
             

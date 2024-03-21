@@ -6,8 +6,10 @@ import db.conexion;
 import interfaces.*;
 import objetos.*;
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,13 +32,26 @@ public class DAOAlertasImpl extends conexion implements DAOAlertas{
     }
 
     @Override
-    public void modificar(alerta p) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void modificar(alerta p, int o) throws Exception {
+        this.conex();
+        PreparedStatement pstmt = this.conexion.prepareStatement(
+                "UPDATE alertas SET dni_cliente = ?, Nombre = ?, descripcion_alerta = ?, fecha_de_aviso = ? WHERE id = ?;");
+        
+        pstmt.setString(1, p.getDni());
+        pstmt.setString(2, p.getNombre());
+        pstmt.setString(3, p.getDescripcion());
+        pstmt.setString(4, p.getFecha());
+        pstmt.setInt(5, o);
+        pstmt.executeUpdate();
     }
 
     @Override
-    public void eliminar(alerta p) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void eliminar(String p) throws Exception {
+        this.conex();
+        PreparedStatement pstmt = this.conexion.prepareStatement(
+                "DELETE FROM ALERTAS WHERE id = ?");
+        pstmt.setString(1, p);
+        pstmt.executeUpdate();
     }
 
     @Override
@@ -74,6 +89,59 @@ public class DAOAlertasImpl extends conexion implements DAOAlertas{
         }
         
             st.close();
+        return mapaAlertas;
+    }
+
+    @Override
+    public Map<String, alerta> listar3() throws Exception {
+        this.conex();
+        Map<String, alerta> mapaAlertas = new LinkedHashMap<>();
+
+        PreparedStatement st = this.conexion.prepareStatement("SELECT * FROM ALERTAS");
+        ResultSet resultSet = st.executeQuery();
+        while (resultSet.next()) {
+            alerta p = new alerta(resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),resultSet.getString(5));
+            String clave = resultSet.getString(1);
+            mapaAlertas.put(clave, p);
+        }
+        
+        st.close();
+        return mapaAlertas;
+    }
+
+    @Override
+    public Map<String, alerta> buscar(String buscar) throws Exception {
+        Map<String, alerta> mapaAlertas = new LinkedHashMap<>();
+        try {
+            conex();
+            String query = "SELECT * FROM ALERTAS WHERE dni_cliente LIKE ? OR Nombre LIKE ?";
+            try (PreparedStatement st = conexion.prepareStatement(query)) {
+                
+                st.setString(1, "%" + buscar + "%");
+                st.setString(2, "%" + buscar + "%");
+                try (ResultSet rs = st.executeQuery()) {
+                    // Procesar el resultado
+                    while (rs.next()) {
+                        String clave = rs.getString(1);
+                        alerta p = new alerta(
+                            rs.getString(2),
+                            rs.getString(3),
+                            rs.getString(4),
+                            rs.getString(5)
+                        );
+                        mapaAlertas.put(clave, p);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            // Manejar la excepción adecuadamente, por ejemplo, registrándola o lanzándola nuevamente
+            throw e;
+        } finally {
+            // Asegurarse de cerrar la conexión
+            if (conexion != null) {
+                conexion.close();
+            }
+        }
         return mapaAlertas;
     }
 

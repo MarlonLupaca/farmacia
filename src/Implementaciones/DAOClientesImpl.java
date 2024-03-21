@@ -36,12 +36,32 @@ public class DAOClientesImpl extends conexion implements DAOClientes{
 
     @Override
     public void modificar(cliente p) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+        this.conex();
+        PreparedStatement pstmt = this.conexion.prepareStatement(
+                "UPDATE Pacientes SET DNI = ?, Nombre = ?, Genero = ?, FechaNacimiento = ?, NumeroTelefono = ?, Direccion = ?, CorreoElectronico = ?, DescripcionMedica = ? WHERE DNI = ?");
+        
+        pstmt.setString(1, p.getDNI());
+        pstmt.setString(2, p.getNombre());
+        pstmt.setString(3, p.getGenero());
+        pstmt.setString(4, p.getFechanacimiento());
+        pstmt.setString(5, p.getNumerotelefono());
+        pstmt.setString(6, p.getDireccion());
+        pstmt.setString(7, p.getCorreoelectronico());
+        pstmt.setString(8, p.getDescripcionmedica());
+        pstmt.setString(9, p.getDNI());
+        pstmt.executeUpdate();
+
     }
 
     @Override
-    public void eliminar(cliente p) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void eliminar(String p) throws Exception {
+        this.conex();
+        PreparedStatement pstmt = this.conexion.prepareStatement(
+                "DELETE FROM Pacientes WHERE DNI = ?");
+        pstmt.setString(1, p);
+        pstmt.executeUpdate();
+          
     }
 
     @Override
@@ -65,5 +85,45 @@ public class DAOClientesImpl extends conexion implements DAOClientes{
         }
         return lista;
     }
+
+    @Override
+    public List<cliente> buscar(String buscar) throws SQLException {
+        List<cliente> lista = new ArrayList<>();
+        try {
+            conex();
+            String query = "SELECT * FROM PACIENTES WHERE DNI LIKE ? OR Nombre LIKE ?";
+            try (PreparedStatement st = conexion.prepareStatement(query)) {
+                // Configuramos los parámetros de la consulta parametrizada
+                st.setString(1, "%" + buscar + "%");
+                st.setString(2, "%" + buscar + "%");
+                try (ResultSet rs = st.executeQuery()) {
+                    // Procesar el resultado
+                    while (rs.next()) {
+                        cliente cliente = new cliente(
+                            rs.getString(1),
+                            rs.getString(2),
+                            rs.getString(3),
+                            rs.getString(4),
+                            rs.getString(5),
+                            rs.getString(6),
+                            rs.getString(7),
+                            rs.getString(8)
+                        );
+                        lista.add(cliente);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            // Manejar la excepción adecuadamente, por ejemplo, registrándola o lanzándola nuevamente
+            throw e;
+        } finally {
+            // Asegurarse de cerrar la conexión
+            if (conexion != null) {
+                conexion.close();
+            }
+        }
+        return lista;
+    }
+
     
 }

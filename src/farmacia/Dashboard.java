@@ -83,7 +83,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         jButton9.setBackground(new java.awt.Color(204, 255, 255));
         jButton9.setForeground(new java.awt.Color(0, 0, 0));
-        jButton9.setText("KARDEX");
+        jButton9.setText("PRODUCTOS");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
@@ -103,7 +103,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         jButton11.setBackground(new java.awt.Color(204, 255, 255));
         jButton11.setForeground(new java.awt.Color(0, 0, 0));
-        jButton11.setText("ALERTAS");
+        jButton11.setText("ALERTAS CLIENTES");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
@@ -130,16 +130,16 @@ public class Dashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        visualizador(new KARDEX());
+        visualizador(new PANTALLA_PRODUCTOS());
 
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        visualizador(new CLIENTES());
+        visualizador(new PANTALLA_CLIENTES());
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        visualizador(new alertas());
+        visualizador(new PANTALLA_ALERTAS());
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed

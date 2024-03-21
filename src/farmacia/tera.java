@@ -63,7 +63,7 @@ public void agregarCartasDesdeMapa() {
             azul.revalidate();
             azul.repaint();
         } catch (Exception ex) {
-            Logger.getLogger(alertas.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PANTALLA_ALERTAS.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -84,8 +84,11 @@ public void agregarCartasDesdeMapa() {
         tera = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         azul = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1050, 680));
+
+        tera.setBackground(new java.awt.Color(73, 148, 174));
 
         jScrollPane1.setBorder(null);
         jScrollPane1.setPreferredSize(new java.awt.Dimension(1050, 720));
@@ -95,32 +98,35 @@ public void agregarCartasDesdeMapa() {
         azul.setLayout(new java.awt.GridBagLayout());
         jScrollPane1.setViewportView(azul);
 
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("ALERTAS TOTALES");
+        jLabel1.setPreferredSize(new java.awt.Dimension(195, 30));
+
         javax.swing.GroupLayout teraLayout = new javax.swing.GroupLayout(tera);
         tera.setLayout(teraLayout);
         teraLayout.setHorizontalGroup(
             teraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1050, Short.MAX_VALUE)
-            .addGroup(teraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(teraLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(teraLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 12, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         teraLayout.setVerticalGroup(
             teraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 680, Short.MAX_VALUE)
-            .addGroup(teraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(teraLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, teraLayout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 643, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1050, Short.MAX_VALUE)
+            .addGap(0, 1062, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -129,7 +135,7 @@ public void agregarCartasDesdeMapa() {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 680, Short.MAX_VALUE)
+            .addGap(0, 686, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -141,6 +147,7 @@ public void agregarCartasDesdeMapa() {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel azul;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel tera;
     // End of variables declaration//GEN-END:variables
