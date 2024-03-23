@@ -4,7 +4,7 @@
  */
 package farmacia;
 
-import Implementaciones.DAOUserImpl;
+import Implementaciones.DAOProductoImpl;
 import db.conexion;
 import interfaces.DAOProductos;
 import java.util.logging.Level;
@@ -368,7 +368,7 @@ public class registrarProducto extends javax.swing.JPanel {
         try {
             producto p = new producto(nombre_producto.getText(),laboratorio.getText(),descripcion_producto.getText(),principio_activo.getText(),codigo_digemid.getText(),lote.getText(),ubicacion.getText(),fecha_vencimiento.getText(),Integer.parseInt(stock.getText()),Integer.parseInt(minimo_aviso.getText()),Integer.parseInt(unidad_blister.getText()),Integer.parseInt(unidad_caja.getText()), Double.parseDouble(precio_unitario.getText()),Double.parseDouble(precio_blister.getText()),Double.parseDouble(precio_caja.getText()));
             System.out.println(nombre_producto.getText());
-            DAOProductos dao = new DAOUserImpl();
+            DAOProductos dao = new DAOProductoImpl();
             dao.registrar(p);
         } catch (Exception ex) {
             Logger.getLogger(registrarProducto.class.getName()).log(Level.SEVERE, null, ex);

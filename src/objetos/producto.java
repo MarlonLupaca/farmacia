@@ -18,7 +18,15 @@ public class producto {
     private double precio_x_blister;
     private double precio_x_caja;
 
+    public int getCodigo_unico() {
+        return codigo_unico;
+    }
 
+    public void setCodigo_unico(int codigo_unico) {
+        this.codigo_unico = codigo_unico;
+    }
+
+    
     public String getNombre_producto() {
         return nombre_producto;
     }
@@ -156,6 +164,27 @@ public class producto {
         this.precio_x_blister = precio_x_blister;
         this.precio_x_caja = precio_x_caja;
     }
+
+    public producto(int codigo_unico, String nombre_producto, String laboratorio, String descripcion_produto, String principo_activo, String codigo_digemid, String lote, String ubicacion, String fecha_vencimiento, int stock, int minimo_para_aviso, int unidad_x_blister, int unidad_x_caja, double precio_x_unidad, double precio_x_blister, double precio_x_caja) {
+        this.codigo_unico = codigo_unico;
+        this.nombre_producto = nombre_producto;
+        this.laboratorio = laboratorio;
+        this.descripcion_produto = descripcion_produto;
+        this.principo_activo = principo_activo;
+        this.codigo_digemid = codigo_digemid;
+        this.lote = lote;
+        this.ubicacion = ubicacion;
+        this.fecha_vencimiento = fecha_vencimiento;
+        this.stock = stock;
+        this.minimo_para_aviso = minimo_para_aviso;
+        this.unidad_x_blister = unidad_x_blister;
+        this.unidad_x_caja = unidad_x_caja;
+        this.precio_x_unidad = precio_x_unidad;
+        this.precio_x_blister = precio_x_blister;
+        this.precio_x_caja = precio_x_caja;
+    }
+    
+    
 
     public producto() {
     }

@@ -44,7 +44,6 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
 
@@ -91,19 +90,9 @@ public class Dashboard extends javax.swing.JFrame {
         });
         panelxd.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 210, 50));
 
-        jButton10.setBackground(new java.awt.Color(204, 255, 255));
-        jButton10.setForeground(new java.awt.Color(0, 0, 0));
-        jButton10.setText("CLIENTES");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
-            }
-        });
-        panelxd.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 210, 50));
-
         jButton11.setBackground(new java.awt.Color(204, 255, 255));
         jButton11.setForeground(new java.awt.Color(0, 0, 0));
-        jButton11.setText("ALERTAS CLIENTES");
+        jButton11.setText("CLIENTES");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
@@ -119,7 +108,7 @@ public class Dashboard extends javax.swing.JFrame {
                 jButton12ActionPerformed(evt);
             }
         });
-        panelxd.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 210, 50));
+        panelxd.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 210, 50));
 
         xd.add(panelxd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 720));
 
@@ -134,16 +123,12 @@ public class Dashboard extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton9ActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        visualizador(new PANTALLA_CLIENTES());
-    }//GEN-LAST:event_jButton10ActionPerformed
-
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        visualizador(new PANTALLA_ALERTAS());
+        visualizador(new PANTALLA_CLIENTES());
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
+        visualizador(new PANTALLA_VENTAS());
     }//GEN-LAST:event_jButton12ActionPerformed
 
     /**
@@ -182,7 +167,6 @@ public class Dashboard extends javax.swing.JFrame {
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton9;

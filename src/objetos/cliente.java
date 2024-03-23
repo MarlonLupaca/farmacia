@@ -84,6 +84,10 @@ public class cliente {
         this.correoelectronico = correoelectronico;
         this.descripcionmedica = descripcionmedica;
     }
+
+    public cliente() {
+    }
+    
     
     
     

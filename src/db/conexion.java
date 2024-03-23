@@ -24,21 +24,22 @@ public class conexion {
     
     
     public void conex() throws SQLException
-    {
-        
-        try {
+        {
 
-            conexion = DriverManager.getConnection(DB_URL, USER, PASS);
-            Class.forName(JDBC_DRIVER);
-            
-            
+            try {
 
-            
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(conexion.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Conexion erronea");
-        }
+                conexion = DriverManager.getConnection(DB_URL, USER, PASS);
                 
-    }
+                Class.forName(JDBC_DRIVER);
+
+
+
+
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(conexion.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Conexion erronea");
+            }
+
+        }
     
 }

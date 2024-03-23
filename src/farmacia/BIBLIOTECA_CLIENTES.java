@@ -177,6 +177,7 @@ public class BIBLIOTECA_CLIENTES extends javax.swing.JPanel {
         tabla_clientes = new javax.swing.JTable();
         txt_buscar = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         C.setBackground(new java.awt.Color(204, 226, 235));
         C.setPreferredSize(new java.awt.Dimension(1050, 680));
@@ -210,18 +211,31 @@ public class BIBLIOTECA_CLIENTES extends javax.swing.JPanel {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icono4.png"))); // NOI18N
 
+        jButton1.setText("REGISTRAR ALERTA");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout CLayout = new javax.swing.GroupLayout(C);
         C.setLayout(CLayout);
         CLayout.setHorizontalGroup(
             CLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
                 .addGroup(CLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1010, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(20, 20, 20)
+                        .addGroup(CLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(CLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1010, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20))
         );
         CLayout.setVerticalGroup(
             CLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,8 +245,10 @@ public class BIBLIOTECA_CLIENTES extends javax.swing.JPanel {
                     .addComponent(txt_buscar)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 598, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -261,9 +277,20 @@ public class BIBLIOTECA_CLIENTES extends javax.swing.JPanel {
         buscador(txt_buscar.getText());
     }//GEN-LAST:event_txt_buscarKeyReleased
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int fila = tabla_clientes.getSelectedRow();
+        String dni = tabla_clientes.getValueAt(fila, 0).toString();
+        String nombre = tabla_clientes.getValueAt(fila, 1).toString();
+        REGISTRO_DE_ALERTAS newframe = new REGISTRO_DE_ALERTAS(dni,nombre);
+        newframe.setVisible(true);
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel C;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabla_clientes;

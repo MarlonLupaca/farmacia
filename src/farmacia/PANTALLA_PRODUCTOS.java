@@ -21,7 +21,7 @@ public class PANTALLA_PRODUCTOS extends javax.swing.JPanel {
     
     public void visualizador (JPanel p)
     {
-        p.setSize(1050, 720);
+        p.setSize(1050, 680);
         p.setLocation(0,0);
         menu_kardex.removeAll();
         menu_kardex.add(p,BorderLayout.CENTER);
@@ -38,6 +38,7 @@ public class PANTALLA_PRODUCTOS extends javax.swing.JPanel {
         menu_kardex = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         panelfill.setBackground(new java.awt.Color(204, 226, 235));
         panelfill.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -55,7 +56,7 @@ public class PANTALLA_PRODUCTOS extends javax.swing.JPanel {
 
         panelfill.add(menu_kardex, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1050, 680));
 
-        jButton1.setText("ventas");
+        jButton1.setText("PRODUCTOS");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -70,6 +71,14 @@ public class PANTALLA_PRODUCTOS extends javax.swing.JPanel {
             }
         });
         panelfill.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 40));
+
+        jButton3.setText("ALERTAS DE STOCK");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        panelfill.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 0, 180, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -98,14 +107,19 @@ public class PANTALLA_PRODUCTOS extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        visualizador(new ventas_kardex());
+        visualizador(new BIBLIOTECA_PRODUCTOS());
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        visualizador(new ALERTAS_DE_STOCK());
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     
            
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JPanel menu_kardex;
     private javax.swing.JPanel panelfill;
     // End of variables declaration//GEN-END:variables

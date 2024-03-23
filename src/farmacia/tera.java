@@ -63,7 +63,7 @@ public void agregarCartasDesdeMapa() {
             azul.revalidate();
             azul.repaint();
         } catch (Exception ex) {
-            Logger.getLogger(PANTALLA_ALERTAS.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PANTALLA_CLIENTES.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
