@@ -40,7 +40,7 @@ public class CARTAS_STOCK extends javax.swing.JPanel {
         lbubicacion = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(73, 177, 247), new java.awt.Color(73, 177, 247), new java.awt.Color(73, 177, 247), new java.awt.Color(73, 177, 247)));
+        setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(177, 212, 224), new java.awt.Color(177, 212, 224)));
         setPreferredSize(new java.awt.Dimension(300, 240));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -70,7 +70,7 @@ public class CARTAS_STOCK extends javax.swing.JPanel {
         add(lbstock, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 270, -1));
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(73, 177, 247), new java.awt.Color(73, 177, 247), new java.awt.Color(73, 177, 247), new java.awt.Color(73, 177, 247)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(177, 212, 224), new java.awt.Color(177, 212, 224)));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

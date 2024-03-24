@@ -4,13 +4,17 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/farmacia/ALERTAS_DE_STOCK.java</file>
+            <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/interfaces/DAOAlertas.java</file>
             <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/farmacia/BIBLIOTECA_PRODUCTOS.java</file>
             <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/objetos/cliente.java</file>
+            <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/Implementaciones/DAOClientesImpl.java</file>
             <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/farmacia/CARTAS_STOCK.java</file>
             <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/controladores_tabla/render_venta.java</file>
+            <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/interfaces/DAOClientes.java</file>
             <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/farmacia/REGISTRO_DE_ALERTAS.java</file>
             <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/farmacia/Dashboard.java</file>
             <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/farmacia/PANTALLA_PRODUCTOS.java</file>
+            <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/farmacia/REGISTRO_PRODUCTO.java</file>
             <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/interfaces/DAOVenta.java</file>
             <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/Implementaciones/DAOVentaImpl.java</file>
             <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/farmacia/REGISTRO_VENTA.java</file>
@@ -21,10 +25,13 @@
             <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/objetos/alerta.java</file>
             <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/controladores_tabla/Acciones_botones.java</file>
             <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/Implementaciones/DAOProductoImpl.java</file>
+            <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/farmacia/login.java</file>
             <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/interfaces/DAOProductos.java</file>
             <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/controladores_tabla/botones_ventas.java</file>
+            <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/farmacia/registrocliente.java</file>
             <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/farmacia/EDITOR_PRODUCTO.java</file>
             <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/farmacia/BIBLIOTECA_CLIENTES.java</file>
+            <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/Imagenes/fondo.png</file>
             <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/controladores_tabla/acciones_botones_inte_venta.java</file>
             <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/farmacia/BIBLIOTECA_ALERTAS.java</file>
             <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/objetos/detalle.java</file>
@@ -32,6 +39,7 @@
             <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/controladores_tabla/botones.java</file>
             <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/controladores_tabla/editor.java</file>
             <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/farmacia/PANTALLA_CLIENTES.java</file>
+            <file>file:/C:/Users/strim/OneDrive/Documentos/NetBeansProjects/farmacia/src/farmacia/Carta.java</file>
         </group>
     </open-files>
 </project-private>

@@ -2,6 +2,7 @@
 package farmacia;
 
 import java.awt.BorderLayout;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
@@ -11,9 +12,15 @@ import javax.swing.JPanel;
 
 public class PANTALLA_VENTAS extends javax.swing.JPanel {
 
-    /**
-     * Creates new form NewJPanel
-     */
+    public JButton getVentana() {
+        return ventana;
+    }
+
+    public void setVentana(JButton ventana) {
+        this.ventana = ventana;
+    }
+
+    
     public PANTALLA_VENTAS() {
         initComponents();
         visualizador(new REGISTRO_VENTA());
@@ -37,7 +44,7 @@ public class PANTALLA_VENTAS extends javax.swing.JPanel {
         panelfill = new javax.swing.JPanel();
         menu_kardex = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        ventana = new javax.swing.JButton();
 
         panelfill.setBackground(new java.awt.Color(204, 226, 235));
         panelfill.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -63,13 +70,13 @@ public class PANTALLA_VENTAS extends javax.swing.JPanel {
         });
         panelfill.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 180, 40));
 
-        jButton2.setText("VENTA");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        ventana.setText("VENTA");
+        ventana.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                ventanaActionPerformed(evt);
             }
         });
-        panelfill.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 40));
+        panelfill.add(ventana, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -93,9 +100,9 @@ public class PANTALLA_VENTAS extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void ventanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ventanaActionPerformed
         visualizador(new REGISTRO_VENTA());
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_ventanaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
@@ -105,8 +112,8 @@ public class PANTALLA_VENTAS extends javax.swing.JPanel {
            
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JPanel menu_kardex;
     private javax.swing.JPanel panelfill;
+    private javax.swing.JButton ventana;
     // End of variables declaration//GEN-END:variables
 }

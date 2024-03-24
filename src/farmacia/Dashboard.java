@@ -2,6 +2,7 @@
 package farmacia;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -15,6 +16,9 @@ public class Dashboard extends javax.swing.JFrame {
     
     public Dashboard() {
         initComponents();
+        login g = new login();
+        usuario.setText(g.getLogin());
+        System.out.println(g.getLogin());
        
         
         
@@ -41,11 +45,15 @@ public class Dashboard extends javax.swing.JFrame {
         xd = new javax.swing.JPanel();
         panelfill = new javax.swing.JPanel();
         panelxd = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton9 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        usuario = new javax.swing.JLabel();
+        b3 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        b2 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        b1 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -53,7 +61,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         xd.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelfill.setBackground(new java.awt.Color(204, 226, 235));
+        panelfill.setBackground(new java.awt.Color(236, 255, 254));
 
         javax.swing.GroupLayout panelfillLayout = new javax.swing.GroupLayout(panelfill);
         panelfill.setLayout(panelfillLayout);
@@ -68,47 +76,98 @@ public class Dashboard extends javax.swing.JFrame {
 
         xd.add(panelfill, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 1050, 720));
 
-        panelxd.setBackground(new java.awt.Color(109, 175, 195));
+        panelxd.setBackground(new java.awt.Color(236, 255, 254));
         panelxd.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/usuario.png"))); // NOI18N
-        panelxd.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 150, 150));
+        jPanel1.setBackground(new java.awt.Color(177, 212, 224));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 255, 255), new java.awt.Color(204, 255, 255)));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/def.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 170));
         jLabel1.getAccessibleContext().setAccessibleDescription("");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("usuario");
-        panelxd.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 160, 20));
+        usuario.setBackground(new java.awt.Color(0, 51, 153));
+        usuario.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        usuario.setForeground(new java.awt.Color(0, 0, 0));
+        usuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        usuario.setText("usuario");
+        jPanel1.add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 230, 40));
 
-        jButton9.setBackground(new java.awt.Color(204, 255, 255));
-        jButton9.setForeground(new java.awt.Color(0, 0, 0));
-        jButton9.setText("PRODUCTOS");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+        panelxd.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 200));
+
+        b3.setBackground(new java.awt.Color(177, 212, 224));
+        b3.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 255, 255), new java.awt.Color(204, 255, 255)));
+        b3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        b3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b3MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                b3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                b3MouseExited(evt);
             }
         });
-        panelxd.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 210, 50));
+        b3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton11.setBackground(new java.awt.Color(204, 255, 255));
-        jButton11.setForeground(new java.awt.Color(0, 0, 0));
-        jButton11.setText("CLIENTES");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
+        jLabel7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("CLIENTES");
+        b3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 50));
+
+        panelxd.add(b3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 230, 50));
+
+        b2.setBackground(new java.awt.Color(177, 212, 224));
+        b2.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 255, 255), new java.awt.Color(204, 255, 255)));
+        b2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        b2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b2MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                b2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                b2MouseExited(evt);
             }
         });
-        panelxd.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 210, 50));
+        b2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton12.setBackground(new java.awt.Color(204, 255, 255));
-        jButton12.setForeground(new java.awt.Color(0, 0, 0));
-        jButton12.setText("VENTAS");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
+        jLabel3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("VENTAS");
+        b2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 50));
+
+        panelxd.add(b2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 230, 50));
+
+        b1.setBackground(new java.awt.Color(177, 212, 224));
+        b1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 255, 255), new java.awt.Color(204, 255, 255)));
+        b1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        b1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                b1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                b1MouseExited(evt);
             }
         });
-        panelxd.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 210, 50));
+        b1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("PRODUCTOS");
+        b1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 50));
+
+        panelxd.add(b1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 230, 50));
 
         xd.add(panelxd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 720));
 
@@ -118,18 +177,41 @@ public class Dashboard extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void b1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b1MouseEntered
+        b1.setBackground(new Color(0xECFFFE));
+    }//GEN-LAST:event_b1MouseEntered
+
+    private void b1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b1MouseExited
+        b1.setBackground(new Color(0xB1D4E0));
+    }//GEN-LAST:event_b1MouseExited
+
+    private void b2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b2MouseEntered
+        b2.setBackground(new Color(0xECFFFE));
+    }//GEN-LAST:event_b2MouseEntered
+
+    private void b2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b2MouseExited
+        b2.setBackground(new Color(0xB1D4E0));
+    }//GEN-LAST:event_b2MouseExited
+
+    private void b3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b3MouseEntered
+        b3.setBackground(new Color(0xECFFFE));
+    }//GEN-LAST:event_b3MouseEntered
+
+    private void b3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b3MouseExited
+        b3.setBackground(new Color(0xB1D4E0));
+    }//GEN-LAST:event_b3MouseExited
+
+    private void b1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b1MouseClicked
         visualizador(new PANTALLA_PRODUCTOS());
+    }//GEN-LAST:event_b1MouseClicked
 
-    }//GEN-LAST:event_jButton9ActionPerformed
-
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    private void b3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b3MouseClicked
         visualizador(new PANTALLA_CLIENTES());
-    }//GEN-LAST:event_jButton11ActionPerformed
+    }//GEN-LAST:event_b3MouseClicked
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+    private void b2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b2MouseClicked
         visualizador(new PANTALLA_VENTAS());
-    }//GEN-LAST:event_jButton12ActionPerformed
+    }//GEN-LAST:event_b2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -167,13 +249,17 @@ public class Dashboard extends javax.swing.JFrame {
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JPanel b1;
+    private javax.swing.JPanel b2;
+    private javax.swing.JPanel b3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel panelfill;
     private javax.swing.JPanel panelxd;
+    private javax.swing.JLabel usuario;
     private javax.swing.JPanel xd;
     // End of variables declaration//GEN-END:variables
 }

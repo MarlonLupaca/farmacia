@@ -11,6 +11,7 @@ import controladores_tabla.render_venta;
 import interfaces.*;
 import interfaces.DAOClientes;
 import java.awt.BorderLayout;
+import java.awt.Container;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,12 +38,15 @@ import objetos.producto;
 public class REGISTRO_VENTA extends javax.swing.JPanel {
 
     private static Map <Integer, producto> detalle = new HashMap<>();
-    private double total = 0.0;
+    private  double total = 0.0;
+    
+    
     public REGISTRO_VENTA() {
         initComponents();
         cantidad.setValue(1);
         xxx();
         cargar_tabla();
+        id();
         
         //cambiar color de una celda
         TableColumnModel columnModel = tabla_venta.getColumnModel();
@@ -63,6 +67,28 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
             setForeground(java.awt.Color.WHITE);
         }
     }
+    public void id()
+    {
+        DAOVenta dao = new DAOVentaImpl();
+        String factura = "";
+        try {
+            int id = 1 + dao.id();
+            if (id >= 1 && id <= 9) {
+                factura = "0000" + String.valueOf(id);
+            } else if (id >= 10 && id <= 99) {
+                factura = "000" + String.valueOf(id);
+            } else if (id >= 100 && id <= 999) {
+                factura = "00" + String.valueOf(id);
+            } else if (id >= 1000 && id <= 9999) {
+                factura = "0" + String.valueOf(id);
+            } else if (id >= 10000 && id <= 99999) {
+                factura = String.valueOf(id);
+            }
+            id_venta.setText(factura);
+        } catch (Exception ex) {
+            Logger.getLogger(REGISTRO_VENTA.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     
     public LocalDate obtenerFechaActual() {
@@ -73,10 +99,10 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
     {
         p.setSize(1050, 680);
         p.setLocation(0,0);
-        C.removeAll();
-        C.add(p,BorderLayout.CENTER);
-        C.revalidate();
-        C.repaint();
+        panelPadre.removeAll();
+        panelPadre.add(p,BorderLayout.CENTER);
+        panelPadre.revalidate();
+        panelPadre.repaint();
     }
     
     
@@ -137,25 +163,55 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
 
             @Override
             public void anadir(int row) {
-                
-                
-                try {
-                    int input = (int) cantidad.getValue();
-                    DAOProductos dao = new DAOProductoImpl();
-                    int fila = tabla_productos.getSelectedRow();
-                    String id = tabla_productos.getValueAt(fila, 0).toString();
-                    producto p = dao.visualizar(id);
-                    int clave = Integer.parseInt(id);
-                    detalle.put(clave, p);
-                    double subtotal = input*p.getPrecio_x_unidad();
-                    DefaultTableModel model = (DefaultTableModel) tabla_venta.getModel();
-                    model.addRow(new Object[]{p.getCodigo_unico(),p.getNombre_producto(),input,p.getPrecio_x_unidad(),subtotal});
-                    total = total + subtotal;
-                    TOTAL.setText(String.valueOf(total));
-                } catch (Exception ex) {
-                    Logger.getLogger(REGISTRO_VENTA.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
+            total = 0.0;
+
+              try {
+                  int input = (int) cantidad.getValue();
+                  DAOProductos dao = new DAOProductoImpl();
+                  int fila = tabla_productos.getSelectedRow();
+                  String id = tabla_productos.getValueAt(fila, 0).toString();
+                  producto p = dao.visualizar(id);
+                  int clave = Integer.parseInt(id);
+
+                  // Verificar si el producto ya está en la tabla
+                  boolean encontrado = false;
+                  for (int i = 0; i < tabla_venta.getRowCount(); i++) {
+                      if (tabla_venta.getValueAt(i, 0).equals(p.getCodigo_unico())) {
+                          // El producto ya está en la tabla, aumentar la cantidad y actualizar subtotal
+                          int cantidadExistente = (int) tabla_venta.getValueAt(i, 2);
+                          double precioUnitario = (double) tabla_venta.getValueAt(i, 3);
+                          double subtotalExistente = (double) tabla_venta.getValueAt(i, 4);
+                          tabla_venta.setValueAt(cantidadExistente + input, i, 2);
+                          tabla_venta.setValueAt(subtotalExistente + input * precioUnitario, i, 4);
+                          encontrado = true;
+                          break;
+                      }
+                  }
+
+                  if (!encontrado) {
+                      // El producto no está en la tabla, agregar una nueva fila
+                      double subtotal = input * p.getPrecio_x_unidad();
+                      DefaultTableModel model = (DefaultTableModel) tabla_venta.getModel();
+                      model.addRow(new Object[]{p.getCodigo_unico(), p.getNombre_producto(), input, p.getPrecio_x_unidad(), subtotal});
+                  }
+
+                  // Actualizar el total después de verificar todos los productos en la tabla
+                  for (int i = 0; i < tabla_venta.getRowCount(); i++) {
+                      
+                      double subtotal = (double) tabla_venta.getValueAt(i, 4);
+          
+                      total = total + subtotal;
+ 
+                  }
+                  
+                  TOTAL.setText(String.valueOf(total));
+              } catch (Exception ex) {
+                  Logger.getLogger(REGISTRO_VENTA.class.getName()).log(Level.SEVERE, null, ex);
+              }
+              
+          }
+
+
         };
         tabla_productos.getColumnModel().getColumn(7).setCellRenderer( new render_venta());
         tabla_productos.getColumnModel().getColumn(7).setCellEditor(new editor_venta(evento1));
@@ -188,6 +244,7 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panelPadre = new javax.swing.JPanel();
         C = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_productos = new javax.swing.JTable();
@@ -206,6 +263,7 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        id_venta = new javax.swing.JLabel();
 
         C.setBackground(new java.awt.Color(204, 226, 235));
         C.setPreferredSize(new java.awt.Dimension(1050, 680));
@@ -252,7 +310,7 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
             tabla_productos.getColumnModel().getColumn(7).setPreferredWidth(65);
         }
 
-        C.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 1010, 270));
+        C.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 1010, 270));
 
         txt_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -361,15 +419,40 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
         jLabel6.setText("Total:");
         C.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 230, -1, 30));
 
+        id_venta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        id_venta.setForeground(new java.awt.Color(0, 0, 0));
+        id_venta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        C.add(id_venta, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, 110, 30));
+
+        javax.swing.GroupLayout panelPadreLayout = new javax.swing.GroupLayout(panelPadre);
+        panelPadre.setLayout(panelPadreLayout);
+        panelPadreLayout.setHorizontalGroup(
+            panelPadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1062, Short.MAX_VALUE)
+            .addGroup(panelPadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(C, javax.swing.GroupLayout.DEFAULT_SIZE, 1062, Short.MAX_VALUE))
+        );
+        panelPadreLayout.setVerticalGroup(
+            panelPadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 692, Short.MAX_VALUE)
+            .addGroup(panelPadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(C, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(C, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(panelPadre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(C, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(panelPadre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -383,50 +466,81 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int fila = tabla_venta.getSelectedRow();
-        System.out.println(fila);
-        if (fila != -1) { 
+        if (fila != -1) { // Verificar si hay una fila seleccionada
             int id = Integer.parseInt(tabla_venta.getValueAt(fila, 0).toString());
-            double precio =  Double.parseDouble(tabla_venta.getValueAt(fila, 4).toString());
-            total = total - precio;
-            TOTAL.setText(String.valueOf(total));
-            // Eliminar la fila seleccionada de tabla_venta
-            DefaultTableModel model = (DefaultTableModel) tabla_venta.getModel();
-            model.removeRow(fila);
+            String precioStr = tabla_venta.getValueAt(fila, 4).toString();
+            if (!precioStr.isEmpty()) {
+                double precio = Double.parseDouble(precioStr);
+                System.out.println(precio);
+                System.out.println(total);
+                total = total - precio;
+                TOTAL.setText(String.valueOf(total));
+                // Eliminar la fila seleccionada de tabla_venta
+                DefaultTableModel model = (DefaultTableModel) tabla_venta.getModel();
+                model.removeRow(fila);
 
-            // Eliminar el elemento correspondiente en detalle
-            detalle.remove(id);
+                // Eliminar el elemento correspondiente en detalle
+                detalle.remove(id);
+            } else {
+                JOptionPane.showMessageDialog(null, "El precio de la venta es inválido", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Selecciona una fila para eliminar", "Error", JOptionPane.ERROR_MESSAGE);
         }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int A = JOptionPane.showConfirmDialog(null,"¿REGISTRAR VEMTA?","AVISO",JOptionPane.CANCEL_OPTION );
+                
+            if (A == 0) {
         
         
-        cabecera venta = new cabecera(lbfecha.getText(), cliente.getText(), Double.parseDouble(TOTAL.getText()), "metodo", "venderora");
-        List<detalle> detalles = new ArrayList<>();
-        
-        DefaultTableModel modelo = (DefaultTableModel) tabla_venta.getModel();
-        int filas = modelo.getRowCount();
-        
-        for (int i = 0; i < filas; i++) {
-            detalle detalle = new detalle();
-            detalle.setNumero_venta(1); 
+                try {
+                    DAOVenta dao = new DAOVentaImpl();
+                    //encabezado
+                    cabecera venta = new cabecera(lbfecha.getText(), cliente.getText(), Double.parseDouble(TOTAL.getText()), "metodo", "venderora");
+                    dao.registrarEncabezado(venta);
+                    //detalle
+                    List<detalle> pila = new ArrayList<>();
+                    DefaultTableModel modelo = (DefaultTableModel) tabla_venta.getModel();
+                    int filas = modelo.getRowCount();
 
-            int idProducto = Integer.parseInt(modelo.getValueAt(i, 0).toString());
-            String producto = modelo.getValueAt(i, 1).toString();
-            int cantidad = Integer.parseInt(modelo.getValueAt(i, 2).toString());
-            double precioUnitario = Double.parseDouble(modelo.getValueAt(i, 3).toString());
-            double subtotal = Double.parseDouble(modelo.getValueAt(i, 4).toString());
-            
-            detalle.setId_producto(idProducto);
-            detalle.setProducto(producto);
-            detalle.setCantidad(cantidad);
-            detalle.setUnitario_precio(precioUnitario);
-            detalle.setSubtotal(subtotal);
+                    for (int i = 0; i < filas; i++) {
+                        detalle detalle = new detalle();
 
-            detalles.add(detalle);
-        }
+                        int idProducto = Integer.parseInt(modelo.getValueAt(i, 0).toString());
+                        String producto = modelo.getValueAt(i, 1).toString();
+                        int cantidad = Integer.parseInt(modelo.getValueAt(i, 2).toString());
+                        double precioUnitario = Double.parseDouble(modelo.getValueAt(i, 3).toString());
+                        double subtotal = Double.parseDouble(modelo.getValueAt(i, 4).toString());
+
+                        detalle.setNumero_venta(Integer.parseInt(id_venta.getText()));
+                        detalle.setId_producto(idProducto);
+                        detalle.setProducto(producto);
+                        detalle.setCantidad(cantidad);
+                        detalle.setUnitario_precio(precioUnitario);
+                        detalle.setSubtotal(subtotal);
+
+                        pila.add(detalle);
+                    }
+                    dao.registrarDetalle(pila);
+                    
+                    //Reduccion de stock
+                    dao.reduccionStock(Integer.parseInt(id_venta.getText()));
+                    
+                    
+                    visualizador(new REGISTRO_VENTA());
+                    
+                    
+
+                    
+                    
+
+                } catch (Exception ex) {
+                    Logger.getLogger(REGISTRO_VENTA.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
@@ -435,6 +549,7 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
     private javax.swing.JLabel TOTAL;
     private javax.swing.JSpinner cantidad;
     private javax.swing.JLabel cliente;
+    private javax.swing.JLabel id_venta;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -446,6 +561,7 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbfecha;
+    private javax.swing.JPanel panelPadre;
     private javax.swing.JTable tabla_productos;
     private javax.swing.JTable tabla_venta;
     private javax.swing.JTextField txt_buscar;

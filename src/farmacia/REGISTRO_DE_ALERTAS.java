@@ -140,7 +140,7 @@ public class REGISTRO_DE_ALERTAS extends javax.swing.JFrame {
                 dispose();
                 JOptionPane.showMessageDialog(null,"GUARDADO CORRECTAMENTE","ESTADO",JOptionPane.PLAIN_MESSAGE);
             } catch (Exception ex) {
-                Logger.getLogger(registrarProducto.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(REGISTRO_PRODUCTO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed

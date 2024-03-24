@@ -244,7 +244,7 @@ public class registrocliente extends javax.swing.JPanel {
             DAOClientes dao = new DAOClientesImpl();
             dao.registrar(p);
         } catch (Exception ex) {
-            Logger.getLogger(registrarProducto.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(REGISTRO_PRODUCTO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

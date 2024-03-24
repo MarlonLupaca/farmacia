@@ -125,5 +125,34 @@ public class DAOClientesImpl extends conexion implements DAOClientes{
         return lista;
     }
 
+    @Override
+    public int validar(String usuario, String contraseña) throws Exception {
+    int resultado = 0; 
+
+    this.conex(); 
+    PreparedStatement pstmt = this.conexion.prepareStatement(
+            "SELECT CASE\n" +
+            "    WHEN EXISTS (SELECT * FROM usuarios WHERE usuario = ? AND contraseña = ? AND rol = 'administrador') THEN 1\n" +
+            "    WHEN EXISTS (SELECT * FROM usuarios WHERE usuario = ? AND contraseña = ? AND rol = 'trabajador') THEN 2\n" +
+            "    ELSE 0\n" +
+            "END AS resultado;");
+
+    pstmt.setString(1, usuario); 
+    pstmt.setString(2, contraseña); 
+    pstmt.setString(3, usuario); 
+    pstmt.setString(4, contraseña); 
+
+    ResultSet rs = pstmt.executeQuery(); 
+
+    if (rs.next()) { 
+        resultado = rs.getInt("resultado"); 
+    }
+
+    rs.close(); 
+    pstmt.close(); 
+    return resultado; 
+    }
+
+
     
 }
