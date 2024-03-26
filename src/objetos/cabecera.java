@@ -2,12 +2,22 @@ package objetos;
 
 
 public class cabecera {
+    private int id;
     private String fecha_venta;
     private String cliente;
     private double totalVenta;
     private String metodo;
     private String vendedor;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    
     public String getFecha_venta() {
         return fecha_venta;
     }
@@ -55,6 +65,16 @@ public class cabecera {
         this.metodo = metodo;
         this.vendedor = vendedor;
     }
+
+    public cabecera(int id, String fecha_venta, String cliente, double totalVenta, String metodo, String vendedor) {
+        this.id = id;
+        this.fecha_venta = fecha_venta;
+        this.cliente = cliente;
+        this.totalVenta = totalVenta;
+        this.metodo = metodo;
+        this.vendedor = vendedor;
+    }
+    
     
     
     

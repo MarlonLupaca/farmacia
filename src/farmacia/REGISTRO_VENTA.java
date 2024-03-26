@@ -37,13 +37,17 @@ import objetos.producto;
  */
 public class REGISTRO_VENTA extends javax.swing.JPanel {
 
-    private static Map <Integer, producto> detalle = new HashMap<>();
+
     private  double total = 0.0;
     
     
     public REGISTRO_VENTA() {
         initComponents();
         cantidad.setValue(1);
+        login g = new login();
+        txvendedor.setText(g.getLogin());
+        EFECTIVO.setSelected(true);
+        c_unidad.setSelected(true);
         xxx();
         cargar_tabla();
         id();
@@ -72,7 +76,7 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
         DAOVenta dao = new DAOVentaImpl();
         String factura = "";
         try {
-            int id = 1 + dao.id();
+            int id = dao.id();
             if (id >= 1 && id <= 9) {
                 factura = "0000" + String.valueOf(id);
             } else if (id >= 10 && id <= 99) {
@@ -166,33 +170,100 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
             total = 0.0;
 
               try {
-                  int input = (int) cantidad.getValue();
-                  DAOProductos dao = new DAOProductoImpl();
-                  int fila = tabla_productos.getSelectedRow();
-                  String id = tabla_productos.getValueAt(fila, 0).toString();
-                  producto p = dao.visualizar(id);
-                  int clave = Integer.parseInt(id);
-
+                int input = (int) cantidad.getValue();
+                DAOProductos dao = new DAOProductoImpl();
+                int fila = tabla_productos.getSelectedRow();
+                String id = tabla_productos.getValueAt(fila, 0).toString();
+                producto p = dao.visualizar(id);
+                String unidad = "";
+                if(c_unidad.isSelected())
+                {
+                    unidad = c_unidad.getText().toString();
+                    
+                }
+                if(c_blister.isSelected())
+                {
+                    unidad = c_blister.getText().toString();
+                    
+                }
+                if(c_caja.isSelected())
+                {
+                    unidad = c_caja.getText().toString();
+                    
+                }
+                  
                   // Verificar si el producto ya está en la tabla
-                  boolean encontrado = false;
-                  for (int i = 0; i < tabla_venta.getRowCount(); i++) {
-                      if (tabla_venta.getValueAt(i, 0).equals(p.getCodigo_unico())) {
-                          // El producto ya está en la tabla, aumentar la cantidad y actualizar subtotal
-                          int cantidadExistente = (int) tabla_venta.getValueAt(i, 2);
-                          double precioUnitario = (double) tabla_venta.getValueAt(i, 3);
-                          double subtotalExistente = (double) tabla_venta.getValueAt(i, 4);
-                          tabla_venta.setValueAt(cantidadExistente + input, i, 2);
-                          tabla_venta.setValueAt(subtotalExistente + input * precioUnitario, i, 4);
-                          encontrado = true;
-                          break;
-                      }
-                  }
+                boolean encontrado = false;
+                for (int i = 0; i < tabla_venta.getRowCount(); i++) {
+                    String codigoTabla = tabla_venta.getValueAt(i, 0).toString();
+                    String unidadTabla = tabla_venta.getValueAt(i, 5).toString();
+                    String t = String.valueOf(p.getCodigo_unico()) ;
+                    
+                    if (codigoTabla.equals(t) && unidadTabla.equals(unidad)) {
+                    System.out.println("entro");
+                    // El producto ya está en la tabla con la misma unidad, aumentar la cantidad y actualizar subtotal
+                    int cantidadExistente = (int) tabla_venta.getValueAt(i, 2);
+                    double precioUnitario = (double) tabla_venta.getValueAt(i, 3);
+                    double subtotalExistente = (double) tabla_venta.getValueAt(i, 4);
 
-                  if (!encontrado) {
+                    if (c_unidad.isSelected()) {
+                        // Si la unidad es "unidad", simplemente aumenta la cantidad
+                        tabla_venta.setValueAt(cantidadExistente + input, i, 2);
+                    } else if (c_blister.isSelected()) {
+                        // Si la unidad es "blister", debes tener en cuenta la cantidad por blister
+                        // Calcula la cantidad total (blister * input) y suma a la cantidad existente
+                        int cantidadTotal = cantidadExistente + input * p.getUnidad_x_blister();
+                        tabla_venta.setValueAt(cantidadTotal, i, 2);
+                    } else if (c_caja.isSelected()) {
+                        // Si la unidad es "caja", debes tener en cuenta la cantidad por caja
+                        // Calcula la cantidad total (caja * input) y suma a la cantidad existente
+                        int cantidadTotal = cantidadExistente + input * p.getUnidad_x_caja();
+                        tabla_venta.setValueAt(cantidadTotal, i, 2);
+                    }
+
+                    // Actualiza el subtotal sumando el nuevo subtotal al subtotal existente
+                    tabla_venta.setValueAt(subtotalExistente + input * precioUnitario, i, 4);
+
+                    encontrado = true;
+                    break;
+                }
+
+}
+
+                  if (!encontrado) {    
                       // El producto no está en la tabla, agregar una nueva fila
-                      double subtotal = input * p.getPrecio_x_unidad();
+                      double subtotal =0.0;
+                      int cantidad = 0;
+                      double precio = 0;
+                      String unidad_v = "";
                       DefaultTableModel model = (DefaultTableModel) tabla_venta.getModel();
-                      model.addRow(new Object[]{p.getCodigo_unico(), p.getNombre_producto(), input, p.getPrecio_x_unidad(), subtotal});
+                      
+                      if(c_unidad.isSelected())
+                      {
+                          subtotal = input * p.getPrecio_x_unidad();
+                          cantidad = input;
+                          precio = p.getPrecio_x_unidad();
+                          unidad_v = c_unidad.getText();
+                      }
+                      if(c_blister.isSelected())
+                      {
+                          subtotal = input * p.getPrecio_x_blister();
+                          cantidad = input * p.getUnidad_x_blister();
+                          precio = p.getPrecio_x_blister();
+                          unidad_v = c_blister.getText();
+                      }
+                      if(c_caja.isSelected())
+                      {
+                          subtotal = input * p.getPrecio_x_caja();
+                          cantidad = input * p.getUnidad_x_caja();
+                          precio = p.getPrecio_x_caja();
+                          unidad_v = c_caja.getText();
+                      }
+                      
+                      
+                      
+                      model.addRow(new Object[]{p.getCodigo_unico(), p.getNombre_producto(), cantidad,precio, subtotal,unidad});
+                      
                   }
 
                   // Actualizar el total después de verificar todos los productos en la tabla
@@ -222,8 +293,17 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
             DAOProductos dao = new DAOProductoImpl();
             DefaultTableModel model = (DefaultTableModel) tabla_productos.getModel();
             model.setRowCount(0);
+            if (c_unidad.isSelected()){
+                dao.listar().forEach((u) -> model.addRow(new Object[]{u.getCodigo_unico(),u.getNombre_producto(),u.getDescripcion_produto(),u.getPrincipo_activo(),u.getUbicacion(),u.getStock(),u.getPrecio_x_unidad()}));
+            }
+            if (c_blister.isSelected()){
+                dao.listar().forEach((u) -> model.addRow(new Object[]{u.getCodigo_unico(),u.getNombre_producto(),u.getDescripcion_produto(),u.getPrincipo_activo(),u.getUbicacion(),u.getStock()/u.getUnidad_x_blister(),u.getPrecio_x_blister()}));
+            }
+            if (c_caja.isSelected()){
+                dao.listar().forEach((u) -> model.addRow(new Object[]{u.getCodigo_unico(),u.getNombre_producto(),u.getDescripcion_produto(),u.getPrincipo_activo(),u.getUbicacion(),u.getStock()/u.getUnidad_x_caja(),u.getPrecio_x_caja()}));
+            }
             
-            dao.listar().forEach((u) -> model.addRow(new Object[]{u.getCodigo_unico(),u.getNombre_producto(),u.getDescripcion_produto(),u.getPrincipo_activo(),u.getUbicacion(),u.getStock(),u.getPrecio_x_unidad()}));
+            
         } catch (Exception e) {
         }
     }
@@ -244,30 +324,63 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         panelPadre = new javax.swing.JPanel();
         C = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_productos = new javax.swing.JTable();
         txt_buscar = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla_venta = new javax.swing.JTable();
-        jSeparator1 = new javax.swing.JSeparator();
         cantidad = new javax.swing.JSpinner();
-        cliente = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        txcambio = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         TOTAL = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        lbfecha = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        lbfecha = new javax.swing.JLabel();
         id_venta = new javax.swing.JLabel();
+        txvendedor = new javax.swing.JLabel();
+        txvendedor2 = new javax.swing.JLabel();
+        cliente = new javax.swing.JTextField();
+        txvendedor1 = new javax.swing.JLabel();
+        YAPE = new javax.swing.JRadioButton();
+        EFECTIVO = new javax.swing.JRadioButton();
+        txvendedor3 = new javax.swing.JLabel();
+        txvendedor4 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        txvendedor5 = new javax.swing.JLabel();
+        pago = new javax.swing.JTextField();
+        txvendedor6 = new javax.swing.JLabel();
+        c_unidad = new javax.swing.JRadioButton();
+        c_blister = new javax.swing.JRadioButton();
+        c_caja = new javax.swing.JRadioButton();
+
+        setPreferredSize(new java.awt.Dimension(1050, 680));
+
+        panelPadre.setPreferredSize(new java.awt.Dimension(1050, 680));
 
         C.setBackground(new java.awt.Color(204, 226, 235));
         C.setPreferredSize(new java.awt.Dimension(1050, 680));
         C.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons_actualizar.png"))); // NOI18N
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        C.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 340, -1, -1));
 
         tabla_productos.setBackground(new java.awt.Color(255, 255, 255));
         tabla_productos.setModel(new javax.swing.table.DefaultTableModel(
@@ -327,6 +440,9 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icono4.png"))); // NOI18N
         C.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
 
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        C.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 30, 20, 300));
+
         tabla_venta.setBackground(new java.awt.Color(255, 255, 255));
         tabla_venta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tabla_venta.setForeground(new java.awt.Color(0, 0, 0));
@@ -335,11 +451,11 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
 
             },
             new String [] {
-                "c", "PRODUCTO", "CANTIDAD", "P.UNITARIO", "SUBTOTAL"
+                "c", "PRODUCTO", "CANTIDAD", "P.UNITARIO", "SUBTOTAL", "UNIDAD"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -357,21 +473,31 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
             tabla_venta.getColumnModel().getColumn(0).setPreferredWidth(20);
             tabla_venta.getColumnModel().getColumn(1).setResizable(false);
             tabla_venta.getColumnModel().getColumn(1).setPreferredWidth(150);
+            tabla_venta.getColumnModel().getColumn(2).setResizable(false);
             tabla_venta.getColumnModel().getColumn(2).setPreferredWidth(80);
             tabla_venta.getColumnModel().getColumn(3).setResizable(false);
             tabla_venta.getColumnModel().getColumn(3).setPreferredWidth(80);
             tabla_venta.getColumnModel().getColumn(4).setResizable(false);
             tabla_venta.getColumnModel().getColumn(4).setPreferredWidth(80);
+            tabla_venta.getColumnModel().getColumn(5).setResizable(false);
         }
 
-        C.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 468, 290));
-        C.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 1050, 20));
-        C.add(cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 350, 80, 30));
+        C.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 590, 260));
+        C.add(cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 350, 80, 30));
 
-        cliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cliente.setForeground(new java.awt.Color(0, 0, 0));
-        cliente.setText("cliente fantasma");
-        C.add(cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 130, -1, 30));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("S/.");
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 30, 40));
+
+        txcambio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txcambio.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel3.add(txcambio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 60, 40));
+
+        C.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 230, 100, 40));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -383,20 +509,15 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
 
         TOTAL.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         TOTAL.setForeground(new java.awt.Color(0, 0, 0));
-        TOTAL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        TOTAL.setText("0.0");
         jPanel1.add(TOTAL, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 60, 40));
 
-        C.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 100, 40));
+        C.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 80, 100, 40));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Cantidad:");
-        C.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 350, -1, 30));
-
-        lbfecha.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lbfecha.setForeground(new java.awt.Color(0, 0, 0));
-        lbfecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        C.add(lbfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 0, 110, 30));
+        C.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 350, -1, 30));
 
         jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -404,7 +525,7 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        C.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, 80, 30));
+        C.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 290, 80, 30));
 
         jButton2.setText("jButton2");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -412,31 +533,138 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-        C.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 240, -1, 60));
+        C.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 250, -1, 60));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Total:");
-        C.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 230, -1, 30));
+        jPanel2.setBackground(new java.awt.Color(177, 212, 224));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lbfecha.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lbfecha.setForeground(new java.awt.Color(0, 0, 0));
+        lbfecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel2.add(lbfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 110, 30));
 
         id_venta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         id_venta.setForeground(new java.awt.Color(0, 0, 0));
         id_venta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        C.add(id_venta, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, 110, 30));
+        jPanel2.add(id_venta, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 110, 30));
+
+        txvendedor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txvendedor.setForeground(new java.awt.Color(0, 0, 0));
+        txvendedor.setText("vendedor");
+        jPanel2.add(txvendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 110, 30));
+
+        txvendedor2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txvendedor2.setForeground(new java.awt.Color(0, 0, 0));
+        txvendedor2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txvendedor2.setText("Cuenta:");
+        jPanel2.add(txvendedor2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 30));
+
+        C.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 0, 420, 30));
+
+        cliente.setBackground(new java.awt.Color(255, 255, 255));
+        cliente.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
+        cliente.setForeground(new java.awt.Color(0, 0, 0));
+        C.add(cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 160, 120, 30));
+
+        txvendedor1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txvendedor1.setForeground(new java.awt.Color(0, 0, 0));
+        txvendedor1.setText("Metodo:");
+        C.add(txvendedor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 40, 70, 30));
+
+        buttonGroup1.add(YAPE);
+        YAPE.setForeground(new java.awt.Color(0, 0, 0));
+        YAPE.setText("YAPE");
+        YAPE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                YAPEActionPerformed(evt);
+            }
+        });
+        C.add(YAPE, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 100, -1, 30));
+
+        buttonGroup1.add(EFECTIVO);
+        EFECTIVO.setForeground(new java.awt.Color(0, 0, 0));
+        EFECTIVO.setText("EFECTIVO");
+        C.add(EFECTIVO, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 70, -1, 30));
+
+        txvendedor3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txvendedor3.setForeground(new java.awt.Color(0, 0, 0));
+        txvendedor3.setText("Total:");
+        C.add(txvendedor3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 40, 70, 30));
+
+        txvendedor4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txvendedor4.setForeground(new java.awt.Color(0, 0, 0));
+        txvendedor4.setText("Cliente:");
+        C.add(txvendedor4, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 130, 70, 30));
+        C.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 1050, 20));
+
+        txvendedor5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txvendedor5.setForeground(new java.awt.Color(0, 0, 0));
+        txvendedor5.setText("Cambio:");
+        C.add(txvendedor5, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 200, 70, 30));
+
+        pago.setBackground(new java.awt.Color(255, 255, 255));
+        pago.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
+        pago.setForeground(new java.awt.Color(0, 0, 0));
+        pago.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                pagoKeyReleased(evt);
+            }
+        });
+        C.add(pago, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 160, 100, 30));
+
+        txvendedor6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txvendedor6.setForeground(new java.awt.Color(0, 0, 0));
+        txvendedor6.setText("Pago:");
+        C.add(txvendedor6, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 130, 70, 30));
+
+        buttonGroup2.add(c_unidad);
+        c_unidad.setForeground(new java.awt.Color(0, 0, 0));
+        c_unidad.setText("Unidad");
+        c_unidad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                c_unidadMouseClicked(evt);
+            }
+        });
+        c_unidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                c_unidadKeyPressed(evt);
+            }
+        });
+        C.add(c_unidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 350, -1, -1));
+
+        buttonGroup2.add(c_blister);
+        c_blister.setForeground(new java.awt.Color(0, 0, 0));
+        c_blister.setText("Blister");
+        c_blister.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                c_blisterMouseClicked(evt);
+            }
+        });
+        C.add(c_blister, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 350, -1, -1));
+
+        buttonGroup2.add(c_caja);
+        c_caja.setForeground(new java.awt.Color(0, 0, 0));
+        c_caja.setText("Caja");
+        c_caja.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                c_cajaMouseClicked(evt);
+            }
+        });
+        C.add(c_caja, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 350, -1, -1));
 
         javax.swing.GroupLayout panelPadreLayout = new javax.swing.GroupLayout(panelPadre);
         panelPadre.setLayout(panelPadreLayout);
         panelPadreLayout.setHorizontalGroup(
             panelPadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1062, Short.MAX_VALUE)
+            .addGap(0, 1050, Short.MAX_VALUE)
             .addGroup(panelPadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(C, javax.swing.GroupLayout.DEFAULT_SIZE, 1062, Short.MAX_VALUE))
+                .addComponent(C, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelPadreLayout.setVerticalGroup(
             panelPadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 692, Short.MAX_VALUE)
+            .addGap(0, 680, Short.MAX_VALUE)
             .addGroup(panelPadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(C, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE))
+                .addComponent(C, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -480,7 +708,7 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
                 model.removeRow(fila);
 
                 // Eliminar el elemento correspondiente en detalle
-                detalle.remove(id);
+                
             } else {
                 JOptionPane.showMessageDialog(null, "El precio de la venta es inválido", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -499,7 +727,10 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
                 try {
                     DAOVenta dao = new DAOVentaImpl();
                     //encabezado
-                    cabecera venta = new cabecera(lbfecha.getText(), cliente.getText(), Double.parseDouble(TOTAL.getText()), "metodo", "venderora");
+                    String metodo="";
+                    if(EFECTIVO.isSelected()){metodo = "EFECTIVO";}
+                    if(YAPE.isSelected()){metodo = "YAPE";}
+                    cabecera venta = new cabecera(lbfecha.getText(), cliente.getText(), Double.parseDouble(TOTAL.getText()), metodo, txvendedor.getText());
                     dao.registrarEncabezado(venta);
                     //detalle
                     List<detalle> pila = new ArrayList<>();
@@ -514,13 +745,15 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
                         int cantidad = Integer.parseInt(modelo.getValueAt(i, 2).toString());
                         double precioUnitario = Double.parseDouble(modelo.getValueAt(i, 3).toString());
                         double subtotal = Double.parseDouble(modelo.getValueAt(i, 4).toString());
-
+                        String unidad = modelo.getValueAt(i, 5).toString();
+                        
                         detalle.setNumero_venta(Integer.parseInt(id_venta.getText()));
                         detalle.setId_producto(idProducto);
                         detalle.setProducto(producto);
                         detalle.setCantidad(cantidad);
                         detalle.setUnitario_precio(precioUnitario);
                         detalle.setSubtotal(subtotal);
+                        detalle.setUnidad(unidad);
 
                         pila.add(detalle);
                     }
@@ -543,28 +776,112 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
             }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void YAPEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YAPEActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_YAPEActionPerformed
+
+    private void pagoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pagoKeyReleased
+        
+        String totalText = TOTAL.getText();
+        String pagoText = this.pago.getText();
+
+        
+        if (!totalText.isEmpty() && !pagoText.isEmpty()) {
+            
+            double total = Double.parseDouble(totalText);
+            double pago = Double.parseDouble(pagoText);
+
+            
+            double cambio = pago - total;
+
+            
+            txcambio.setText(String.valueOf(cambio));
+        } else {
+            
+            txcambio.setText("0.0"); 
+        }
+
+        
+    }//GEN-LAST:event_pagoKeyReleased
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        cargar_tabla();
+        tabla_productos.clearSelection(); // Limpiar cualquier selección existente
+        tabla_productos.setRowSelectionInterval(0, 0); // Seleccionar la primera fila
+        tabla_productos.setColumnSelectionInterval(0, 0); // Seleccionar la primera columna (o la columna que no sea la personalizada)
+
+
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void c_unidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_c_unidadKeyPressed
+        
+    }//GEN-LAST:event_c_unidadKeyPressed
+
+    private void c_unidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_c_unidadMouseClicked
+        cargar_tabla();
+        tabla_productos.clearSelection(); // Limpiar cualquier selección existente
+        tabla_productos.setRowSelectionInterval(0, 0); // Seleccionar la primera fila
+        tabla_productos.setColumnSelectionInterval(0, 0); // Seleccionar la primera columna (o la columna que no sea la personalizada)
+
+    }//GEN-LAST:event_c_unidadMouseClicked
+
+    private void c_blisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_c_blisterMouseClicked
+        cargar_tabla();
+        tabla_productos.clearSelection(); // Limpiar cualquier selección existente
+        tabla_productos.setRowSelectionInterval(0, 0); // Seleccionar la primera fila
+        tabla_productos.setColumnSelectionInterval(0, 0); // Seleccionar la primera columna (o la columna que no sea la personalizada)
+
+    }//GEN-LAST:event_c_blisterMouseClicked
+
+    private void c_cajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_c_cajaMouseClicked
+        cargar_tabla();
+        tabla_productos.clearSelection(); // Limpiar cualquier selección existente
+        tabla_productos.setRowSelectionInterval(0, 0); // Seleccionar la primera fila
+        tabla_productos.setColumnSelectionInterval(0, 0); // Seleccionar la primera columna (o la columna que no sea la personalizada)
+
+    }//GEN-LAST:event_c_cajaMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel C;
+    private javax.swing.JRadioButton EFECTIVO;
     private javax.swing.JLabel TOTAL;
+    private javax.swing.JRadioButton YAPE;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JRadioButton c_blister;
+    private javax.swing.JRadioButton c_caja;
+    private javax.swing.JRadioButton c_unidad;
     private javax.swing.JSpinner cantidad;
-    private javax.swing.JLabel cliente;
+    private javax.swing.JTextField cliente;
     private javax.swing.JLabel id_venta;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lbfecha;
+    private javax.swing.JTextField pago;
     private javax.swing.JPanel panelPadre;
     private javax.swing.JTable tabla_productos;
     private javax.swing.JTable tabla_venta;
+    private javax.swing.JLabel txcambio;
     private javax.swing.JTextField txt_buscar;
+    private javax.swing.JLabel txvendedor;
+    private javax.swing.JLabel txvendedor1;
+    private javax.swing.JLabel txvendedor2;
+    private javax.swing.JLabel txvendedor3;
+    private javax.swing.JLabel txvendedor4;
+    private javax.swing.JLabel txvendedor5;
+    private javax.swing.JLabel txvendedor6;
     // End of variables declaration//GEN-END:variables
 
     

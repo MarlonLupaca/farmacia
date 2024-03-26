@@ -4,8 +4,6 @@ package farmacia;
 import Implementaciones.DAOProductoImpl;
 import interfaces.DAOProductos;
 import java.awt.Color;
-import java.lang.System.Logger;
-import java.lang.System.Logger.Level;
 import javax.swing.JOptionPane;
 import objetos.producto;
 

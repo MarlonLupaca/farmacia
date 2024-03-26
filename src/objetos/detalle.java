@@ -7,6 +7,7 @@ public class detalle {
     private int cantidad;
     private double unitario_precio;
     private double subtotal;
+    private String unidad;
 
     public int getNumero_venta() {
         return Numero_venta;
@@ -56,14 +57,36 @@ public class detalle {
         this.subtotal = subtotal;
     }
 
-    public detalle(int Numero_venta, int id_producto, String Producto, int cantidad, double unitario_precio, double subtotal) {
+    public String getUnidad() {
+        return unidad;
+    }
+
+    public void setUnidad(String unidad) {
+        this.unidad = unidad;
+    }
+    
+    
+
+    public detalle(int Numero_venta, int id_producto, String Producto, int cantidad, double unitario_precio, double subtotal, String unidad) {
         this.Numero_venta = Numero_venta;
         this.id_producto = id_producto;
         this.Producto = Producto;
         this.cantidad = cantidad;
         this.unitario_precio = unitario_precio;
         this.subtotal = subtotal;
+        this.unidad = unidad;
     }
+
+    public detalle(int id_producto, String Producto, int cantidad, double unitario_precio, double subtotal, String unidad) {
+        this.id_producto = id_producto;
+        this.Producto = Producto;
+        this.cantidad = cantidad;
+        this.unitario_precio = unitario_precio;
+        this.subtotal = subtotal;
+        this.unidad = unidad;
+
+    }
+    
 
     public detalle() {
     }
