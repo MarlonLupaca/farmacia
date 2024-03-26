@@ -18,7 +18,6 @@ public class DAOClientesImpl extends conexion implements DAOClientes{
     @Override
     public void registrar(cliente p) throws Exception {
 
-        System.out.println("entro");
         this.conex();
         PreparedStatement st = this.conexion.prepareStatement("INSERT INTO  Pacientes (DNI, Nombre, Genero, FechaNacimiento, NumeroTelefono, Direccion, CorreoElectronico, DescripcionMedica) VALUES (?,?,?,?,?,?,?,?)");
         st.setString(1,p.getDNI());

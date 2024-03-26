@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 
 public class login extends javax.swing.JFrame {
     private static String login;
+    private static String rola;
     
 
     public String getLogin() {
@@ -20,6 +21,16 @@ public class login extends javax.swing.JFrame {
     public void setLogin(String login) {
         this.login = login;
     }
+
+    public String getRola() {
+        return rola;
+    }
+
+    public void setRola(String rola) {
+        this.rola = rola;
+    }
+    
+    
 
     
     
@@ -122,6 +133,9 @@ public class login extends javax.swing.JFrame {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 bMouseExited(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                bMousePressed(evt);
+            }
         });
         b.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -167,7 +181,7 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_bMouseExited
 
     private void bMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bMouseClicked
-        DAOClientes dao = new DAOClientesImpl();
+        /*DAOClientes dao = new DAOClientesImpl();
         
         String usuario = usu.getText().toString();
         String contraseña = con.getText().toString();
@@ -189,8 +203,45 @@ public class login extends javax.swing.JFrame {
             {
             }
             Dashboard newframe = new Dashboard();
+            newframe.setVisible(true);
+            this.dispose();
+            
+            
+            
+            
+            } catch (Exception ex) {
+                Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+            }*/
+    }//GEN-LAST:event_bMouseClicked
+
+    private void bMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bMousePressed
+        DAOClientes dao = new DAOClientesImpl();
+        
+        String usuario = usu.getText().toString();
+        String contraseña = con.getText().toString();
+        try {
+            int val = dao.validar(usuario, contraseña);
+            
+            if(val == 1)
+            {   
+                login = usuario;
+                rola = "admin";
+                Dashboard_admin newframe = new Dashboard_admin();
                 newframe.setVisible(true);
                 this.dispose();
+                
+            }else if(val == 2)    
+            {
+                login = usuario;
+                rola = "noadmin";
+                Dashboard newframe = new Dashboard();
+                newframe.setVisible(true);
+                this.dispose();
+            }else if(val == 0)
+            {
+                
+            }
+            
             
             
             
@@ -198,7 +249,7 @@ public class login extends javax.swing.JFrame {
             } catch (Exception ex) {
                 Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
             }
-    }//GEN-LAST:event_bMouseClicked
+    }//GEN-LAST:event_bMousePressed
 
     /**
      * @param args the command line arguments

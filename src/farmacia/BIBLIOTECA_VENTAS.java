@@ -27,10 +27,13 @@ import objetos.producto;
  */
 public class BIBLIOTECA_VENTAS extends javax.swing.JPanel {
 
-    
+    private String permiso;
+    private String per;
     public BIBLIOTECA_VENTAS() {
         initComponents();
-        
+        login lo = new login();
+        permiso = lo.getLogin();
+        per = lo.getRola();
         xxx();
         
         cargar_tabla();
@@ -55,24 +58,33 @@ public class BIBLIOTECA_VENTAS extends javax.swing.JPanel {
 
             @Override
             public void borrar(int row) {
-                int i = JOptionPane.showConfirmDialog(null,"¿SEGURO QUE ELIMINAR ESTE PRODUCTO","AVISO",JOptionPane.CANCEL_OPTION );
+                int fila = tabla_ventas.getSelectedRow();
+                String id = tabla_ventas.getValueAt(fila, 0).toString();
+                String vende = tabla_ventas.getValueAt(fila, 5).toString();
                 
-                if (i == 0) {
-                    int fila = tabla_ventas.getSelectedRow();
-                    String id = tabla_ventas.getValueAt(fila, 0).toString();
-                    int id2 = Integer.parseInt(id);
-                    DAOVenta dao = new DAOVentaImpl();
+                if (vende.equals(permiso) || per.equals("admin")) {
+                    int i = JOptionPane.showConfirmDialog(null,"¿SEGURO QUE ELIMINAR ESTE PRODUCTO","AVISO",JOptionPane.CANCEL_OPTION );
+                
+                    if (i == 0) {
 
-                    try {
-                        dao.aumentoStock(id2);
-                        dao.eliminar(id);
-                        
-                    } catch (Exception ex) {
-                        Logger.getLogger(BIBLIOTECA_VENTAS.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    JOptionPane.showMessageDialog(null,"ELIMINADO","ESTADO",JOptionPane.PLAIN_MESSAGE);
-                    visualizador(new BIBLIOTECA_VENTAS());
+                        int id2 = Integer.parseInt(id);
+                        DAOVenta dao = new DAOVentaImpl();
+
+                        try {
+                            dao.aumentoStock(id2);
+                            dao.eliminar(id);
+
+                        } catch (Exception ex) {
+                            Logger.getLogger(BIBLIOTECA_VENTAS.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        JOptionPane.showMessageDialog(null,"ELIMINADO","ESTADO",JOptionPane.PLAIN_MESSAGE);
+                        visualizador(new BIBLIOTECA_VENTAS());
+                    }    
+                } else 
+                {
+                   JOptionPane.showMessageDialog(null,"PERMISOS INSUFICIENTES","ESTADO",JOptionPane.PLAIN_MESSAGE);
                 }
+                
             }
 
             @Override
@@ -126,9 +138,6 @@ public class BIBLIOTECA_VENTAS extends javax.swing.JPanel {
         C = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_ventas = new javax.swing.JTable();
-        txt_buscar = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
 
         C.setBackground(new java.awt.Color(236, 255, 254));
         C.setPreferredSize(new java.awt.Dimension(1050, 680));
@@ -174,55 +183,21 @@ public class BIBLIOTECA_VENTAS extends javax.swing.JPanel {
             tabla_ventas.getColumnModel().getColumn(6).setPreferredWidth(50);
         }
 
-        txt_buscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_buscarActionPerformed(evt);
-            }
-        });
-        txt_buscar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txt_buscarKeyReleased(evt);
-            }
-        });
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icono4.png"))); // NOI18N
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons_actualizar.png"))); // NOI18N
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout CLayout = new javax.swing.GroupLayout(C);
         C.setLayout(CLayout);
         CLayout.setHorizontalGroup(
             CLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addGap(6, 6, 6)
-                .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(477, 477, 477)
-                .addComponent(jLabel2))
-            .addGroup(CLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1038, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1038, Short.MAX_VALUE)
+                .addContainerGap())
         );
         CLayout.setVerticalGroup(
             CLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(CLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addGroup(CLayout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addGroup(CLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(14, 14, 14)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -247,26 +222,11 @@ public class BIBLIOTECA_VENTAS extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txt_buscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_buscarKeyReleased
-        buscador(txt_buscar.getText());
-    }//GEN-LAST:event_txt_buscarKeyReleased
-
-    private void txt_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_buscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_buscarActionPerformed
-
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        visualizador(new BIBLIOTECA_VENTAS());
-    }//GEN-LAST:event_jLabel2MouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel C;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabla_ventas;
-    private javax.swing.JTextField txt_buscar;
     // End of variables declaration//GEN-END:variables
 
     

@@ -3,10 +3,8 @@ package farmacia;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import javax.swing.JButton;
 import javax.swing.JPanel;
-import net.miginfocom.swing.MigLayout;
+
 
 /**
  *
@@ -18,12 +16,6 @@ public class Dashboard extends javax.swing.JFrame {
         initComponents();
         login g = new login();
         usuario.setText(g.getLogin());
-        System.out.println(g.getLogin());
-       
-        
-        
-        
-        
     }
     private void visualizador(JPanel p)
     {

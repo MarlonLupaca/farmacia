@@ -2,25 +2,10 @@
 package farmacia;
 
 import Implementaciones.DAOAlertasImpl;
-import farmacia.Carta;
 import interfaces.DAOAlertas;
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import javax.swing.Box;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-import objetos.alerta;
+
 
 
 public class PANTALLA_CLIENTES extends javax.swing.JPanel {
@@ -28,7 +13,7 @@ public class PANTALLA_CLIENTES extends javax.swing.JPanel {
     
     public PANTALLA_CLIENTES() {
         initComponents();
-        visualizador(new teradiario());
+        visualizador(new BIBLIOTECA_CLIENTES());
         
         
         
@@ -43,18 +28,6 @@ public class PANTALLA_CLIENTES extends javax.swing.JPanel {
         tera.repaint();
     }
     
-    
-
-
-
-
-    
-
-    
-    
-    
-    
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -72,7 +45,7 @@ public class PANTALLA_CLIENTES extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(153, 255, 153));
 
-        jPanel1.setBackground(new java.awt.Color(204, 226, 235));
+        jPanel1.setBackground(new java.awt.Color(236, 255, 254));
         jPanel1.setPreferredSize(new java.awt.Dimension(1050, 720));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

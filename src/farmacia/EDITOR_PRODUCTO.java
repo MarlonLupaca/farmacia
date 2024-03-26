@@ -7,6 +7,7 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 import objetos.producto;
 
+
 /**
  *
  * @author Marlon_Mendoza
@@ -17,10 +18,36 @@ public class EDITOR_PRODUCTO extends javax.swing.JFrame {
     public static int getA() {
         return a;
     }
+    public static boolean validarNumeros(String datos) {
+        return datos.matches("\\d+");
+    }
+
+    public static boolean validarDoubles(String datos) {
+        try {
+            Double.parseDouble(datos); 
+            return true;
+        } catch (NumberFormatException e) {
+            return false; 
+        }
+    }
 
     public static void setA(int a) {
         EDITOR_PRODUCTO.a = a;
     }
+    private boolean isNumeric(String str) {
+    if (str == null || str.isEmpty()) {
+        return false;
+    }
+    for (char c : str.toCharArray()) {
+        if (!Character.isDigit(c)) {
+            return false;
+        }
+    }
+    return true;
+}
+    
+   
+
     
     public EDITOR_PRODUCTO(producto p) {
         initComponents();
@@ -496,11 +523,10 @@ public class EDITOR_PRODUCTO extends javax.swing.JFrame {
     }//GEN-LAST:event_precio_cajaActionPerformed
 
     private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
-        int i = JOptionPane.showConfirmDialog(null,"¿SEGURO QUE QUIERES MODIFICAR ESTE PRODUCTO?","AVISO",JOptionPane.CANCEL_OPTION);
-                
+        int i = JOptionPane.showConfirmDialog(null, "¿SEGURO QUE QUIERES MODIFICAR ESTE PRODUCTO?", "AVISO", JOptionPane.CANCEL_OPTION);
+
         if (i == 0) {
             try {
-                
                 String nombreMes = (String) mes_v.getSelectedItem();
                 int numeroMes;
                 if (nombreMes.equals("enero")) {
@@ -528,18 +554,26 @@ public class EDITOR_PRODUCTO extends javax.swing.JFrame {
                 } else if (nombreMes.equals("diciembre")) {
                     numeroMes = 12;
                 } else {
-                    numeroMes = 0; 
+                    numeroMes = 0;
                 }
 
-                String fecha = año_v.getSelectedItem()+"-"+numeroMes+"-"+dia_V.getSelectedItem();
-                producto p = new producto(Integer.parseInt(codigo_unico.getText()),nombre_producto.getText(),laboratorio.getText(),descripcion_producto.getText(),principio_activo.getText(),codigo_digemid.getText(),lote.getText(),ubicacion.getText(),fecha,Integer.parseInt(stock.getText()),Integer.parseInt(minimo_aviso.getText()),Integer.parseInt(unidad_blister.getText()),Integer.parseInt(unidad_caja.getText()), Double.parseDouble(precio_unitario.getText()),Double.parseDouble(precio_blister.getText()),Double.parseDouble(precio_caja.getText()));
+                String fecha = año_v.getSelectedItem() + "-" + numeroMes + "-" + dia_V.getSelectedItem();
+
+                if (!validarNumeros(stock.getText()) || !validarNumeros(minimo_aviso.getText()) || !validarNumeros(unidad_blister.getText()) || !validarNumeros(unidad_caja.getText()) || !validarDoubles(precio_unitario.getText()) || !validarDoubles(precio_blister.getText()) || !validarDoubles(precio_caja.getText())) {
+                    JOptionPane.showMessageDialog(null, "Por favor, ingrese valores numéricos válidos en los campos numéricos.");
+                    return;
+                }
+
+                producto p = new producto(Integer.parseInt(codigo_unico.getText()), nombre_producto.getText(), laboratorio.getText(), descripcion_producto.getText(), principio_activo.getText(), codigo_digemid.getText(), lote.getText(), ubicacion.getText(), fecha, Integer.parseInt(stock.getText()), Integer.parseInt(minimo_aviso.getText()), Integer.parseInt(unidad_blister.getText()), Integer.parseInt(unidad_caja.getText()), Double.parseDouble(precio_unitario.getText()), Double.parseDouble(precio_blister.getText()), Double.parseDouble(precio_caja.getText()));
                 DAOProductos dao = new DAOProductoImpl();
                 dao.modificar(p);
+                
                 this.dispose();
-                JOptionPane.showMessageDialog(null,"MODIFICADO","ESTADO",JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, "MODIFICADO", "ESTADO", JOptionPane.PLAIN_MESSAGE);
                 a = 1;
 
             } catch (Exception ex) {
+                
             }
         }
     }//GEN-LAST:event_jPanel4MouseClicked

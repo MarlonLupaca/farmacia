@@ -17,7 +17,7 @@ public class PANTALLA_PRODUCTOS extends javax.swing.JPanel {
      */
     public PANTALLA_PRODUCTOS() {
         initComponents();
-        visualizador(new REGISTRO_PRODUCTO());
+        visualizador(new BIBLIOTECA_PRODUCTOS());
     }
     
     public void visualizador (JPanel p)
