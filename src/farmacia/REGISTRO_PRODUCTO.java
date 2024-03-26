@@ -396,85 +396,89 @@ public class REGISTRO_PRODUCTO extends javax.swing.JPanel {
     }//GEN-LAST:event_precio_cajaActionPerformed
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
-        String nombreMes = (String) mes_v.getSelectedItem();
-        int numeroMes;
-        if (nombreMes.equals("enero")) {
-            numeroMes = 1;
-        } else if (nombreMes.equals("febrero")) {
-            numeroMes = 2;
-        } else if (nombreMes.equals("marzo")) {
-            numeroMes = 3;
-        } else if (nombreMes.equals("abril")) {
-            numeroMes = 4;
-        } else if (nombreMes.equals("mayo")) {
-            numeroMes = 5;
-        } else if (nombreMes.equals("junio")) {
-            numeroMes = 6;
-        } else if (nombreMes.equals("julio")) {
-            numeroMes = 7;
-        } else if (nombreMes.equals("agosto")) {
-            numeroMes = 8;
-        } else if (nombreMes.equals("septiembre")) {
-            numeroMes = 9;
-        } else if (nombreMes.equals("octubre")) {
-            numeroMes = 10;
-        } else if (nombreMes.equals("noviembre")) {
-            numeroMes = 11;
-        } else if (nombreMes.equals("diciembre")) {
-            numeroMes = 12;
-        } else {
-            numeroMes = 0; 
-        }
-
-        String fecha = año_v.getSelectedItem()+"-"+numeroMes+"-"+dia_V.getSelectedItem();
-
-        try {
-            if (nombre_producto.getText().isEmpty() || precio_unitario.getText().isEmpty() || stock.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Por favor, complete los campos obligatorios: Nombre del producto, Precio y Stock.");
-                return;
+        int A = JOptionPane.showConfirmDialog(null,"¿REGISTRAR PRODUCTO?","AVISO",JOptionPane.CANCEL_OPTION );
+                
+            if (A == 0) {
+            String nombreMes = (String) mes_v.getSelectedItem();
+            int numeroMes;
+            if (nombreMes.equals("enero")) {
+                numeroMes = 1;
+            } else if (nombreMes.equals("febrero")) {
+                numeroMes = 2;
+            } else if (nombreMes.equals("marzo")) {
+                numeroMes = 3;
+            } else if (nombreMes.equals("abril")) {
+                numeroMes = 4;
+            } else if (nombreMes.equals("mayo")) {
+                numeroMes = 5;
+            } else if (nombreMes.equals("junio")) {
+                numeroMes = 6;
+            } else if (nombreMes.equals("julio")) {
+                numeroMes = 7;
+            } else if (nombreMes.equals("agosto")) {
+                numeroMes = 8;
+            } else if (nombreMes.equals("septiembre")) {
+                numeroMes = 9;
+            } else if (nombreMes.equals("octubre")) {
+                numeroMes = 10;
+            } else if (nombreMes.equals("noviembre")) {
+                numeroMes = 11;
+            } else if (nombreMes.equals("diciembre")) {
+                numeroMes = 12;
+            } else {
+                numeroMes = 0; 
             }
 
-            producto p = new producto(
-                nombre_producto.getText(), 
-                null, 
-                null, 
-                null, 
-                null, 
-                null, 
-                null, 
-                fecha, 
-                Integer.parseInt(stock.getText()), 
-                0, 
-                0, 
-                0, 
-                Double.parseDouble(precio_unitario.getText()), 
-                0.0, 
-                0.0
-            );
+            String fecha = año_v.getSelectedItem()+"-"+numeroMes+"-"+dia_V.getSelectedItem();
 
-            DAOProductos dao = new DAOProductoImpl();
-            dao.registrar(p);
-            
-            nombre_producto.setText("");
-            laboratorio.setText("");
-            descripcion_producto.setText("");
-            principio_activo.setText("");
-            codigo_digemid.setText("");
-            lote.setText("");
-            ubicacion.setText("");
-            stock.setText("");
-            minimo_aviso.setText("");
-            unidad_blister.setText("");
-            unidad_caja.setText("");
-            precio_unitario.setText("");
-            precio_blister.setText("");
-            precio_caja.setText("");
-            
-            JOptionPane.showMessageDialog(null, "El producto se ha guardado correctamente.");        
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Por favor, ingrese valores numéricos válidos para el stock y el precio.");
-        } catch (Exception ex) {
-            Logger.getLogger(REGISTRO_PRODUCTO.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                if (nombre_producto.getText().isEmpty() || precio_unitario.getText().isEmpty() || stock.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Por favor, complete los campos obligatorios: Nombre del producto, Precio y Stock.");
+                    return;
+                }
+
+                producto p = new producto(
+                    nombre_producto.getText(), 
+                    null, 
+                    null, 
+                    null, 
+                    null, 
+                    null, 
+                    null, 
+                    fecha, 
+                    Integer.parseInt(stock.getText()), 
+                    0, 
+                    0, 
+                    0, 
+                    Double.parseDouble(precio_unitario.getText()), 
+                    0.0, 
+                    0.0
+                );
+
+                DAOProductos dao = new DAOProductoImpl();
+                dao.registrar(p);
+
+                nombre_producto.setText("");
+                laboratorio.setText("");
+                descripcion_producto.setText("");
+                principio_activo.setText("");
+                codigo_digemid.setText("");
+                lote.setText("");
+                ubicacion.setText("");
+                stock.setText("");
+                minimo_aviso.setText("");
+                unidad_blister.setText("");
+                unidad_caja.setText("");
+                precio_unitario.setText("");
+                precio_blister.setText("");
+                precio_caja.setText("");
+
+                JOptionPane.showMessageDialog(null, "El producto se ha guardado correctamente.");        
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Por favor, ingrese valores numéricos válidos para el stock y el precio.");
+            } catch (Exception ex) {
+                Logger.getLogger(REGISTRO_PRODUCTO.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }//GEN-LAST:event_jPanel2MouseClicked

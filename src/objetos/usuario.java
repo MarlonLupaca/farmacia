@@ -50,12 +50,5 @@ public class usuario {
         this.usuario = usuario;
         this.contraseña = contraseña;
         this.rol = rol;
-    }
-    
-
-
-    
-    
-    
-    
+    } 
 }

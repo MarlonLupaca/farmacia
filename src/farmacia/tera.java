@@ -88,12 +88,12 @@ public void agregarCartasDesdeMapa() {
 
         setPreferredSize(new java.awt.Dimension(1050, 680));
 
-        tera.setBackground(new java.awt.Color(73, 148, 174));
+        tera.setBackground(new java.awt.Color(177, 212, 224));
 
         jScrollPane1.setBorder(null);
         jScrollPane1.setPreferredSize(new java.awt.Dimension(1050, 720));
 
-        azul.setBackground(new java.awt.Color(204, 226, 235));
+        azul.setBackground(new java.awt.Color(236, 255, 254));
         azul.setMaximumSize(new java.awt.Dimension(1048, 718));
         azul.setLayout(new java.awt.GridBagLayout());
         jScrollPane1.setViewportView(azul);

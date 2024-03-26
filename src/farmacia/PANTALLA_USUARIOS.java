@@ -65,16 +65,17 @@ public class PANTALLA_USUARIOS extends javax.swing.JPanel {
             @Override
             public void editar(int row) {
                 
-                int i = JOptionPane.showConfirmDialog(null,"¿SEGURO QUE QUIERES MODIFICAR ESTA ALERTA?","AVISO",JOptionPane.CANCEL_OPTION);
+                int i = JOptionPane.showConfirmDialog(null,"¿SEGURO QUE QUIERES MODIFICAR ESTE USUARIO","AVISO",JOptionPane.CANCEL_OPTION);
                 
                 if (i == 0) {
                     int fila = tabla_usuarios.getSelectedRow();
                     String id = tabla_usuarios.getValueAt(fila, 0).toString();
                     String usuario = tabla_usuarios.getValueAt(fila, 1).toString();
                     String contraseña = tabla_usuarios.getValueAt(fila, 2).toString();
+                    String rol = tabla_usuarios.getValueAt(fila, 3).toString();
                     
                     
-                    usuario p = new usuario(id, usuario, contraseña);
+                    usuario p = new usuario(id, usuario, contraseña,rol);
 
                     DAOUusuario dao = new DAOUsuarioImpl();
                     try {
@@ -143,9 +144,10 @@ public class PANTALLA_USUARIOS extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
 
         panelfill.setBackground(new java.awt.Color(204, 226, 235));
+        panelfill.setMinimumSize(new java.awt.Dimension(1050, 720));
         panelfill.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        C.setBackground(new java.awt.Color(204, 226, 235));
+        C.setBackground(new java.awt.Color(236, 255, 254));
         C.setMinimumSize(new java.awt.Dimension(1010, 720));
         C.setPreferredSize(new java.awt.Dimension(1050, 720));
 
@@ -240,6 +242,7 @@ public class PANTALLA_USUARIOS extends javax.swing.JPanel {
         jLabel7.setText("Contraseña:");
 
         jPanel1.setBackground(new java.awt.Color(177, 212, 224));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(236, 255, 254), new java.awt.Color(236, 255, 254)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Symbol", 0, 30)); // NOI18N

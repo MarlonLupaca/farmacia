@@ -3,7 +3,11 @@ package farmacia;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Frame;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 
 /**
@@ -15,6 +19,7 @@ public class Dashboard_admin extends javax.swing.JFrame {
     public Dashboard_admin() {
         initComponents();
         login g = new login();
+        visualizador(new PANTALLA_VENTAS());
         usuario.setText(g.getLogin());
     }
     private void visualizador(JPanel p)
@@ -48,8 +53,14 @@ public class Dashboard_admin extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         b4 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1280, 760));
+        setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -68,7 +79,7 @@ public class Dashboard_admin extends javax.swing.JFrame {
             .addGap(0, 720, Short.MAX_VALUE)
         );
 
-        xd.add(panelfill, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 1050, 720));
+        xd.add(panelfill, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 1050, 720));
 
         panelxd.setBackground(new java.awt.Color(236, 255, 254));
         panelxd.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -187,9 +198,38 @@ public class Dashboard_admin extends javax.swing.JFrame {
 
         panelxd.add(b4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 480, 230, 50));
 
-        xd.add(panelxd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 720));
+        xd.add(panelxd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 760));
 
-        getContentPane().add(xd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
+        jPanel2.setBackground(new java.awt.Color(177, 212, 224));
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(236, 255, 254), new java.awt.Color(236, 255, 254)));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel4.setBackground(new java.awt.Color(236, 255, 254));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons2.png"))); // NOI18N
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
+        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 5, -1, -1));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mini.png"))); // NOI18N
+        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
+        });
+        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, -1, -1));
+
+        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 0, 80, 40));
+
+        xd.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 1050, 40));
+
+        getContentPane().add(xd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 760));
 
         pack();
         setLocationRelativeTo(null);
@@ -243,6 +283,15 @@ public class Dashboard_admin extends javax.swing.JFrame {
         b4.setBackground(new Color(0xB1D4E0));
     }//GEN-LAST:event_b4MouseExited
 
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        this.dispose();
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor((Component) evt.getSource());
+        frame.setState(Frame.ICONIFIED);
+    }//GEN-LAST:event_jLabel9MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -285,10 +334,14 @@ public class Dashboard_admin extends javax.swing.JFrame {
     private javax.swing.JPanel b4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel panelfill;
     private javax.swing.JPanel panelxd;
     private javax.swing.JLabel usuario;

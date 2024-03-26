@@ -36,80 +36,66 @@ public class REGISTRO_DE_ALERTAS extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         nombret = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        fechadealerta = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         dnit = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         descripcion = new javax.swing.JTextArea();
+        mes_v = new javax.swing.JComboBox<>();
+        dia_V = new javax.swing.JComboBox<>();
+        jLabel18 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 500));
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(204, 226, 235));
+        jPanel1.setBackground(new java.awt.Color(236, 255, 254));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(177, 212, 224), new java.awt.Color(177, 212, 224)));
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 500));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(73, 148, 174));
+        jPanel2.setBackground(new java.awt.Color(177, 212, 224));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Symbol", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(25, 46, 56));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("AGREGAR ALERTA");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 310, 50));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 330, 70));
 
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons2.png"))); // NOI18N
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 50, 50));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, -1, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 80));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 70));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(25, 46, 56));
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Descripcion de la alerta:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 160, 30));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 160, 30));
 
-        nombret.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
-        nombret.setForeground(new java.awt.Color(25, 46, 56));
+        nombret.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
+        nombret.setForeground(new java.awt.Color(0, 0, 0));
         nombret.setText("Nombre:");
-        jPanel1.add(nombret, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 230, 30));
+        jPanel1.add(nombret, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 200, 30));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(25, 46, 56));
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Fecha de alerta:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 140, 30));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 140, 30));
 
-        fechadealerta.setBackground(new java.awt.Color(255, 255, 255));
-        fechadealerta.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
-        fechadealerta.setForeground(new java.awt.Color(0, 0, 0));
-        fechadealerta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fechadealertaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(fechadealerta, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 250, 35));
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 440, 120, 30));
-
-        dnit.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
-        dnit.setForeground(new java.awt.Color(25, 46, 56));
+        dnit.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
+        dnit.setForeground(new java.awt.Color(0, 0, 0));
         dnit.setText("DNI del cliente:");
-        jPanel1.add(dnit, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 140, 30));
+        jPanel1.add(dnit, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 140, 30));
 
         descripcion.setBackground(new java.awt.Color(255, 255, 255));
         descripcion.setColumns(20);
@@ -117,7 +103,29 @@ public class REGISTRO_DE_ALERTAS extends javax.swing.JFrame {
         descripcion.setRows(5);
         jScrollPane1.setViewportView(descripcion);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, 250, -1));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 260, -1));
+
+        mes_v.setBackground(new java.awt.Color(255, 255, 255));
+        mes_v.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
+        mes_v.setForeground(new java.awt.Color(0, 0, 0));
+        mes_v.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre" }));
+        jPanel1.add(mes_v, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 110, 35));
+
+        dia_V.setBackground(new java.awt.Color(255, 255, 255));
+        dia_V.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
+        dia_V.setForeground(new java.awt.Color(0, 0, 0));
+        dia_V.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        jPanel1.add(dia_V, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 60, 35));
+
+        jLabel18.setBackground(new java.awt.Color(255, 204, 204));
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon_editar_1.png"))); // NOI18N
+        jLabel18.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel18.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel18MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 380, 90, 100));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 500));
 
@@ -125,17 +133,49 @@ public class REGISTRO_DE_ALERTAS extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void fechadealertaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechadealertaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fechadealertaActionPerformed
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        this.dispose();
+    }//GEN-LAST:event_jLabel1MouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jLabel18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseClicked
         int i = JOptionPane.showConfirmDialog(null,"¿SEGURO QUE GUARDAR ESTA ALERTA?","AVISO",JOptionPane.CANCEL_OPTION );
                 
         if (i == 0) {
             try {
+                String nombreMes = (String) mes_v.getSelectedItem();
+                int numeroMes;
+                if (nombreMes.equals("enero")) {
+                    numeroMes = 1;
+                } else if (nombreMes.equals("febrero")) {
+                    numeroMes = 2;
+                } else if (nombreMes.equals("marzo")) {
+                    numeroMes = 3;
+                } else if (nombreMes.equals("abril")) {
+                    numeroMes = 4;
+                } else if (nombreMes.equals("mayo")) {
+                    numeroMes = 5;
+                } else if (nombreMes.equals("junio")) {
+                    numeroMes = 6;
+                } else if (nombreMes.equals("julio")) {
+                    numeroMes = 7;
+                } else if (nombreMes.equals("agosto")) {
+                    numeroMes = 8;
+                } else if (nombreMes.equals("septiembre")) {
+                    numeroMes = 9;
+                } else if (nombreMes.equals("octubre")) {
+                    numeroMes = 10;
+                } else if (nombreMes.equals("noviembre")) {
+                    numeroMes = 11;
+                } else if (nombreMes.equals("diciembre")) {
+                    numeroMes = 12;
+                } else {
+                    numeroMes = 0; 
+                }
+
+                String fecha = numeroMes+"-"+dia_V.getSelectedItem();
+
                 DAOAlertas dao = new DAOAlertasImpl();
-                alerta p = new alerta(dnit.getText(),nombret.getText(),descripcion.getText(),fechadealerta.getText());
+                alerta p = new alerta(dnit.getText(),nombret.getText(),descripcion.getText(),fecha);
                 dao.registrar(p);
                 dispose();
                 JOptionPane.showMessageDialog(null,"GUARDADO CORRECTAMENTE","ESTADO",JOptionPane.PLAIN_MESSAGE);
@@ -143,11 +183,7 @@ public class REGISTRO_DE_ALERTAS extends javax.swing.JFrame {
                 Logger.getLogger(REGISTRO_PRODUCTO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jLabel18MouseClicked
 
     /**
      * @param args the command line arguments
@@ -190,16 +226,17 @@ public class REGISTRO_DE_ALERTAS extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea descripcion;
+    private javax.swing.JComboBox<String> dia_V;
     private javax.swing.JLabel dnit;
-    private javax.swing.JTextField fechadealerta;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> mes_v;
     private javax.swing.JLabel nombret;
     // End of variables declaration//GEN-END:variables
 }

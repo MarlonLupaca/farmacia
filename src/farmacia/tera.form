@@ -48,7 +48,7 @@
     <Container class="javax.swing.JPanel" name="tera">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ae" green="94" red="49" type="rgb"/>
+          <Color blue="e0" green="d4" red="b1" type="rgb"/>
         </Property>
       </Properties>
 
@@ -88,7 +88,7 @@
             <Container class="javax.swing.JPanel" name="azul">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="eb" green="e2" red="cc" type="rgb"/>
+                  <Color blue="fe" green="ff" red="ec" type="rgb"/>
                 </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[1048, 718]"/>

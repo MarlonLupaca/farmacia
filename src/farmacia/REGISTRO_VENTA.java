@@ -344,8 +344,6 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         TOTAL = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         lbfecha = new javax.swing.JLabel();
         id_venta = new javax.swing.JLabel();
@@ -364,12 +362,14 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
         c_unidad = new javax.swing.JRadioButton();
         c_blister = new javax.swing.JRadioButton();
         c_caja = new javax.swing.JRadioButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1050, 680));
 
         panelPadre.setPreferredSize(new java.awt.Dimension(1050, 680));
 
-        C.setBackground(new java.awt.Color(204, 226, 235));
+        C.setBackground(new java.awt.Color(236, 255, 254));
         C.setPreferredSize(new java.awt.Dimension(1050, 680));
         C.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -441,7 +441,7 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
         C.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        C.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 30, 20, 300));
+        C.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 35, 20, 295));
 
         tabla_venta.setBackground(new java.awt.Color(255, 255, 255));
         tabla_venta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -497,7 +497,7 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
         txcambio.setForeground(new java.awt.Color(0, 0, 0));
         jPanel3.add(txcambio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 60, 40));
 
-        C.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 230, 100, 40));
+        C.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 240, 100, 40));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -519,23 +519,8 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
         jLabel5.setText("Cantidad:");
         C.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 350, -1, 30));
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        C.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 290, 80, 30));
-
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        C.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 250, -1, 60));
-
         jPanel2.setBackground(new java.awt.Color(177, 212, 224));
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(236, 255, 254), new java.awt.Color(236, 255, 254)));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbfecha.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -559,17 +544,17 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
         txvendedor2.setText("Cuenta:");
         jPanel2.add(txvendedor2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 30));
 
-        C.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 0, 420, 30));
+        C.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 0, 420, 35));
 
         cliente.setBackground(new java.awt.Color(255, 255, 255));
         cliente.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
         cliente.setForeground(new java.awt.Color(0, 0, 0));
-        C.add(cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 160, 120, 30));
+        C.add(cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 160, 160, 30));
 
         txvendedor1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txvendedor1.setForeground(new java.awt.Color(0, 0, 0));
         txvendedor1.setText("Metodo:");
-        C.add(txvendedor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 40, 70, 30));
+        C.add(txvendedor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 40, 70, 30));
 
         buttonGroup1.add(YAPE);
         YAPE.setForeground(new java.awt.Color(0, 0, 0));
@@ -579,12 +564,12 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
                 YAPEActionPerformed(evt);
             }
         });
-        C.add(YAPE, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 100, -1, 30));
+        C.add(YAPE, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 100, -1, 30));
 
         buttonGroup1.add(EFECTIVO);
         EFECTIVO.setForeground(new java.awt.Color(0, 0, 0));
         EFECTIVO.setText("EFECTIVO");
-        C.add(EFECTIVO, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 70, -1, 30));
+        C.add(EFECTIVO, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 70, -1, 30));
 
         txvendedor3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txvendedor3.setForeground(new java.awt.Color(0, 0, 0));
@@ -594,13 +579,13 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
         txvendedor4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txvendedor4.setForeground(new java.awt.Color(0, 0, 0));
         txvendedor4.setText("Cliente:");
-        C.add(txvendedor4, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 130, 70, 30));
+        C.add(txvendedor4, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 130, 70, 30));
         C.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 1050, 20));
 
         txvendedor5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txvendedor5.setForeground(new java.awt.Color(0, 0, 0));
         txvendedor5.setText("Cambio:");
-        C.add(txvendedor5, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 200, 70, 30));
+        C.add(txvendedor5, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 210, 70, 30));
 
         pago.setBackground(new java.awt.Color(255, 255, 255));
         pago.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
@@ -610,7 +595,7 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
                 pagoKeyReleased(evt);
             }
         });
-        C.add(pago, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 160, 100, 30));
+        C.add(pago, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 160, 100, 40));
 
         txvendedor6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txvendedor6.setForeground(new java.awt.Color(0, 0, 0));
@@ -652,6 +637,26 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
         });
         C.add(c_caja, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 350, -1, -1));
 
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon_registrar.png"))); // NOI18N
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        C.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 230, 90, 90));
+
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons2.png"))); // NOI18N
+        jLabel7.setText(" Eliminar");
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
+        C.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 290, -1, -1));
+
         javax.swing.GroupLayout panelPadreLayout = new javax.swing.GroupLayout(panelPadre);
         panelPadre.setLayout(panelPadreLayout);
         panelPadreLayout.setHorizontalGroup(
@@ -691,90 +696,6 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
     private void txt_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_buscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_buscarActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int fila = tabla_venta.getSelectedRow();
-        if (fila != -1) { // Verificar si hay una fila seleccionada
-            int id = Integer.parseInt(tabla_venta.getValueAt(fila, 0).toString());
-            String precioStr = tabla_venta.getValueAt(fila, 4).toString();
-            if (!precioStr.isEmpty()) {
-                double precio = Double.parseDouble(precioStr);
-                System.out.println(precio);
-                System.out.println(total);
-                total = total - precio;
-                TOTAL.setText(String.valueOf(total));
-                // Eliminar la fila seleccionada de tabla_venta
-                DefaultTableModel model = (DefaultTableModel) tabla_venta.getModel();
-                model.removeRow(fila);
-
-                // Eliminar el elemento correspondiente en detalle
-                
-            } else {
-                JOptionPane.showMessageDialog(null, "El precio de la venta es inválido", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecciona una fila para eliminar", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int A = JOptionPane.showConfirmDialog(null,"¿REGISTRAR VEMTA?","AVISO",JOptionPane.CANCEL_OPTION );
-                
-            if (A == 0) {
-        
-        
-                try {
-                    DAOVenta dao = new DAOVentaImpl();
-                    //encabezado
-                    String metodo="";
-                    if(EFECTIVO.isSelected()){metodo = "EFECTIVO";}
-                    if(YAPE.isSelected()){metodo = "YAPE";}
-                    cabecera venta = new cabecera(lbfecha.getText(), cliente.getText(), Double.parseDouble(TOTAL.getText()), metodo, txvendedor.getText());
-                    dao.registrarEncabezado(venta);
-                    //detalle
-                    List<detalle> pila = new ArrayList<>();
-                    DefaultTableModel modelo = (DefaultTableModel) tabla_venta.getModel();
-                    int filas = modelo.getRowCount();
-
-                    for (int i = 0; i < filas; i++) {
-                        detalle detalle = new detalle();
-
-                        int idProducto = Integer.parseInt(modelo.getValueAt(i, 0).toString());
-                        String producto = modelo.getValueAt(i, 1).toString();
-                        int cantidad = Integer.parseInt(modelo.getValueAt(i, 2).toString());
-                        double precioUnitario = Double.parseDouble(modelo.getValueAt(i, 3).toString());
-                        double subtotal = Double.parseDouble(modelo.getValueAt(i, 4).toString());
-                        String unidad = modelo.getValueAt(i, 5).toString();
-                        
-                        detalle.setNumero_venta(Integer.parseInt(id_venta.getText()));
-                        detalle.setId_producto(idProducto);
-                        detalle.setProducto(producto);
-                        detalle.setCantidad(cantidad);
-                        detalle.setUnitario_precio(precioUnitario);
-                        detalle.setSubtotal(subtotal);
-                        detalle.setUnidad(unidad);
-
-                        pila.add(detalle);
-                    }
-                    dao.registrarDetalle(pila);
-                    
-                    //Reduccion de stock
-                    dao.reduccionStock(Integer.parseInt(id_venta.getText()));
-                    
-                    
-                    visualizador(new REGISTRO_VENTA());
-                    
-                    
-
-                    
-                    
-
-                } catch (Exception ex) {
-                    Logger.getLogger(REGISTRO_VENTA.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void YAPEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YAPEActionPerformed
         // TODO add your handling code here:
@@ -841,6 +762,84 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
 
     }//GEN-LAST:event_c_cajaMouseClicked
 
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+    int A = JOptionPane.showConfirmDialog(null,"¿REGISTRAR VEMTA?","AVISO",JOptionPane.CANCEL_OPTION );
+
+        if (A == 0) {
+
+
+            try {
+                DAOVenta dao = new DAOVentaImpl();
+                //encabezado
+                String metodo="";
+                if(EFECTIVO.isSelected()){metodo = "EFECTIVO";}
+                if(YAPE.isSelected()){metodo = "YAPE";}
+                cabecera venta = new cabecera(lbfecha.getText(), cliente.getText(), Double.parseDouble(TOTAL.getText()), metodo, txvendedor.getText());
+                dao.registrarEncabezado(venta);
+                //detalle
+                List<detalle> pila = new ArrayList<>();
+                DefaultTableModel modelo = (DefaultTableModel) tabla_venta.getModel();
+                int filas = modelo.getRowCount();
+
+                for (int i = 0; i < filas; i++) {
+                    detalle detalle = new detalle();
+
+                    int idProducto = Integer.parseInt(modelo.getValueAt(i, 0).toString());
+                    String producto = modelo.getValueAt(i, 1).toString();
+                    int cantidad = Integer.parseInt(modelo.getValueAt(i, 2).toString());
+                    double precioUnitario = Double.parseDouble(modelo.getValueAt(i, 3).toString());
+                    double subtotal = Double.parseDouble(modelo.getValueAt(i, 4).toString());
+                    String unidad = modelo.getValueAt(i, 5).toString();
+
+                    detalle.setNumero_venta(Integer.parseInt(id_venta.getText()));
+                    detalle.setId_producto(idProducto);
+                    detalle.setProducto(producto);
+                    detalle.setCantidad(cantidad);
+                    detalle.setUnitario_precio(precioUnitario);
+                    detalle.setSubtotal(subtotal);
+                    detalle.setUnidad(unidad);
+
+                    pila.add(detalle);
+                }
+                dao.registrarDetalle(pila);
+
+                //Reduccion de stock
+                dao.reduccionStock(Integer.parseInt(id_venta.getText()));
+
+
+                visualizador(new REGISTRO_VENTA());
+
+            } catch (Exception ex) {
+                Logger.getLogger(REGISTRO_VENTA.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        int fila = tabla_venta.getSelectedRow();
+        if (fila != -1) { // Verificar si hay una fila seleccionada
+            int id = Integer.parseInt(tabla_venta.getValueAt(fila, 0).toString());
+            String precioStr = tabla_venta.getValueAt(fila, 4).toString();
+            if (!precioStr.isEmpty()) {
+                double precio = Double.parseDouble(precioStr);
+                System.out.println(precio);
+                System.out.println(total);
+                total = total - precio;
+                TOTAL.setText(String.valueOf(total));
+                // Eliminar la fila seleccionada de tabla_venta
+                DefaultTableModel model = (DefaultTableModel) tabla_venta.getModel();
+                model.removeRow(fila);
+
+                // Eliminar el elemento correspondiente en detalle
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "El precio de la venta es inválido", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecciona una fila para eliminar", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jLabel7MouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel C;
     private javax.swing.JRadioButton EFECTIVO;
@@ -854,13 +853,13 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
     private javax.swing.JSpinner cantidad;
     private javax.swing.JTextField cliente;
     private javax.swing.JLabel id_venta;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

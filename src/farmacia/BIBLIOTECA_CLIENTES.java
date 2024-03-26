@@ -8,6 +8,7 @@ import controladores_tabla.render;
 import interfaces.*;
 import interfaces.DAOClientes;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.util.Map;
 import objetos.alerta;
 import java.util.logging.Level;
@@ -175,11 +176,12 @@ public class BIBLIOTECA_CLIENTES extends javax.swing.JPanel {
         C = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_clientes = new javax.swing.JTable();
+        b3 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
         txt_buscar = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
 
-        C.setBackground(new java.awt.Color(204, 226, 235));
+        C.setBackground(new java.awt.Color(236, 255, 254));
         C.setPreferredSize(new java.awt.Dimension(1050, 680));
 
         tabla_clientes.setBackground(new java.awt.Color(255, 255, 255));
@@ -203,6 +205,28 @@ public class BIBLIOTECA_CLIENTES extends javax.swing.JPanel {
             tabla_clientes.getColumnModel().getColumn(8).setMaxWidth(140);
         }
 
+        b3.setBackground(new java.awt.Color(177, 212, 224));
+        b3.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 255, 255), new java.awt.Color(204, 255, 255)));
+        b3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        b3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b3MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                b3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                b3MouseExited(evt);
+            }
+        });
+        b3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel7.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("REGISTRAR ALERTA");
+        b3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 30));
+
         txt_buscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_buscarKeyReleased(evt);
@@ -211,44 +235,33 @@ public class BIBLIOTECA_CLIENTES extends javax.swing.JPanel {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icono4.png"))); // NOI18N
 
-        jButton1.setText("REGISTRAR ALERTA");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout CLayout = new javax.swing.GroupLayout(C);
         C.setLayout(CLayout);
         CLayout.setHorizontalGroup(
             CLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CLayout.createSequentialGroup()
-                .addGroup(CLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(CLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(CLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(CLayout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1010, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20))
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1)
+                .addGap(6, 6, 6)
+                .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(CLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1010, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(CLayout.createSequentialGroup()
+                .addGap(860, 860, 860)
+                .addComponent(b3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         CLayout.setVerticalGroup(
             CLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(CLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txt_buscar)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(CLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(8, 8, 8)
+                .addComponent(b3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -277,21 +290,32 @@ public class BIBLIOTECA_CLIENTES extends javax.swing.JPanel {
         buscador(txt_buscar.getText());
     }//GEN-LAST:event_txt_buscarKeyReleased
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int fila = tabla_clientes.getSelectedRow();
-        String dni = tabla_clientes.getValueAt(fila, 0).toString();
-        String nombre = tabla_clientes.getValueAt(fila, 1).toString();
-        REGISTRO_DE_ALERTAS newframe = new REGISTRO_DE_ALERTAS(dni,nombre);
-        newframe.setVisible(true);
-        
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void b3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b3MouseClicked
+        int filaSeleccionada = tabla_clientes.getSelectedRow();
+        if (filaSeleccionada != -1) { // Verifica si se ha seleccionado una fila
+            String dni = tabla_clientes.getValueAt(filaSeleccionada, 0).toString();
+            String nombre = tabla_clientes.getValueAt(filaSeleccionada, 1).toString();
+            REGISTRO_DE_ALERTAS newframe = new REGISTRO_DE_ALERTAS(dni, nombre);
+            newframe.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor, seleccione una fila antes de continuar.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_b3MouseClicked
+
+    private void b3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b3MouseEntered
+        b3.setBackground(new Color(0xECFFFE));
+    }//GEN-LAST:event_b3MouseEntered
+
+    private void b3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b3MouseExited
+        b3.setBackground(new Color(0xB1D4E0));
+    }//GEN-LAST:event_b3MouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel C;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JPanel b3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabla_clientes;
     private javax.swing.JTextField txt_buscar;

@@ -100,6 +100,10 @@ public class BALANCE_VENTAS extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        TOTAL = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         C.setBackground(new java.awt.Color(236, 255, 254));
         C.setPreferredSize(new java.awt.Dimension(1050, 680));
@@ -164,7 +168,7 @@ public class BALANCE_VENTAS extends javax.swing.JPanel {
             tabla_ventas.getColumnModel().getColumn(6).setPreferredWidth(50);
         }
 
-        C.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 74, 1038, 600));
+        C.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 1000, 550));
 
         año_fin.setBackground(new java.awt.Color(255, 255, 255));
         año_fin.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
@@ -204,13 +208,43 @@ public class BALANCE_VENTAS extends javax.swing.JPanel {
         jLabel2.setText("Inicio:");
         C.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, 30));
 
-        jButton1.setText("jButton1");
+        jButton1.setBackground(new java.awt.Color(177, 212, 224));
+        jButton1.setFont(new java.awt.Font("Segoe UI Symbol", 0, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jButton1.setText("Buscar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        C.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 20, -1, 30));
+        C.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 20, 90, 30));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(177, 212, 224), new java.awt.Color(177, 212, 224)));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("S/.");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 30, 40));
+
+        TOTAL.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        TOTAL.setForeground(new java.awt.Color(0, 0, 0));
+        TOTAL.setText("0.0");
+        jPanel1.add(TOTAL, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 60, 40));
+
+        C.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 630, 100, 40));
+
+        jButton2.setBackground(new java.awt.Color(177, 212, 224));
+        jButton2.setFont(new java.awt.Font("Segoe UI Symbol", 0, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(0, 0, 0));
+        jButton2.setText("Totalizar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        C.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 630, 90, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -341,16 +375,32 @@ public class BALANCE_VENTAS extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        double total = 0.0;
+        for (int i = 0; i < tabla_ventas.getRowCount(); i++) {
+                      
+            double subtotal = (double) tabla_ventas.getValueAt(i, 3);
+
+            total = total + subtotal;
+
+            }
+        TOTAL.setText(String.valueOf(total));
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel C;
+    private javax.swing.JLabel TOTAL;
     private javax.swing.JComboBox<String> año_fin;
     private javax.swing.JComboBox<String> año_inicio;
     private javax.swing.JComboBox<String> dia_fin;
     private javax.swing.JComboBox<String> dia_inicio;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> mes_fin;
     private javax.swing.JComboBox<String> mes_inicio;

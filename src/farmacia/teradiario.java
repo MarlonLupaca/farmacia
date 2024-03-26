@@ -74,12 +74,12 @@ public void agregarCartasDesdeMapa() {
         setBackground(new java.awt.Color(204, 226, 235));
         setPreferredSize(new java.awt.Dimension(1050, 680));
 
-        tera.setBackground(new java.awt.Color(73, 148, 174));
+        tera.setBackground(new java.awt.Color(177, 212, 224));
 
         jScrollPane1.setBorder(null);
         jScrollPane1.setPreferredSize(new java.awt.Dimension(1050, 720));
 
-        azul.setBackground(new java.awt.Color(204, 226, 235));
+        azul.setBackground(new java.awt.Color(236, 255, 254));
         azul.setMaximumSize(new java.awt.Dimension(1048, 718));
         azul.setLayout(new java.awt.GridBagLayout());
         jScrollPane1.setViewportView(azul);
@@ -117,7 +117,7 @@ public void agregarCartasDesdeMapa() {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(tera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 1, Short.MAX_VALUE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
