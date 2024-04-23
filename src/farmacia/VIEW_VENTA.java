@@ -3,6 +3,7 @@ package farmacia;
 
 import Implementaciones.DAOVentaImpl;
 import interfaces.DAOVenta;
+import java.awt.Color;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +21,7 @@ public class VIEW_VENTA extends javax.swing.JFrame {
         id_view = id;
         codigo_unico.setText(id);
         ver();
+        tabla_Venta.getTableHeader().setBackground(new Color(0xB1D4E0));
     }
     
     public void ver() {

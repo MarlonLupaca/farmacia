@@ -9,12 +9,18 @@ import interfaces.*;
 import interfaces.DAOClientes;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.util.Map;
 import objetos.alerta;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import objetos.cliente;
 
@@ -110,37 +116,25 @@ public class BIBLIOTECA_CLIENTES extends javax.swing.JPanel {
                 String direccion = tabla_clientes.getValueAt(fila, 5).toString();
                 String correo = tabla_clientes.getValueAt(fila, 6).toString();
                 String descripcion = tabla_clientes.getValueAt(fila, 7).toString();
+
+                String mensaje = "Información del Cliente\n"
+                               + "DNI: " + dni + "\n"
+                               + "Nombre: " + nombre + "\n"
+                               + "Género: " + genero + "\n"
+                               + "Fecha de nacimiento: " + fecha_nacimiento + "\n"
+                               + "Número: " + numero + "\n"
+                               + "Dirección: " + direccion + "\n"
+                               + "Correo: " + correo + "\n"
+                               + "Descripción: " + descripcion;
                 
+                int fontSize = 14;
+                Font font = new Font(Font.SANS_SERIF, Font.PLAIN, fontSize);
+                UIManager.put("OptionPane.messageFont", font);
                 
-                
-                String css = "<style>"
-                            + "body { font-family: Arial, sans-serif; font-size: 14pt; }"
-                            + "h1 { font-size: 18pt; color: #007bff; }"
-                            + "table { border-collapse: collapse; margin-top: 10px; width: 100%; }"
-                            + "th, td { padding: 8px; border-bottom: 1px solid #dee2e6; white-space: normal; word-wrap: break-word; }"
-                            + "th { background-color: #f8f9fa; }"
-                            + "</style>";
-
-
-                String mensaje = "<html><body>"
-                               + "<h1>Información del Cliente</h1>"
-                               + "<table>"
-                               + "<tr><th>DNI</th><td>" + dni + "</td></tr>"
-                               + "<tr><th>Nombre</th><td>" + nombre + "</td></tr>"
-                               + "<tr><th>Género</th><td>" + genero + "</td></tr>"
-                               + "<tr><th>Fecha de nacimiento</th><td>" + fecha_nacimiento + "</td></tr>"
-                               + "<tr><th>Número</th><td>" + numero + "</td></tr>"
-                               + "<tr><th>Dirección</th><td>" + direccion + "</td></tr>"
-                               + "<tr><th>Correo</th><td>" + correo + "</td></tr>"
-                               + "<tr><th>Descripción</th><td class='descripcion'>" + descripcion + "</td></tr>"
-                               + "</table>"
-                               + "</body></html>";
-
-                JOptionPane.showMessageDialog(null, "<html>" + css + mensaje, "Información del Cliente", JOptionPane.PLAIN_MESSAGE);
-
-
-                
+                JOptionPane.showMessageDialog(null, mensaje, "Información del Cliente", JOptionPane.PLAIN_MESSAGE);
             }
+
+
         };
         tabla_clientes.getColumnModel().getColumn(8).setCellRenderer( new render());
         tabla_clientes.getColumnModel().getColumn(8).setCellEditor(new editor(evento));
@@ -150,6 +144,7 @@ public class BIBLIOTECA_CLIENTES extends javax.swing.JPanel {
         try {
             DAOClientes dao = new DAOClientesImpl();
             DefaultTableModel model = (DefaultTableModel) tabla_clientes.getModel();
+            tabla_clientes.getTableHeader().setBackground(new Color(0xB1D4E0));
             model.setRowCount(0);
             
             dao.listar().forEach((u) -> model.addRow(new Object[]{u.getDNI(),u.getNombre(),u.getGenero(),u.getFechanacimiento(),u.getNumerotelefono(),u.getDireccion(),u.getCorreoelectronico(),u.getDescripcionmedica()}));
@@ -193,7 +188,15 @@ public class BIBLIOTECA_CLIENTES extends javax.swing.JPanel {
             new String [] {
                 "dni", "nombre", "genero", "fecha de nacimiento", "numero", "direccion", "correo", "descripcion", "acciones"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, false, true, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tabla_clientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tabla_clientes.setGridColor(new java.awt.Color(255, 255, 255));
         tabla_clientes.setRowHeight(40);
@@ -201,8 +204,16 @@ public class BIBLIOTECA_CLIENTES extends javax.swing.JPanel {
         tabla_clientes.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(tabla_clientes);
         if (tabla_clientes.getColumnModel().getColumnCount() > 0) {
-            tabla_clientes.getColumnModel().getColumn(8).setMinWidth(140);
-            tabla_clientes.getColumnModel().getColumn(8).setMaxWidth(140);
+            tabla_clientes.getColumnModel().getColumn(0).setResizable(false);
+            tabla_clientes.getColumnModel().getColumn(1).setResizable(false);
+            tabla_clientes.getColumnModel().getColumn(2).setResizable(false);
+            tabla_clientes.getColumnModel().getColumn(3).setResizable(false);
+            tabla_clientes.getColumnModel().getColumn(4).setResizable(false);
+            tabla_clientes.getColumnModel().getColumn(5).setResizable(false);
+            tabla_clientes.getColumnModel().getColumn(6).setResizable(false);
+            tabla_clientes.getColumnModel().getColumn(7).setResizable(false);
+            tabla_clientes.getColumnModel().getColumn(8).setResizable(false);
+            tabla_clientes.getColumnModel().getColumn(8).setPreferredWidth(100);
         }
 
         b3.setBackground(new java.awt.Color(177, 212, 224));
@@ -295,7 +306,8 @@ public class BIBLIOTECA_CLIENTES extends javax.swing.JPanel {
         if (filaSeleccionada != -1) { // Verifica si se ha seleccionado una fila
             String dni = tabla_clientes.getValueAt(filaSeleccionada, 0).toString();
             String nombre = tabla_clientes.getValueAt(filaSeleccionada, 1).toString();
-            REGISTRO_DE_ALERTAS newframe = new REGISTRO_DE_ALERTAS(dni, nombre);
+            String numero = tabla_clientes.getValueAt(filaSeleccionada, 4).toString();
+            REGISTRO_DE_ALERTAS newframe = new REGISTRO_DE_ALERTAS(dni, nombre,numero);
             newframe.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Por favor, seleccione una fila antes de continuar.", "Aviso", JOptionPane.WARNING_MESSAGE);

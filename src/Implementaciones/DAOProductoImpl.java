@@ -90,7 +90,7 @@ public void modificar(producto p) throws Exception {
         List <producto> lista = null;
         try {
             this.conex();
-            PreparedStatement st = this.conexion.prepareStatement("select * from productos;");
+            PreparedStatement st = this.conexion.prepareStatement("select * from productos ORDER BY codigo_unico DESC;");
             
             lista = new ArrayList();
             ResultSet rs = st.executeQuery();

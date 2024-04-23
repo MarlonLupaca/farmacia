@@ -16,10 +16,11 @@ import objetos.cliente;
 public class REGISTRO_DE_ALERTAS extends javax.swing.JFrame {
 
    
-    public REGISTRO_DE_ALERTAS(String dni, String nombre) {
+    public REGISTRO_DE_ALERTAS(String dni, String nombre, String numero) {
         initComponents();
         dnit.setText(dni);
         nombret.setText(nombre);
+        numerot.setText(numero);
         
     }
     
@@ -46,6 +47,10 @@ public class REGISTRO_DE_ALERTAS extends javax.swing.JFrame {
         mes_v = new javax.swing.JComboBox<>();
         dia_V = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
+        numerot = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 500));
@@ -85,17 +90,17 @@ public class REGISTRO_DE_ALERTAS extends javax.swing.JFrame {
         nombret.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
         nombret.setForeground(new java.awt.Color(0, 0, 0));
         nombret.setText("Nombre:");
-        jPanel1.add(nombret, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 200, 30));
+        jPanel1.add(nombret, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 200, 30));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Fecha de alerta:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 140, 30));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 140, 30));
 
         dnit.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
         dnit.setForeground(new java.awt.Color(0, 0, 0));
         dnit.setText("DNI del cliente:");
-        jPanel1.add(dnit, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 140, 30));
+        jPanel1.add(dnit, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 200, 30));
 
         descripcion.setBackground(new java.awt.Color(255, 255, 255));
         descripcion.setColumns(20);
@@ -103,19 +108,19 @@ public class REGISTRO_DE_ALERTAS extends javax.swing.JFrame {
         descripcion.setRows(5);
         jScrollPane1.setViewportView(descripcion);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 260, -1));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 286, 260, 80));
 
         mes_v.setBackground(new java.awt.Color(255, 255, 255));
         mes_v.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
         mes_v.setForeground(new java.awt.Color(0, 0, 0));
         mes_v.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre" }));
-        jPanel1.add(mes_v, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 110, 35));
+        jPanel1.add(mes_v, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 110, 35));
 
         dia_V.setBackground(new java.awt.Color(255, 255, 255));
         dia_V.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
         dia_V.setForeground(new java.awt.Color(0, 0, 0));
         dia_V.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-        jPanel1.add(dia_V, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 60, 35));
+        jPanel1.add(dia_V, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 60, 35));
 
         jLabel18.setBackground(new java.awt.Color(255, 204, 204));
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon_editar_1.png"))); // NOI18N
@@ -126,6 +131,26 @@ public class REGISTRO_DE_ALERTAS extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 380, 90, 100));
+
+        numerot.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
+        numerot.setForeground(new java.awt.Color(0, 0, 0));
+        numerot.setText("Nombre:");
+        jPanel1.add(numerot, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 200, 30));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Numero:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 70, 30));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("DNI:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 60, 30));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("Nombre:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, -1, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 500));
 
@@ -175,7 +200,7 @@ public class REGISTRO_DE_ALERTAS extends javax.swing.JFrame {
                 String fecha = numeroMes+"-"+dia_V.getSelectedItem();
 
                 DAOAlertas dao = new DAOAlertasImpl();
-                alerta p = new alerta(dnit.getText(),nombret.getText(),descripcion.getText(),fecha);
+                alerta p = new alerta(dnit.getText(),nombret.getText(),descripcion.getText(),fecha,numerot.getText());
                 dao.registrar(p);
                 dispose();
                 JOptionPane.showMessageDialog(null,"GUARDADO CORRECTAMENTE","ESTADO",JOptionPane.PLAIN_MESSAGE);
@@ -185,44 +210,6 @@ public class REGISTRO_DE_ALERTAS extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jLabel18MouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(REGISTRO_DE_ALERTAS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(REGISTRO_DE_ALERTAS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(REGISTRO_DE_ALERTAS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(REGISTRO_DE_ALERTAS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                
-                        
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea descripcion;
@@ -232,11 +219,15 @@ public class REGISTRO_DE_ALERTAS extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> mes_v;
     private javax.swing.JLabel nombret;
+    private javax.swing.JLabel numerot;
     // End of variables declaration//GEN-END:variables
 }

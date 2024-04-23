@@ -52,6 +52,7 @@ public class PANTALLA_USUARIOS extends javax.swing.JPanel {
         try {
             DAOUusuario dao = new DAOUsuarioImpl();
             DefaultTableModel model = (DefaultTableModel) tabla_usuarios.getModel();
+            tabla_usuarios.getTableHeader().setBackground(new Color(0xB1D4E0));
             model.setRowCount(0);
             
             dao.listar().forEach((u) -> model.addRow(new Object[]{u.getId(),u.getUsuario(),u.getContraseña(),u.getRol()}));

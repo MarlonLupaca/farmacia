@@ -10,6 +10,7 @@ import controladores_tabla.render_view;
 import interfaces.*;
 import interfaces.DAOClientes;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.util.Map;
 import objetos.alerta;
 import java.util.logging.Level;
@@ -112,6 +113,7 @@ public class BIBLIOTECA_VENTAS extends javax.swing.JPanel {
         try {
             DAOVenta dao = new DAOVentaImpl();
             DefaultTableModel model = (DefaultTableModel) tabla_ventas.getModel();
+            tabla_ventas.getTableHeader().setBackground(new Color(0xB1D4E0));
             model.setRowCount(0);
             
             dao.listar().forEach((u) -> model.addRow(new Object[]{u.getId(),u.getFecha_venta(),u.getCliente(),u.getTotalVenta(),u.getMetodo(),u.getVendedor()}));

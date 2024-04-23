@@ -1,6 +1,9 @@
 
 package farmacia;
 import Implementaciones.DAOClientesImpl;
+import com.formdev.flatlaf.FlatClientProperties;
+import com.formdev.flatlaf.FlatLaf;
+import com.formdev.flatlaf.FlatLightLaf;
 import db.conexion;
 import interfaces.DAOClientes;
 import java.awt.Color;
@@ -12,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 public class login extends javax.swing.JFrame {
     private static String login;
@@ -33,14 +37,16 @@ public class login extends javax.swing.JFrame {
     public void setRola(String rola) {
         this.rola = rola;
     }
-    
-    
 
-    
-    
     public login() {
         initComponents();
         campo.setVisible(false);
+        txt_contraseña.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "contraseña");
+        txt_usuario.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "usuario");
+        //
+        txt_contraseña.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
+        txt_usuario.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
+        txt_contraseña.putClientProperty(FlatClientProperties.STYLE, "showRevealButton:true");
         
     }
 
@@ -58,13 +64,13 @@ public class login extends javax.swing.JFrame {
         b = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        con = new javax.swing.JTextField();
-        usu = new javax.swing.JTextField();
+        txt_usuario = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        txt_contraseña = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -140,25 +146,15 @@ public class login extends javax.swing.JFrame {
         jLabel11.setText("Contraseña");
         jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
 
-        con.setBackground(new java.awt.Color(255, 255, 255));
-        con.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
-        con.setForeground(new java.awt.Color(0, 0, 0));
-        con.addActionListener(new java.awt.event.ActionListener() {
+        txt_usuario.setBackground(new java.awt.Color(255, 255, 255));
+        txt_usuario.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
+        txt_usuario.setForeground(new java.awt.Color(0, 0, 0));
+        txt_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                conActionPerformed(evt);
+                txt_usuarioActionPerformed(evt);
             }
         });
-        jPanel3.add(con, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 390, 40));
-
-        usu.setBackground(new java.awt.Color(255, 255, 255));
-        usu.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
-        usu.setForeground(new java.awt.Color(0, 0, 0));
-        usu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usuActionPerformed(evt);
-            }
-        });
-        jPanel3.add(usu, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 390, 40));
+        jPanel3.add(txt_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 390, 40));
 
         jLabel5.setBackground(new java.awt.Color(102, 102, 102));
         jLabel5.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
@@ -183,6 +179,16 @@ public class login extends javax.swing.JFrame {
 
         jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 140));
 
+        txt_contraseña.setBackground(new java.awt.Color(255, 255, 255));
+        txt_contraseña.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txt_contraseña.setForeground(new java.awt.Color(0, 0, 0));
+        txt_contraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_contraseñaActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txt_contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 390, 40));
+
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 480, 550));
 
         jLabel1.setBackground(new java.awt.Color(102, 102, 102));
@@ -200,13 +206,9 @@ public class login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void usuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuActionPerformed
+    private void txt_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_usuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_usuActionPerformed
-
-    private void conActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_conActionPerformed
+    }//GEN-LAST:event_txt_usuarioActionPerformed
 
     private void bMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bMouseEntered
         b.setBackground(new Color(0xB1D4E0));
@@ -223,8 +225,8 @@ public class login extends javax.swing.JFrame {
     private void bMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bMousePressed
         DAOClientes dao = new DAOClientesImpl();
         
-        String usuario = usu.getText().toString();
-        String contraseña = con.getText().toString();
+        String usuario = txt_usuario.getText().toString();
+        String contraseña = txt_contraseña.getText().toString();
         try {
             int val = dao.validar(usuario, contraseña);
             
@@ -266,34 +268,20 @@ public class login extends javax.swing.JFrame {
         frame.setState(Frame.ICONIFIED);
     }//GEN-LAST:event_jLabel8MouseClicked
 
+    private void txt_contraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_contraseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_contraseñaActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            UIManager.setLookAndFeel(new FlatLightLaf());
+            
+        } catch (Exception e) {
         }
-        //</editor-fold>
-
-        /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new login().setVisible(true);
@@ -304,7 +292,6 @@ public class login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel b;
     private javax.swing.JLabel campo;
-    private javax.swing.JTextField con;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -319,6 +306,7 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JTextField usu;
+    private javax.swing.JPasswordField txt_contraseña;
+    private javax.swing.JTextField txt_usuario;
     // End of variables declaration//GEN-END:variables
 }

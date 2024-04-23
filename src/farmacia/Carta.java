@@ -8,13 +8,14 @@ public class Carta extends javax.swing.JPanel {
      * Creates new form Carta
      */
     
-    public Carta(String id, String dni, String nombre, String descripcion, String fecha) {
+    public Carta(String id, String dni, String nombre, String descripcion, String fecha,String numero) {
         initComponents();
         this.id.setText("ID: "+id);
         this.dni.setText("DNI: "+dni);
         this.nombre.setText("NOMBRE: "+nombre);
         this.fecha.setText("FECHA: "+ fecha);
         this.descripcion.setText("DESCRIPCION: "+ descripcion);
+        this.numero.setText("NUMERO: "+numero);
        setPreferredSize(new Dimension(300, 270));
 
     }
@@ -36,6 +37,7 @@ public class Carta extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         descripcion = new javax.swing.JTextPane();
         jPanel1 = new javax.swing.JPanel();
+        numero = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(177, 212, 224), new java.awt.Color(177, 212, 224)));
@@ -59,12 +61,12 @@ public class Carta extends javax.swing.JPanel {
         nombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         nombre.setForeground(new java.awt.Color(0, 0, 0));
         nombre.setText("jLabel2");
-        add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 270, -1));
+        add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 270, 20));
 
         fecha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         fecha.setForeground(new java.awt.Color(0, 0, 0));
         fecha.setText("jLabel2");
-        add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 270, -1));
+        add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 270, 20));
 
         jScrollPane1.setBorder(null);
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -75,7 +77,7 @@ public class Carta extends javax.swing.JPanel {
         descripcion.setForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(descripcion);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 270, 90));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 270, 60));
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(177, 212, 224), new java.awt.Color(177, 212, 224)));
@@ -93,6 +95,11 @@ public class Carta extends javax.swing.JPanel {
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 40));
 
+        numero.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        numero.setForeground(new java.awt.Color(0, 0, 0));
+        numero.setText("jLabel2");
+        add(numero, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 270, 20));
+
         getAccessibleContext().setAccessibleName("");
     }// </editor-fold>//GEN-END:initComponents
 
@@ -106,5 +113,6 @@ public class Carta extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nombre;
+    private javax.swing.JLabel numero;
     // End of variables declaration//GEN-END:variables
 }

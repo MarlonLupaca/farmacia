@@ -224,7 +224,7 @@ public class PANTALLA_CLIENTES extends javax.swing.JPanel {
     }//GEN-LAST:event_b3MouseExited
 
     private void b4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b4MouseClicked
-        visualizador(new registrocliente());
+        visualizador(new REGISTRO_CLIENTE());
     }//GEN-LAST:event_b4MouseClicked
 
     private void b4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b4MouseEntered

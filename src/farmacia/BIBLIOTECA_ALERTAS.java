@@ -6,17 +6,21 @@ import controladores_tabla.acciones_botones_inte;
 import controladores_tabla.editor;
 import controladores_tabla.render;
 import interfaces.*;
-import interfaces.DAOClientes;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.util.Map;
 import objetos.alerta;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
-import objetos.cliente;
-
 /**
  *
  * @author Marlon_Mendoza
@@ -57,8 +61,9 @@ public class BIBLIOTECA_ALERTAS extends javax.swing.JPanel {
                     String nombre = tabla_alerta.getValueAt(fila, 2).toString();
                     String descripcion = tabla_alerta.getValueAt(fila, 3).toString();
                     String fecha = tabla_alerta.getValueAt(fila, 4).toString();
+                    String numero = tabla_alerta.getValueAt(fila, 5).toString();
                     
-                    alerta p = new alerta(dni, nombre, descripcion, fecha);
+                    alerta p = new alerta(dni, nombre, descripcion, fecha, numero);
 
                     DAOAlertas dao = new DAOAlertasImpl();
                     try {
@@ -95,49 +100,35 @@ public class BIBLIOTECA_ALERTAS extends javax.swing.JPanel {
 
             @Override
             public void vizualisar(int row) {
-                
                 int fila = tabla_alerta.getSelectedRow();
                 String id = tabla_alerta.getValueAt(fila, 0).toString();
-                String dni= tabla_alerta.getValueAt(fila, 1).toString();
+                String dni = tabla_alerta.getValueAt(fila, 1).toString();
                 String nombre = tabla_alerta.getValueAt(fila, 2).toString();
                 String descripcion = tabla_alerta.getValueAt(fila, 3).toString();
                 String fecha = tabla_alerta.getValueAt(fila, 4).toString();
-                
-                
-                String css = "<style>"
-                            + "body { font-family: Arial, sans-serif; font-size: 14pt; }"
-                            + "h1 { font-size: 18pt; color: #007bff; }"
-                            + "table { border-collapse: collapse; margin-top: 10px; width: 100%; }"
-                            + "th, td { padding: 8px; border-bottom: 1px solid #dee2e6; white-space: normal; word-wrap: break-word; }"
-                            + "th { background-color: #f8f9fa; }"
-                            + "</style>";
+                String numero = tabla_alerta.getValueAt(fila, 5).toString();
 
-
-                String mensaje = "<html><body>"
-                               + "<h1>Información del Cliente</h1>"
-                               + "<table>"
-                               + "<tr><th>ID</th><td>" + id + "</td></tr>"
-                               + "<tr><th>DNI</th><td>" + dni + "</td></tr>"
-                               + "<tr><th>NOMBRE</th><td>" + nombre + "</td></tr>"
-                               + "<tr><th>FECHA</th><td>" + fecha + "</td></tr>"
-                               + "<tr><th>DESCRIPCION</th><td>" + descripcion + "</td></tr>"
-                               + "</table>"
-                               + "</body></html>";
-
-                JOptionPane.showMessageDialog(null, "<html>" + css + mensaje, "Información del Cliente", JOptionPane.PLAIN_MESSAGE);
-
-
-                
+                String mensaje = "ID: " + id + "\n"
+                               + "DNI: " + dni + "\n"
+                               + "Numero: " + numero + "\n"
+                               + "Nombre: " + nombre + "\n"
+                               + "Fecha: " + fecha + "\n"
+                               + "Descripción: " + descripcion;
+                 int fontSize = 14;
+                Font font = new Font(Font.SANS_SERIF, Font.PLAIN, fontSize);
+                UIManager.put("OptionPane.messageFont", font);
+                JOptionPane.showMessageDialog(null, mensaje, "Información del Cliente", JOptionPane.PLAIN_MESSAGE);
             }
         };
-        tabla_alerta.getColumnModel().getColumn(5).setCellRenderer( new render());
-        tabla_alerta.getColumnModel().getColumn(5).setCellEditor(new editor(evento));
+        tabla_alerta.getColumnModel().getColumn(6).setCellRenderer( new render());
+        tabla_alerta.getColumnModel().getColumn(6).setCellEditor(new editor(evento));
     }
     public void cargar_tabla()
     {
         try {
             DAOAlertas dao = new DAOAlertasImpl();
             DefaultTableModel model = (DefaultTableModel) tabla_alerta.getModel();
+            tabla_alerta.getTableHeader().setBackground(new Color(0xB1D4E0));
             model.setRowCount(0);
             Map <String, alerta> mapa = dao.listar3();
              for (Map.Entry<String, alerta> entry : mapa.entrySet()) {
@@ -147,9 +138,10 @@ public class BIBLIOTECA_ALERTAS extends javax.swing.JPanel {
                 String nombre = contenido.getNombre();
                 String descripcion = contenido.getDescripcion();
                 String fecha = contenido.getFecha();
+                String numero = contenido.getNumero();
             
             
-            model.addRow(new Object[]{id,dni,nombre,descripcion,fecha});
+            model.addRow(new Object[]{id,dni,nombre,descripcion,fecha,numero});
              }
         } catch (Exception e) {
         }
@@ -187,7 +179,7 @@ public class BIBLIOTECA_ALERTAS extends javax.swing.JPanel {
         txt_buscar = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
-        C.setBackground(new java.awt.Color(204, 226, 235));
+        C.setBackground(new java.awt.Color(236, 255, 254));
         C.setPreferredSize(new java.awt.Dimension(1050, 680));
 
         tabla_alerta.setBackground(new java.awt.Color(255, 255, 255));
@@ -197,9 +189,17 @@ public class BIBLIOTECA_ALERTAS extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "DNI", "NOMBRE", "DESCRIPCION", "FECHA", "ACCIONES"
+                "ID", "DNI", "NOMBRE", "DESCRIPCION", "FECHA", "NUMERO", "ACCIONES"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tabla_alerta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tabla_alerta.setGridColor(new java.awt.Color(255, 255, 255));
         tabla_alerta.setRowHeight(40);
@@ -207,8 +207,8 @@ public class BIBLIOTECA_ALERTAS extends javax.swing.JPanel {
         tabla_alerta.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(tabla_alerta);
         if (tabla_alerta.getColumnModel().getColumnCount() > 0) {
-            tabla_alerta.getColumnModel().getColumn(5).setMinWidth(140);
-            tabla_alerta.getColumnModel().getColumn(5).setMaxWidth(140);
+            tabla_alerta.getColumnModel().getColumn(6).setMinWidth(140);
+            tabla_alerta.getColumnModel().getColumn(6).setMaxWidth(140);
         }
 
         txt_buscar.addKeyListener(new java.awt.event.KeyAdapter() {

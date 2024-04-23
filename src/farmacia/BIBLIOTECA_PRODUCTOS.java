@@ -8,6 +8,7 @@ import controladores_tabla.render;
 import interfaces.*;
 import interfaces.DAOClientes;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.util.Map;
 import objetos.alerta;
 import java.util.logging.Level;
@@ -51,7 +52,6 @@ public class BIBLIOTECA_PRODUCTOS extends javax.swing.JPanel {
                 
                 
                     DAOProductos dao = new DAOProductoImpl();
-                    System.out.println("visualizar: " + row);
                     int fila = tabla_productos.getSelectedRow();
                     String id = tabla_productos.getValueAt(fila, 0).toString();
                     try {
@@ -93,45 +93,19 @@ public class BIBLIOTECA_PRODUCTOS extends javax.swing.JPanel {
             public void vizualisar(int row) {
                 try {
                     DAOProductos dao = new DAOProductoImpl();
-                    System.out.println("visualizar: " + row);
                     int fila = tabla_productos.getSelectedRow();
                     String id = tabla_productos.getValueAt(fila, 0).toString();
-                    producto p = dao.visualizar(id);
-
-                    String css = "<style>"
-                            + "body { font-family: Arial, sans-serif; font-size: 14pt; }"
-                            + "h1 { font-size: 18pt; color: #007bff; }"
-                            + "table { border-collapse: collapse; margin-top: 10px; width: 100%; }"
-                            + "th, td { padding: 8px; border-bottom: 1px solid #dee2e6; white-space: normal; word-wrap: break-word; }"
-                            + "th { background-color: #f8f9fa; }"
-                            + "</style>";
+                    try {
+                        producto p = dao.visualizar(id);
+                        VISUALIZADOR_PRODUCTO frame = new VISUALIZADOR_PRODUCTO(p);
+                        frame.setVisible(true);
+                        
+                        visualizador(new BIBLIOTECA_PRODUCTOS());
+                        
+                    } catch (Exception ex) {
+                        Logger.getLogger(BIBLIOTECA_PRODUCTOS.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     
-                    
-                    String mensaje = "<html><body>"
-                        + "<h1>Información del Producto</h1>"
-                        + "<table>"
-                        + "<tr><th>Código Único</th><td>" + p.getCodigo_unico() + "</td></tr>"
-                        + "<tr><th>Nombre Producto</th><td>" + p.getNombre_producto() + "</td></tr>"
-                        + "<tr><th>Laboratorio</th><td>" + p.getLaboratorio() + "</td></tr>"
-                        + "<tr><th>Descripción</th><td>" + p.getDescripcion_produto() + "</td></tr>"
-                        + "<tr><th>Principio Activo</th><td>" + p.getPrincipo_activo() + "</td></tr>"
-                        + "<tr><th>Código Digemid</th><td>" + p.getCodigo_digemid() + "</td></tr>"
-                        + "<tr><th>Lote</th><td>" + p.getLote() + "</td></tr>"
-                        + "<tr><th>Ubicación</th><td>" + p.getUbicacion() + "</td></tr>"
-                        + "<tr><th>Fecha Vencimiento</th><td>" + p.getFecha_vencimiento() + "</td></tr>"
-                        + "<tr><th>Stock</th><td>" + p.getStock() + "</td></tr>"
-                        + "<tr><th>Mínimo para Aviso</th><td>" + p.getMinimo_para_aviso() + "</td></tr>"
-                        + "<tr><th>Unidad por Blíster</th><td>" + p.getUnidad_x_blister() + "</td></tr>"
-                        + "<tr><th>Unidad por Caja</th><td>" + p.getUnidad_x_caja() + "</td></tr>"
-                        + "<tr><th>Precio por Unidad</th><td>" + p.getPrecio_x_unidad() + "</td></tr>"
-                        + "<tr><th>Precio por Blíster</th><td>" + p.getPrecio_x_blister() + "</td></tr>"
-                        + "<tr><th>Precio por Caja</th><td>" + p.getPrecio_x_caja() + "</td></tr>"
-                        + "</table>"
-                        + "</body></html>";
-
-
-                    
-                    JOptionPane.showMessageDialog(null, "<html>" + css + mensaje, "Información del Cliente", JOptionPane.PLAIN_MESSAGE);
                 } catch (Exception ex) {
                     Logger.getLogger(BIBLIOTECA_PRODUCTOS.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -148,6 +122,7 @@ public class BIBLIOTECA_PRODUCTOS extends javax.swing.JPanel {
         try {
             DAOProductos dao = new DAOProductoImpl();
             DefaultTableModel model = (DefaultTableModel) tabla_productos.getModel();
+            tabla_productos.getTableHeader().setBackground(new Color(0xB1D4E0));
             model.setRowCount(0);
             
             dao.listar().forEach((u) -> model.addRow(new Object[]{u.getCodigo_unico(),u.getNombre_producto(),u.getLaboratorio(),u.getDescripcion_produto(),u.getPrincipo_activo(),u.getCodigo_digemid(),u.getUbicacion(),u.getFecha_vencimiento(),u.getStock(),u.getPrecio_x_unidad()}));

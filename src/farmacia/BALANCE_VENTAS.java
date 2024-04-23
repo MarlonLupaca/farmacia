@@ -3,25 +3,15 @@ package farmacia;
 
 import Implementaciones.*;
 import controladores_tabla.acciones_botones_inte;
-import controladores_tabla.editor;
 import controladores_tabla.editor_venta_pastel;
-import controladores_tabla.editor_venta_view;
-import controladores_tabla.render;
 import controladores_tabla.render_pastel;
-import controladores_tabla.render_view;
 import interfaces.*;
-import interfaces.DAOClientes;
 import java.awt.BorderLayout;
-import java.util.Map;
-import objetos.alerta;
+import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import objetos.cabecera;
-import objetos.cliente;
-import objetos.producto;
 
 /**
  *
@@ -363,6 +353,7 @@ public class BALANCE_VENTAS extends javax.swing.JPanel {
 
         try {
             DefaultTableModel model = (DefaultTableModel) tabla_ventas.getModel();
+            tabla_ventas.getTableHeader().setBackground(new Color(0xB1D4E0));
             model.setRowCount(0);
             if (vende.isSelected()) {
                 dao.filtrar_fecha_vendedore(fechaInicio, fechaFin, ven.getText()).forEach((u) -> model.addRow(new Object[]{u.getId(), u.getFecha_venta(), u.getCliente(), u.getTotalVenta(), u.getMetodo(), u.getVendedor()}));

@@ -7,7 +7,16 @@ public class alerta {
     private String nombre;
     private String descripcion;
     private String fecha;
+    private String numero;
 
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+    
     public String getDni() {
         return dni;
     }
@@ -40,11 +49,12 @@ public class alerta {
         this.fecha = fecha;
     }
 
-    public alerta(String dni, String nombre, String descripcion, String fecha) {
+    public alerta(String dni, String nombre, String descripcion, String fecha,String numero) {
         this.dni = dni;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fecha = fecha;
+        this.numero = numero;
     }
     
     

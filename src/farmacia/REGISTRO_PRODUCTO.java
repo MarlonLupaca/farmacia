@@ -1,9 +1,9 @@
 package farmacia;
 
 import Implementaciones.DAOProductoImpl;
-import db.conexion;
 import interfaces.DAOProductos;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -88,6 +88,11 @@ public class REGISTRO_PRODUCTO extends javax.swing.JPanel {
                 laboratorioActionPerformed(evt);
             }
         });
+        laboratorio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                laboratorioKeyPressed(evt);
+            }
+        });
         add(laboratorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, 250, 35));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
@@ -101,6 +106,11 @@ public class REGISTRO_PRODUCTO extends javax.swing.JPanel {
         principio_activo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 principio_activoActionPerformed(evt);
+            }
+        });
+        principio_activo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                principio_activoKeyPressed(evt);
             }
         });
         add(principio_activo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 250, 35));
@@ -123,6 +133,11 @@ public class REGISTRO_PRODUCTO extends javax.swing.JPanel {
                 nombre_productoActionPerformed(evt);
             }
         });
+        nombre_producto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                nombre_productoKeyPressed(evt);
+            }
+        });
         add(nombre_producto, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 250, 35));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
@@ -136,6 +151,11 @@ public class REGISTRO_PRODUCTO extends javax.swing.JPanel {
         codigo_digemid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 codigo_digemidActionPerformed(evt);
+            }
+        });
+        codigo_digemid.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                codigo_digemidKeyPressed(evt);
             }
         });
         add(codigo_digemid, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, 250, 35));
@@ -153,6 +173,11 @@ public class REGISTRO_PRODUCTO extends javax.swing.JPanel {
                 loteActionPerformed(evt);
             }
         });
+        lote.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                loteKeyPressed(evt);
+            }
+        });
         add(lote, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 410, 250, 35));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
@@ -166,6 +191,11 @@ public class REGISTRO_PRODUCTO extends javax.swing.JPanel {
         ubicacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ubicacionActionPerformed(evt);
+            }
+        });
+        ubicacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ubicacionKeyPressed(evt);
             }
         });
         add(ubicacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 510, 250, 35));
@@ -183,6 +213,11 @@ public class REGISTRO_PRODUCTO extends javax.swing.JPanel {
                 stockActionPerformed(evt);
             }
         });
+        stock.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                stockKeyPressed(evt);
+            }
+        });
         add(stock, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, 250, 35));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
@@ -196,6 +231,11 @@ public class REGISTRO_PRODUCTO extends javax.swing.JPanel {
         minimo_aviso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 minimo_avisoActionPerformed(evt);
+            }
+        });
+        minimo_aviso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                minimo_avisoKeyPressed(evt);
             }
         });
         add(minimo_aviso, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 600, 250, 35));
@@ -218,6 +258,11 @@ public class REGISTRO_PRODUCTO extends javax.swing.JPanel {
                 unidad_blisterActionPerformed(evt);
             }
         });
+        unidad_blister.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                unidad_blisterKeyPressed(evt);
+            }
+        });
         add(unidad_blister, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 240, 110, 35));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
@@ -231,6 +276,11 @@ public class REGISTRO_PRODUCTO extends javax.swing.JPanel {
         unidad_caja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 unidad_cajaActionPerformed(evt);
+            }
+        });
+        unidad_caja.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                unidad_cajaKeyPressed(evt);
             }
         });
         add(unidad_caja, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, 110, 35));
@@ -248,6 +298,11 @@ public class REGISTRO_PRODUCTO extends javax.swing.JPanel {
                 precio_unitarioActionPerformed(evt);
             }
         });
+        precio_unitario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                precio_unitarioKeyPressed(evt);
+            }
+        });
         add(precio_unitario, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 240, 250, 35));
 
         jLabel16.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
@@ -263,6 +318,11 @@ public class REGISTRO_PRODUCTO extends javax.swing.JPanel {
                 precio_blisterActionPerformed(evt);
             }
         });
+        precio_blister.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                precio_blisterKeyPressed(evt);
+            }
+        });
         add(precio_blister, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 240, 110, 35));
 
         jLabel17.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
@@ -276,6 +336,11 @@ public class REGISTRO_PRODUCTO extends javax.swing.JPanel {
         precio_caja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 precio_cajaActionPerformed(evt);
+            }
+        });
+        precio_caja.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                precio_cajaKeyPressed(evt);
             }
         });
         add(precio_caja, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 150, 110, 35));
@@ -306,6 +371,11 @@ public class REGISTRO_PRODUCTO extends javax.swing.JPanel {
         descripcion_producto.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
         descripcion_producto.setForeground(new java.awt.Color(0, 0, 0));
         descripcion_producto.setRows(5);
+        descripcion_producto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                descripcion_productoKeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(descripcion_producto);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, 250, 130));
@@ -436,23 +506,23 @@ public class REGISTRO_PRODUCTO extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(null, "Por favor, complete los campos obligatorios: Nombre del producto, Precio y Stock.");
                     return;
                 }
-
+        
                 producto p = new producto(
                     nombre_producto.getText(), 
-                    null, 
-                    null, 
-                    null, 
-                    null, 
-                    null, 
-                    null, 
+                    laboratorio.getText(), 
+                    descripcion_producto.getText(), 
+                    principio_activo.getText(), 
+                    codigo_digemid.getText(), 
+                    lote.getText(), 
+                    ubicacion.getText(), 
                     fecha, 
                     Integer.parseInt(stock.getText()), 
-                    0, 
-                    0, 
-                    0, 
+                    Integer.parseInt(minimo_aviso.getText()), 
+                    Integer.parseInt(unidad_blister.getText()), 
+                    Integer.parseInt(unidad_caja.getText()), 
                     Double.parseDouble(precio_unitario.getText()), 
-                    0.0, 
-                    0.0
+                    Double.parseDouble(precio_blister.getText()), 
+                    Double.parseDouble(precio_caja.getText())
                 );
 
                 DAOProductos dao = new DAOProductoImpl();
@@ -490,6 +560,88 @@ public class REGISTRO_PRODUCTO extends javax.swing.JPanel {
     private void jPanel2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseExited
         jPanel2.setBackground(new Color(0xECFFFE));
     }//GEN-LAST:event_jPanel2MouseExited
+
+    private void nombre_productoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombre_productoKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            codigo_digemid.requestFocus();
+        }
+    }//GEN-LAST:event_nombre_productoKeyPressed
+
+    private void codigo_digemidKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codigo_digemidKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            principio_activo.requestFocus();
+        }
+    }//GEN-LAST:event_codigo_digemidKeyPressed
+
+    private void principio_activoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_principio_activoKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            laboratorio.requestFocus();
+        }
+    }//GEN-LAST:event_principio_activoKeyPressed
+
+    private void laboratorioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_laboratorioKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            descripcion_producto.requestFocus();
+        }
+    }//GEN-LAST:event_laboratorioKeyPressed
+
+    private void descripcion_productoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_descripcion_productoKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            stock.requestFocus();
+        }
+    }//GEN-LAST:event_descripcion_productoKeyPressed
+
+    private void stockKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_stockKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            precio_unitario.requestFocus();
+        }
+    }//GEN-LAST:event_stockKeyPressed
+
+    private void precio_unitarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_precio_unitarioKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            lote.requestFocus();
+        }
+    }//GEN-LAST:event_precio_unitarioKeyPressed
+
+    private void loteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_loteKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            ubicacion.requestFocus();
+        }
+    }//GEN-LAST:event_loteKeyPressed
+
+    private void ubicacionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ubicacionKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            minimo_aviso.requestFocus();
+        }
+    }//GEN-LAST:event_ubicacionKeyPressed
+
+    private void minimo_avisoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_minimo_avisoKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            unidad_caja.requestFocus();
+        }
+    }//GEN-LAST:event_minimo_avisoKeyPressed
+
+    private void unidad_cajaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_unidad_cajaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            precio_caja.requestFocus();
+        }
+    }//GEN-LAST:event_unidad_cajaKeyPressed
+
+    private void precio_cajaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_precio_cajaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            unidad_blister.requestFocus();
+        }
+    }//GEN-LAST:event_precio_cajaKeyPressed
+
+    private void unidad_blisterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_unidad_blisterKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            precio_blister.requestFocus();
+        }
+    }//GEN-LAST:event_unidad_blisterKeyPressed
+
+    private void precio_blisterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_precio_blisterKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_precio_blisterKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

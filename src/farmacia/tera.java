@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package farmacia;
 
 import Implementaciones.DAOAlertasImpl;
@@ -38,11 +35,12 @@ public void agregarCartasDesdeMapa() {
                 String id = entry.getKey();
                 alerta contenido = entry.getValue();
                 String dni = contenido.getDni();
+                String numero = contenido.getNumero();
                 String nombre = contenido.getNombre();
                 String descripcion = contenido.getDescripcion();
                 String fecha = contenido.getFecha();
 
-                Carta nuevaCarta = new Carta(id, dni,nombre,descripcion,fecha);
+                Carta nuevaCarta = new Carta(id, dni,nombre,descripcion,fecha,numero);
                 GridBagConstraints reglas = new GridBagConstraints();
                 
                 reglas.gridx = x;

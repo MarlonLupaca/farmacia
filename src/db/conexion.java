@@ -20,7 +20,7 @@ public class conexion {
     private final String DB_URL = "jdbc:mysql://localhost:3306/farmacia";
     
     private final String USER = "root";
-    private final String PASS = "Jilaso123.";
+    private final String PASS = "Flujo2002.";
     
     
     public void conex() throws SQLException

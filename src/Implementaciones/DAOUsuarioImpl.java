@@ -57,7 +57,7 @@ public class DAOUsuarioImpl extends conexion implements DAOUusuario{
         List <usuario> lista = null;
         try {
             this.conex();
-            PreparedStatement st = this.conexion.prepareStatement("select * from usuarios;");
+            PreparedStatement st = this.conexion.prepareStatement("select * from usuarios ORDER BY id DESC;");
             
             lista = new ArrayList();
             ResultSet rs = st.executeQuery();

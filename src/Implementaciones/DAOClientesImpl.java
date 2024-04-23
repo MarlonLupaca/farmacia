@@ -68,7 +68,7 @@ public class DAOClientesImpl extends conexion implements DAOClientes{
         List <cliente> lista = null;
         try {
             this.conex();
-            PreparedStatement st = this.conexion.prepareStatement("select * from PACIENTES;");
+            PreparedStatement st = this.conexion.prepareStatement("select * from PACIENTES ORDER BY DNI DESC;");
             
             lista = new ArrayList();
             ResultSet rs = st.executeQuery();

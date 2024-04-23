@@ -23,11 +23,12 @@ public class DAOAlertasImpl extends conexion implements DAOAlertas{
 
         System.out.println("entro");
         this.conex();
-        PreparedStatement st = this.conexion.prepareStatement("INSERT INTO alertas (dni_cliente, Nombre, descripcion_alerta, fecha_de_aviso) VALUES (?,?,?,?)");
+        PreparedStatement st = this.conexion.prepareStatement("INSERT INTO alertas (dni_cliente, Nombre, descripcion_alerta, fecha_de_aviso, numero) VALUES (?,?,?,?,?)");
         st.setString(1,p.getDni());
         st.setString(2,p.getNombre());    
         st.setString(3,p.getDescripcion());    
-        st.setString(4,p.getFecha());          
+        st.setString(4,p.getFecha());
+        st.setString(5,p.getNumero());
         st.executeUpdate();
     }
 
@@ -35,13 +36,14 @@ public class DAOAlertasImpl extends conexion implements DAOAlertas{
     public void modificar(alerta p, int o) throws Exception {
         this.conex();
         PreparedStatement pstmt = this.conexion.prepareStatement(
-                "UPDATE alertas SET dni_cliente = ?, Nombre = ?, descripcion_alerta = ?, fecha_de_aviso = ? WHERE id = ?;");
+                "UPDATE alertas SET dni_cliente = ?, Nombre = ?, descripcion_alerta = ?, fecha_de_aviso = ?, numero = ? WHERE id = ?;");
         
         pstmt.setString(1, p.getDni());
         pstmt.setString(2, p.getNombre());
         pstmt.setString(3, p.getDescripcion());
         pstmt.setString(4, p.getFecha());
-        pstmt.setInt(5, o);
+        pstmt.setString(5, p.getNumero());
+        pstmt.setInt(6, o);
         pstmt.executeUpdate();
     }
 
@@ -59,14 +61,14 @@ public class DAOAlertasImpl extends conexion implements DAOAlertas{
         this.conex();
         Map<String, alerta> mapaAlertas = new LinkedHashMap<>();
 
-        PreparedStatement st = this.conexion.prepareStatement("SELECT *,\n" +
-            "       DATEDIFF(CONCAT(YEAR(CURDATE()), '-', fecha_de_aviso), CURDATE()) AS dias_hasta_fecha,\n" +
-            "       STR_TO_DATE(CONCAT(YEAR(CURDATE()), '-', fecha_de_aviso), '%Y-%m-%d') AS fecha_completa\n" +
+        PreparedStatement st = this.conexion.prepareStatement("SELECT *, \n" +
+            "    DATEDIFF(CONCAT(YEAR(CURDATE()), '-', fecha_de_aviso), CURDATE()) AS dias_hasta_fecha,\n" +
+            "    STR_TO_DATE(CONCAT(YEAR(CURDATE()), '-', fecha_de_aviso), '%Y-%m-%d') AS fecha_completa\n" +
             "FROM alertas\n" +
             "ORDER BY dias_hasta_fecha ASC, fecha_completa ASC;");
         ResultSet resultSet = st.executeQuery();
         while (resultSet.next()) {
-            alerta p = new alerta(resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),resultSet.getString(5));
+            alerta p = new alerta(resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),resultSet.getString(5),resultSet.getString(6));
             String clave = resultSet.getString(1);
             mapaAlertas.put(clave, p);
         }
@@ -80,10 +82,14 @@ public class DAOAlertasImpl extends conexion implements DAOAlertas{
         this.conex();
         Map<String, alerta> mapaAlertas = new LinkedHashMap<>();
 
-        PreparedStatement st = this.conexion.prepareStatement("SELECT * FROM alertas WHERE DAY(STR_TO_DATE(CONCAT(YEAR(CURDATE()), '-', fecha_de_aviso), '%Y-%m-%d')) = DAY(CURDATE());");
+        PreparedStatement st = this.conexion.prepareStatement("SELECT *, \n" +
+"    DATEDIFF(CONCAT(YEAR(CURDATE()), '-', fecha_de_aviso), CURDATE()) AS dias_hasta_fecha,\n" +
+"    STR_TO_DATE(CONCAT(YEAR(CURDATE()), '-', fecha_de_aviso), '%Y-%m-%d') AS fecha_completa\n" +
+"FROM alertas\n" +
+"WHERE DAY(STR_TO_DATE(CONCAT(YEAR(CURDATE()), '-', fecha_de_aviso), '%Y-%m-%d')) = DAY(CURDATE());");
         ResultSet resultSet = st.executeQuery();
         while (resultSet.next()) {
-            alerta p = new alerta(resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),resultSet.getString(5));
+            alerta p = new alerta(resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),resultSet.getString(5),resultSet.getString(6));
             String clave = resultSet.getString(1);
             mapaAlertas.put(clave, p);
         }
@@ -97,10 +103,10 @@ public class DAOAlertasImpl extends conexion implements DAOAlertas{
         this.conex();
         Map<String, alerta> mapaAlertas = new LinkedHashMap<>();
 
-        PreparedStatement st = this.conexion.prepareStatement("SELECT * FROM ALERTAS");
+        PreparedStatement st = this.conexion.prepareStatement("SELECT * FROM ALERTAS ORDER BY id DESC");
         ResultSet resultSet = st.executeQuery();
         while (resultSet.next()) {
-            alerta p = new alerta(resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),resultSet.getString(5));
+            alerta p = new alerta(resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),resultSet.getString(5),resultSet.getString(6));
             String clave = resultSet.getString(1);
             mapaAlertas.put(clave, p);
         }
@@ -127,7 +133,8 @@ public class DAOAlertasImpl extends conexion implements DAOAlertas{
                             rs.getString(2),
                             rs.getString(3),
                             rs.getString(4),
-                            rs.getString(5)
+                            rs.getString(5),
+                            rs.getString(6)
                         );
                         mapaAlertas.put(clave, p);
                     }

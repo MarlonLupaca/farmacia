@@ -88,7 +88,7 @@ public class DAOVentaImpl extends conexion implements DAOVenta{
         List <cabecera> lista = null;
         try {
             this.conex();
-            PreparedStatement st = this.conexion.prepareStatement("select * from encabezado");
+            PreparedStatement st = this.conexion.prepareStatement("SELECT * FROM encabezado ORDER BY NumeroVenta DESC;");
             
             lista = new ArrayList();
             ResultSet rs = st.executeQuery();
@@ -122,7 +122,7 @@ public class DAOVentaImpl extends conexion implements DAOVenta{
                 rs.getInt(1),
                 rs.getString(2),
                 rs.getString(3),
-                rs.getInt(4),
+                rs.getDouble(4),
                 rs.getString(5),
                 rs.getString(6)
             );

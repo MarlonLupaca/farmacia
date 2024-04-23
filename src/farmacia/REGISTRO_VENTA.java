@@ -11,6 +11,7 @@ import controladores_tabla.render_venta;
 import interfaces.*;
 import interfaces.DAOClientes;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -60,6 +61,8 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
         //fecha
         LocalDate fechaActual = obtenerFechaActual();
         lbfecha.setText(String.valueOf(fechaActual));
+        tabla_productos.getTableHeader().setBackground(new Color(0xB1D4E0));
+        tabla_venta.getTableHeader().setBackground(new Color(0xB1D4E0));
     }
     
     class CustomColorRenderer extends DefaultTableCellRenderer {
@@ -118,51 +121,22 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
             public void vizualisar(int row) {
                 try {
                     DAOProductos dao = new DAOProductoImpl();
-                    System.out.println("visualizar: " + row);
                     int fila = tabla_productos.getSelectedRow();
                     String id = tabla_productos.getValueAt(fila, 0).toString();
-                    producto p = dao.visualizar(id);
-
-                    String css = "<style>"
-                            + "body { font-family: Arial, sans-serif; font-size: 14pt; }"
-                            + "h1 { font-size: 18pt; color: #007bff; }"
-                            + "table { border-collapse: collapse; margin-top: 10px; width: 100%; }"
-                            + "th, td { padding: 8px; border-bottom: 1px solid #dee2e6; white-space: normal; word-wrap: break-word; }"
-                            + "th { background-color: #f8f9fa; }"
-                            + "</style>";
+                    try {
+                        producto p = dao.visualizar(id);
+                        VISUALIZADOR_PRODUCTO frame = new VISUALIZADOR_PRODUCTO(p);
+                        frame.setVisible(true);
+                        
+                        
+                        
+                    } catch (Exception ex) {
+                        
+                    }
                     
-                    
-                    String mensaje = "<html><body>"
-                        + "<h1>Información del Producto</h1>"
-                        + "<table>"
-                        + "<tr><th>Código Único</th><td>" + p.getCodigo_unico() + "</td></tr>"
-                        + "<tr><th>Nombre Producto</th><td>" + p.getNombre_producto() + "</td></tr>"
-                        + "<tr><th>Laboratorio</th><td>" + p.getLaboratorio() + "</td></tr>"
-                        + "<tr><th>Descripción</th><td>" + p.getDescripcion_produto() + "</td></tr>"
-                        + "<tr><th>Principio Activo</th><td>" + p.getPrincipo_activo() + "</td></tr>"
-                        + "<tr><th>Código Digemid</th><td>" + p.getCodigo_digemid() + "</td></tr>"
-                        + "<tr><th>Lote</th><td>" + p.getLote() + "</td></tr>"
-                        + "<tr><th>Ubicación</th><td>" + p.getUbicacion() + "</td></tr>"
-                        + "<tr><th>Fecha Vencimiento</th><td>" + p.getFecha_vencimiento() + "</td></tr>"
-                        + "<tr><th>Stock</th><td>" + p.getStock() + "</td></tr>"
-                        + "<tr><th>Mínimo para Aviso</th><td>" + p.getMinimo_para_aviso() + "</td></tr>"
-                        + "<tr><th>Unidad por Blíster</th><td>" + p.getUnidad_x_blister() + "</td></tr>"
-                        + "<tr><th>Unidad por Caja</th><td>" + p.getUnidad_x_caja() + "</td></tr>"
-                        + "<tr><th>Precio por Unidad</th><td>" + p.getPrecio_x_unidad() + "</td></tr>"
-                        + "<tr><th>Precio por Blíster</th><td>" + p.getPrecio_x_blister() + "</td></tr>"
-                        + "<tr><th>Precio por Caja</th><td>" + p.getPrecio_x_caja() + "</td></tr>"
-                        + "</table>"
-                        + "</body></html>";
-
-
-                    
-                    JOptionPane.showMessageDialog(null, "<html>" + css + mensaje, "Información del Cliente", JOptionPane.PLAIN_MESSAGE);
                 } catch (Exception ex) {
-                    Logger.getLogger(REGISTRO_VENTA.class.getName()).log(Level.SEVERE, null, ex);
+                    
                 }
-
-
-                
             }
 
             @Override
@@ -292,6 +266,7 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
         try {
             DAOProductos dao = new DAOProductoImpl();
             DefaultTableModel model = (DefaultTableModel) tabla_productos.getModel();
+            tabla_productos.getTableHeader().setBackground(new Color(0xB1D4E0));
             model.setRowCount(0);
             if (c_unidad.isSelected()){
                 dao.listar().forEach((u) -> model.addRow(new Object[]{u.getCodigo_unico(),u.getNombre_producto(),u.getDescripcion_produto(),u.getPrincipo_activo(),u.getUbicacion(),u.getStock(),u.getPrecio_x_unidad()}));
@@ -312,9 +287,18 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
         try {
             DAOProductos dao = new DAOProductoImpl();
             DefaultTableModel model = (DefaultTableModel) tabla_productos.getModel();
-            model.setRowCount(0);
             
-            dao.buscar(buscador).forEach((u) -> model.addRow(new Object[]{u.getCodigo_unico(),u.getNombre_producto(),u.getDescripcion_produto(),u.getPrincipo_activo(),u.getUbicacion(),u.getStock(),u.getPrecio_x_unidad()}));
+            model.setRowCount(0);
+            if (c_unidad.isSelected()){
+                dao.buscar(buscador).forEach((u) -> model.addRow(new Object[]{u.getCodigo_unico(),u.getNombre_producto(),u.getDescripcion_produto(),u.getPrincipo_activo(),u.getUbicacion(),u.getStock(),u.getPrecio_x_unidad()}));
+            }
+            if (c_blister.isSelected()){
+                dao.buscar(buscador).forEach((u) -> model.addRow(new Object[]{u.getCodigo_unico(),u.getNombre_producto(),u.getDescripcion_produto(),u.getPrincipo_activo(),u.getUbicacion(),u.getStock()/u.getUnidad_x_blister(),u.getPrecio_x_blister()}));
+            }
+            if (c_caja.isSelected()){
+                dao.buscar(buscador).forEach((u) -> model.addRow(new Object[]{u.getCodigo_unico(),u.getNombre_producto(),u.getDescripcion_produto(),u.getPrincipo_activo(),u.getUbicacion(),u.getStock()/u.getUnidad_x_caja(),u.getPrecio_x_caja()}));
+            }
+            
         } catch (Exception e) {
         }
     }
@@ -763,7 +747,7 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
     }//GEN-LAST:event_c_cajaMouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-    int A = JOptionPane.showConfirmDialog(null,"¿REGISTRAR VEMTA?","AVISO",JOptionPane.CANCEL_OPTION );
+    int A = JOptionPane.showConfirmDialog(null,"¿REGISTRAR VENTA?","AVISO",JOptionPane.CANCEL_OPTION );
 
         if (A == 0) {
 
