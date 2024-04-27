@@ -13,4 +13,5 @@ public interface DAOProductos {
     public List<producto> listar()throws Exception;
     public List<producto> buscar(String buscar) throws SQLException;
     public List<producto> listar_de_stock()throws Exception;
+    public List<producto> listar_de_vencimiento()throws Exception;
 }

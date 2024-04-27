@@ -35,6 +35,9 @@ public class VIEW_VENTA extends javax.swing.JFrame {
         txmetodo.setText(p.getMetodo());
         txvendedor.setText(p.getVendedor());
         txtotal.setText(String.valueOf(p.getTotalVenta()));
+        txhora.setText(p.getHora());
+        txt_Efectivo.setText(String.valueOf(p.getMEfectivo()));
+        txt_Yape.setText(String.valueOf(p.getMYape()));
 
         DefaultTableModel model = (DefaultTableModel) tabla_Venta.getModel();
         
@@ -71,7 +74,15 @@ public class VIEW_VENTA extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        txt_Yape = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        txhora = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        txt_Efectivo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_Venta = new javax.swing.JTable();
 
@@ -121,12 +132,12 @@ public class VIEW_VENTA extends javax.swing.JFrame {
         txtotal.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
         txtotal.setForeground(new java.awt.Color(0, 0, 0));
         txtotal.setText("Total:");
-        jPanel4.add(txtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, -1, -1));
+        jPanel4.add(txtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, -1, -1));
 
         txmetodo.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
         txmetodo.setForeground(new java.awt.Color(0, 0, 0));
         txmetodo.setText("Metodo:");
-        jPanel4.add(txmetodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, -1, -1));
+        jPanel4.add(txmetodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, -1, -1));
 
         txfecha.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
         txfecha.setForeground(new java.awt.Color(0, 0, 0));
@@ -136,12 +147,12 @@ public class VIEW_VENTA extends javax.swing.JFrame {
         txcliente.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
         txcliente.setForeground(new java.awt.Color(0, 0, 0));
         txcliente.setText("Cliente:");
-        jPanel4.add(txcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, -1, -1));
+        jPanel4.add(txcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, -1, -1));
 
         txvendedor.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
         txvendedor.setForeground(new java.awt.Color(0, 0, 0));
         txvendedor.setText("Vendedor:");
-        jPanel4.add(txvendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, -1, -1));
+        jPanel4.add(txvendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
@@ -151,22 +162,63 @@ public class VIEW_VENTA extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Cliente:");
-        jPanel4.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+        jPanel4.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Metodo:");
-        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
+        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Vendedor:");
-        jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
+        jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel14.setText("Total: S/.");
-        jPanel4.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 70, -1));
+        txt_Yape.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
+        txt_Yape.setForeground(new java.awt.Color(0, 0, 0));
+        txt_Yape.setText("M. Efectivo: S/.");
+        jPanel4.add(txt_Yape, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 100, -1));
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel15.setText("Hora:");
+        jPanel4.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
+
+        txhora.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
+        txhora.setForeground(new java.awt.Color(0, 0, 0));
+        txhora.setText("hora");
+        jPanel4.add(txhora, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, -1, -1));
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel17.setText("Total: S/.");
+        jPanel4.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 70, -1));
+
+        jPanel5.setBackground(new java.awt.Color(177, 212, 224));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("Cabecera");
+        jPanel5.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 250, 40));
+
+        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 40));
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel18.setText("M. Yape: S/.");
+        jPanel4.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 120, -1));
+
+        jLabel19.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel19.setText("M. Efectivo: S/.");
+        jPanel4.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 130, -1));
+
+        txt_Efectivo.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
+        txt_Efectivo.setForeground(new java.awt.Color(0, 0, 0));
+        txt_Efectivo.setText("M. Efectivo: S/.");
+        jPanel4.add(txt_Efectivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 100, -1));
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 300, 520));
 
@@ -240,17 +292,25 @@ public class VIEW_VENTA extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabla_Venta;
     private javax.swing.JLabel txcliente;
     private javax.swing.JLabel txfecha;
+    private javax.swing.JLabel txhora;
     private javax.swing.JLabel txmetodo;
+    private javax.swing.JLabel txt_Efectivo;
+    private javax.swing.JLabel txt_Yape;
     private javax.swing.JLabel txtotal;
     private javax.swing.JLabel txvendedor;
     // End of variables declaration//GEN-END:variables

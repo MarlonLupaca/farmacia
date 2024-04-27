@@ -15,12 +15,15 @@ public class DAOVentaImpl extends conexion implements DAOVenta{
     @Override
     public void registrarEncabezado (cabecera p) throws Exception {
         this.conex();
-        PreparedStatement st = this.conexion.prepareStatement("INSERT INTO encabezado (FechaVenta, Cliente, TotalVenta, MetodoPago, Vendedor) VALUES(?,?,?,?,?)");
+        PreparedStatement st = this.conexion.prepareStatement("INSERT INTO encabezado (FechaVenta, Cliente, TotalVenta, MetodoPago, Vendedor, hora, pago_Efectivo, pago_yape) VALUES(?,?,?,?,?,?,?,?)");
         st.setString(1,p.getFecha_venta());
         st.setString(2,p.getCliente());    
         st.setDouble(3,p.getTotalVenta());    
         st.setString(4,p.getMetodo());    
         st.setString(5,p.getVendedor());
+        st.setString(6,p.getHora());
+        st.setDouble(7,p.getMEfectivo());
+        st.setDouble(8,p.getMYape());
         st.executeUpdate();
     }
 
@@ -99,7 +102,10 @@ public class DAOVentaImpl extends conexion implements DAOVenta{
                 rs.getString(3),
                 rs.getDouble(4),
                 rs.getString(5),
-                rs.getString(6)
+                rs.getString(6),
+                rs.getString(7),
+                rs.getDouble(8),
+                rs.getDouble(9)
             );   
             lista.add(pro);
             }
@@ -124,7 +130,10 @@ public class DAOVentaImpl extends conexion implements DAOVenta{
                 rs.getString(3),
                 rs.getDouble(4),
                 rs.getString(5),
-                rs.getString(6)
+                rs.getString(6),
+                rs.getString(7),
+                rs.getDouble(8),
+                rs.getDouble(9)
             );
         }
         return pro;
@@ -211,9 +220,10 @@ public class DAOVentaImpl extends conexion implements DAOVenta{
                     rs.getString(3),
                     rs.getDouble(4),
                     rs.getString(5),
-                    rs.getString(6)
-                        
-                        
+                    rs.getString(6),
+                    rs.getString(7),
+                    rs.getDouble(8),
+                    rs.getDouble(9)  
                 );
                 System.out.println(rs.getInt(1));
                 System.out.println(rs.getString(2));
@@ -250,7 +260,10 @@ public class DAOVentaImpl extends conexion implements DAOVenta{
                     rs.getString(3),
                     rs.getDouble(4),
                     rs.getString(5),
-                    rs.getString(6)
+                    rs.getString(6),
+                    rs.getString(7),
+                    rs.getDouble(8),
+                    rs.getDouble(9)
                 );
                 lista.add(pro);
             }
@@ -290,7 +303,76 @@ public class DAOVentaImpl extends conexion implements DAOVenta{
         }
     }
 
-    
-    
-    
+    @Override
+    public List<cabecera> filtrar_fecha_metodo_vendedora(String fecha_de_inicio, String fecha_de_fin, String vendedora, String metodo) throws Exception {
+        List<cabecera> lista = null;
+        try {
+            this.conex();
+            PreparedStatement st = this.conexion.prepareStatement("SELECT * FROM encabezado " +
+                                                                  "WHERE FechaVenta BETWEEN ? AND ? " +
+                                                                  "AND Vendedor = ? " +
+                                                                  "AND MetodoPago = ?");
+            st.setString(1, fecha_de_inicio);
+            st.setString(2, fecha_de_fin);
+            st.setString(3, vendedora);
+            st.setString(4, metodo);
+
+            lista = new ArrayList<>();
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+              cabecera pro = new cabecera(
+                  rs.getInt(1),
+                  rs.getString(2),
+                  rs.getString(3),
+                  rs.getDouble(4),
+                  rs.getString(5),
+                  rs.getString(6),
+                  rs.getString(7),
+                  rs.getDouble(8),
+                  rs.getDouble(9)
+              );
+              lista.add(pro);
+            }
+            rs.close();
+            st.close();
+          } catch (Exception e) {
+            // Manejar excepción aquí
+        }
+        return lista;
+   }
+
+    @Override
+    public List<cabecera> filtrar_fecha_metodo(String fecha_de_inicio, String fecha_de_fin, String metodo) throws Exception {
+    List<cabecera> lista = null;
+    try {
+        this.conex();
+        PreparedStatement st = this.conexion.prepareStatement("SELECT * FROM encabezado WHERE FechaVenta BETWEEN ? AND ? AND MetodoPago = ?");
+        st.setString(1, fecha_de_inicio);
+        st.setString(2, fecha_de_fin);
+        st.setString(3, metodo);
+
+        lista = new ArrayList<>();
+        ResultSet rs = st.executeQuery();
+        while (rs.next()) {
+          cabecera pro = new cabecera(
+              rs.getInt(1),
+              rs.getString(2),
+              rs.getString(3),
+              rs.getDouble(4),
+              rs.getString(5),
+              rs.getString(6),
+              rs.getString(7),
+              rs.getDouble(8),
+              rs.getDouble(9)
+          );
+          lista.add(pro);
+        }
+        rs.close();
+        st.close();
+      } catch (Exception e) {
+        // Manejar excepción aquí
+      }
+    return lista;
+}
+
 }

@@ -20,5 +20,7 @@ public interface DAOVenta {
     public void eliminar (String p)throws Exception; 
     public List<cabecera> filtrar_fecha(String fecha_de_inicio,String fecha_de_fin) throws Exception;
     public List<cabecera> filtrar_fecha_vendedore(String fecha_de_inicio,String fecha_de_fin,String Vendedora) throws Exception;
+    public List<cabecera> filtrar_fecha_metodo(String fecha_de_inicio,String fecha_de_fin,String metodo) throws Exception;
+    public List<cabecera> filtrar_fecha_metodo_vendedora(String fecha_de_inicio,String fecha_de_fin,String Vendedora, String metodo) throws Exception;
 
 }

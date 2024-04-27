@@ -2,23 +2,17 @@
 package farmacia;
 
 import Implementaciones.*;
-import controladores_tabla.acciones_botones_inte;
 import controladores_tabla.acciones_botones_inte_venta;
-import controladores_tabla.editor;
 import controladores_tabla.editor_venta;
-import controladores_tabla.render;
 import controladores_tabla.render_venta;
 import interfaces.*;
-import interfaces.DAOClientes;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import objetos.alerta;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -28,7 +22,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import objetos.cabecera;
-import objetos.cliente;
 import objetos.detalle;
 import objetos.producto;
 
@@ -64,13 +57,17 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
         tabla_productos.getTableHeader().setBackground(new Color(0xB1D4E0));
         tabla_venta.getTableHeader().setBackground(new Color(0xB1D4E0));
     }
+    public String hora(){
+        LocalTime horaActual = LocalTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
+        String horaFormateada = horaActual.format(formatter);
+        System.out.println("Hora actual (formato 12 horas): " + horaFormateada);
+        return horaFormateada;
+    }
     
     class CustomColorRenderer extends DefaultTableCellRenderer {
         public void setValue(Object value) {
-            // Establecer el valor de la celda
             setText((value == null) ? "" : value.toString());
-
-            // Establecer el color de la letra (en este caso, rojo)
             setForeground(java.awt.Color.WHITE);
         }
     }
@@ -348,6 +345,9 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
         c_caja = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        txvendedor7 = new javax.swing.JLabel();
+        tf_yape = new javax.swing.JTextField();
+        DUO = new javax.swing.JRadioButton();
 
         setPreferredSize(new java.awt.Dimension(1050, 680));
 
@@ -425,7 +425,7 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
         C.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        C.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 35, 20, 295));
+        C.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 35, 20, 295));
 
         tabla_venta.setBackground(new java.awt.Color(255, 255, 255));
         tabla_venta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -533,27 +533,27 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
         cliente.setBackground(new java.awt.Color(255, 255, 255));
         cliente.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
         cliente.setForeground(new java.awt.Color(0, 0, 0));
-        C.add(cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 160, 160, 30));
+        C.add(cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 70, 160, 30));
 
         txvendedor1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txvendedor1.setForeground(new java.awt.Color(0, 0, 0));
         txvendedor1.setText("Metodo:");
-        C.add(txvendedor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 40, 70, 30));
+        C.add(txvendedor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 40, 70, 30));
 
         buttonGroup1.add(YAPE);
         YAPE.setForeground(new java.awt.Color(0, 0, 0));
-        YAPE.setText("YAPE");
+        YAPE.setText("Yape");
         YAPE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 YAPEActionPerformed(evt);
             }
         });
-        C.add(YAPE, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 100, -1, 30));
+        C.add(YAPE, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 100, -1, 30));
 
         buttonGroup1.add(EFECTIVO);
         EFECTIVO.setForeground(new java.awt.Color(0, 0, 0));
-        EFECTIVO.setText("EFECTIVO");
-        C.add(EFECTIVO, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 70, -1, 30));
+        EFECTIVO.setText("Efectivo");
+        C.add(EFECTIVO, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 70, -1, 30));
 
         txvendedor3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txvendedor3.setForeground(new java.awt.Color(0, 0, 0));
@@ -562,8 +562,8 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
 
         txvendedor4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txvendedor4.setForeground(new java.awt.Color(0, 0, 0));
-        txvendedor4.setText("Cliente:");
-        C.add(txvendedor4, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 130, 70, 30));
+        txvendedor4.setText("Monto de yape:");
+        C.add(txvendedor4, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 160, 110, 30));
         C.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 1050, 20));
 
         txvendedor5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -628,7 +628,7 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
                 jLabel3MouseClicked(evt);
             }
         });
-        C.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 230, 90, 90));
+        C.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 220, 90, 80));
 
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons2.png"))); // NOI18N
@@ -640,6 +640,26 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
             }
         });
         C.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 290, -1, -1));
+
+        txvendedor7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txvendedor7.setForeground(new java.awt.Color(0, 0, 0));
+        txvendedor7.setText("Cliente:");
+        C.add(txvendedor7, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 40, 70, 30));
+
+        tf_yape.setBackground(new java.awt.Color(255, 255, 255));
+        tf_yape.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
+        tf_yape.setForeground(new java.awt.Color(0, 0, 0));
+        C.add(tf_yape, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 190, 100, 40));
+
+        buttonGroup1.add(DUO);
+        DUO.setForeground(new java.awt.Color(0, 0, 0));
+        DUO.setText("Duo");
+        DUO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DUOActionPerformed(evt);
+            }
+        });
+        C.add(DUO, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 130, -1, 30));
 
         javax.swing.GroupLayout panelPadreLayout = new javax.swing.GroupLayout(panelPadre);
         panelPadre.setLayout(panelPadreLayout);
@@ -753,12 +773,22 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
 
 
             try {
+                String Horita = hora();
                 DAOVenta dao = new DAOVentaImpl();
                 //encabezado
                 String metodo="";
-                if(EFECTIVO.isSelected()){metodo = "EFECTIVO";}
-                if(YAPE.isSelected()){metodo = "YAPE";}
-                cabecera venta = new cabecera(lbfecha.getText(), cliente.getText(), Double.parseDouble(TOTAL.getText()), metodo, txvendedor.getText());
+                if(EFECTIVO.isSelected()){metodo = "Efectivo";}
+                if(YAPE.isSelected()){metodo = "Yape";}
+                if(DUO.isSelected()){metodo = "Duo";}
+                double MYape;
+                String texto = tf_yape.getText();
+                if (texto.isEmpty()) {
+                    MYape = 0.0;
+                } else {
+                    MYape = Double.parseDouble(texto);
+                }
+                double MEfectivo = Double.parseDouble(TOTAL.getText()) - MYape;
+                cabecera venta = new cabecera(lbfecha.getText(), cliente.getText(), Double.parseDouble(TOTAL.getText()), metodo, txvendedor.getText(),Horita,MEfectivo,MYape);
                 dao.registrarEncabezado(venta);
                 //detalle
                 List<detalle> pila = new ArrayList<>();
@@ -824,8 +854,13 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jLabel7MouseClicked
 
+    private void DUOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DUOActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DUOActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel C;
+    private javax.swing.JRadioButton DUO;
     private javax.swing.JRadioButton EFECTIVO;
     private javax.swing.JLabel TOTAL;
     private javax.swing.JRadioButton YAPE;
@@ -856,6 +891,7 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
     private javax.swing.JPanel panelPadre;
     private javax.swing.JTable tabla_productos;
     private javax.swing.JTable tabla_venta;
+    private javax.swing.JTextField tf_yape;
     private javax.swing.JLabel txcambio;
     private javax.swing.JTextField txt_buscar;
     private javax.swing.JLabel txvendedor;
@@ -865,6 +901,7 @@ public class REGISTRO_VENTA extends javax.swing.JPanel {
     private javax.swing.JLabel txvendedor4;
     private javax.swing.JLabel txvendedor5;
     private javax.swing.JLabel txvendedor6;
+    private javax.swing.JLabel txvendedor7;
     // End of variables declaration//GEN-END:variables
 
     

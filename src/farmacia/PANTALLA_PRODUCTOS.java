@@ -41,6 +41,8 @@ public class PANTALLA_PRODUCTOS extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         b3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        b6 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
         b5 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
 
@@ -108,6 +110,30 @@ public class PANTALLA_PRODUCTOS extends javax.swing.JPanel {
 
         panelfill.add(b3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 40));
 
+        b6.setBackground(new java.awt.Color(177, 212, 224));
+        b6.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 255, 255), new java.awt.Color(204, 255, 255)));
+        b6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        b6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b6MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                b6MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                b6MouseExited(evt);
+            }
+        });
+        b6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel10.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("ALER. VENCIMIENTO");
+        b6.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 40));
+
+        panelfill.add(b6, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 190, 40));
+
         b5.setBackground(new java.awt.Color(177, 212, 224));
         b5.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 255, 255), new java.awt.Color(204, 255, 255)));
         b5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -127,10 +153,10 @@ public class PANTALLA_PRODUCTOS extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("ALERTAS DE STOCK");
-        b5.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 40));
+        jLabel9.setText("ALER. STOCK");
+        b5.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 160, 40));
 
-        panelfill.add(b5, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 0, 220, 40));
+        panelfill.add(b5, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 0, 160, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -190,12 +216,26 @@ public class PANTALLA_PRODUCTOS extends javax.swing.JPanel {
         b5.setBackground(new Color(0xB1D4E0));
     }//GEN-LAST:event_b5MouseExited
 
+    private void b6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b6MouseClicked
+        visualizador(new ALERTAS_DE_VENCIMIENTO());
+    }//GEN-LAST:event_b6MouseClicked
+
+    private void b6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b6MouseEntered
+        b6.setBackground(new Color(0xECFFFE));
+    }//GEN-LAST:event_b6MouseEntered
+
+    private void b6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b6MouseExited
+        b6.setBackground(new Color(0xB1D4E0));
+    }//GEN-LAST:event_b6MouseExited
+
     
            
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel b3;
     private javax.swing.JPanel b4;
     private javax.swing.JPanel b5;
+    private javax.swing.JPanel b6;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

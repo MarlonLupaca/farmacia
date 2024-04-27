@@ -3,29 +3,17 @@ package farmacia;
 
 import Implementaciones.*;
 import controladores_tabla.acciones_botones_inte;
-import controladores_tabla.editor;
 import controladores_tabla.editor_venta_view;
-import controladores_tabla.render;
 import controladores_tabla.render_view;
 import interfaces.*;
-import interfaces.DAOClientes;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.util.Map;
-import objetos.alerta;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import objetos.cabecera;
-import objetos.cliente;
-import objetos.producto;
 
-/**
- *
- * @author Marlon_Mendoza
- */
 public class BIBLIOTECA_VENTAS extends javax.swing.JPanel {
 
     private String permiso;
@@ -63,7 +51,7 @@ public class BIBLIOTECA_VENTAS extends javax.swing.JPanel {
                 String id = tabla_ventas.getValueAt(fila, 0).toString();
                 String vende = tabla_ventas.getValueAt(fila, 5).toString();
                 
-                if (vende.equals(permiso) || per.equals("admin")) {
+                if (per.equals("admin")) {
                     int i = JOptionPane.showConfirmDialog(null,"¿SEGURO QUE ELIMINAR ESTE PRODUCTO","AVISO",JOptionPane.CANCEL_OPTION );
                 
                     if (i == 0) {
@@ -105,8 +93,8 @@ public class BIBLIOTECA_VENTAS extends javax.swing.JPanel {
                 
             };
         };
-        tabla_ventas.getColumnModel().getColumn(6).setCellRenderer( new render_view());
-        tabla_ventas.getColumnModel().getColumn(6).setCellEditor(new editor_venta_view(evento));
+        tabla_ventas.getColumnModel().getColumn(9).setCellRenderer( new render_view());
+        tabla_ventas.getColumnModel().getColumn(9).setCellEditor(new editor_venta_view(evento));
     }
     public void cargar_tabla()
     {
@@ -116,18 +104,7 @@ public class BIBLIOTECA_VENTAS extends javax.swing.JPanel {
             tabla_ventas.getTableHeader().setBackground(new Color(0xB1D4E0));
             model.setRowCount(0);
             
-            dao.listar().forEach((u) -> model.addRow(new Object[]{u.getId(),u.getFecha_venta(),u.getCliente(),u.getTotalVenta(),u.getMetodo(),u.getVendedor()}));
-        } catch (Exception e) {
-        }
-    }
-    public void buscador(String buscador)
-    {
-        try {
-            DAOProductos dao = new DAOProductoImpl();
-            DefaultTableModel model = (DefaultTableModel) tabla_ventas.getModel();
-            model.setRowCount(0);
-            
-            dao.buscar(buscador).forEach((u) -> model.addRow(new Object[]{u.getCodigo_unico(),u.getNombre_producto(),u.getLaboratorio(),u.getDescripcion_produto(),u.getPrincipo_activo(),u.getCodigo_digemid(),u.getUbicacion(),u.getFecha_vencimiento(),u.getStock(),u.getPrecio_x_unidad()}));
+            dao.listar().forEach((u) -> model.addRow(new Object[]{u.getId(),u.getFecha_venta(),u.getCliente(),"S/."+u.getTotalVenta(),u.getMetodo(),u.getVendedor(),u.getHora(),"S/."+u.getMEfectivo(),"S/."+u.getMYape()}));
         } catch (Exception e) {
         }
     }
@@ -151,11 +128,11 @@ public class BIBLIOTECA_VENTAS extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "FECHA DE VENTA", "CLIENTE", "TOTAL VENTA", "METODO DE PAGO", "VENDEDOR", "ACCIONES"
+                "ID", "FECHA DE VENTA", "CLIENTE", "TOTAL VENTA", "METODO DE PAGO", "VENDEDOR", "HORA", "M. Efectivo", "M. Yape", "ACCIONES"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true
+                false, false, false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -172,7 +149,7 @@ public class BIBLIOTECA_VENTAS extends javax.swing.JPanel {
             tabla_ventas.getColumnModel().getColumn(0).setResizable(false);
             tabla_ventas.getColumnModel().getColumn(0).setPreferredWidth(30);
             tabla_ventas.getColumnModel().getColumn(1).setResizable(false);
-            tabla_ventas.getColumnModel().getColumn(1).setPreferredWidth(150);
+            tabla_ventas.getColumnModel().getColumn(1).setPreferredWidth(130);
             tabla_ventas.getColumnModel().getColumn(2).setResizable(false);
             tabla_ventas.getColumnModel().getColumn(2).setPreferredWidth(120);
             tabla_ventas.getColumnModel().getColumn(3).setResizable(false);
@@ -182,7 +159,11 @@ public class BIBLIOTECA_VENTAS extends javax.swing.JPanel {
             tabla_ventas.getColumnModel().getColumn(5).setResizable(false);
             tabla_ventas.getColumnModel().getColumn(5).setPreferredWidth(150);
             tabla_ventas.getColumnModel().getColumn(6).setResizable(false);
-            tabla_ventas.getColumnModel().getColumn(6).setPreferredWidth(50);
+            tabla_ventas.getColumnModel().getColumn(6).setPreferredWidth(100);
+            tabla_ventas.getColumnModel().getColumn(7).setResizable(false);
+            tabla_ventas.getColumnModel().getColumn(8).setResizable(false);
+            tabla_ventas.getColumnModel().getColumn(9).setResizable(false);
+            tabla_ventas.getColumnModel().getColumn(9).setPreferredWidth(90);
         }
 
         javax.swing.GroupLayout CLayout = new javax.swing.GroupLayout(C);
@@ -190,16 +171,16 @@ public class BIBLIOTECA_VENTAS extends javax.swing.JPanel {
         CLayout.setHorizontalGroup(
             CLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1038, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(25, 25, 25)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1004, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         CLayout.setVerticalGroup(
             CLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
